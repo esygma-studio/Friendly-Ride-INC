@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rebuilding & Constructing a Sustainable Online Sales Channel for Friendly Ride LLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--pink:#E8185A;--black:#111111;--white:#FFFFFF;--g1:#F6F6F6;--g2:#EBEBEB;--g3:#CCCCCC;--g4:#888888;--g5:#444444}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:0 52px}
+nav{background:var(--white);border-bottom:1px solid var(--g2);padding:15px 0;position:sticky;top:0;z-index:50}
+.nav-i{display:flex;align-items:center;justify-content:space-between}
+.nb{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.06em;color:var(--black)}
+.nb span{color:var(--pink)}
+.nm{font-size:11px;color:var(--g4);letter-spacing:.04em}
+.nm b{color:var(--pink);font-weight:600;margin-left:10px}
+.sw{padding:72px 0;border-bottom:1px solid var(--g2)}
+.sg{padding:72px 0;border-bottom:1px solid var(--g2);background:var(--g1)}
+.sb{padding:72px 0;background:var(--black)}
+.ey{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--pink);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.ey::before{content:'';width:22px;height:2px;background:var(--pink);flex-shrink:0}
+.ey-w{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.ey-w::before{content:'';width:22px;height:2px;background:var(--pink);flex-shrink:0}
+.h-xl{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,7vw,80px);line-height:.93;letter-spacing:.02em;color:var(--black);margin-bottom:24px}
+.h-xl em{color:var(--pink);font-style:normal}
+.h-lg{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,54px);line-height:.95;letter-spacing:.02em;color:var(--black);margin-bottom:20px}
+.h-lg em{color:var(--pink);font-style:normal}
+.h-lg-w{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,54px);line-height:.95;letter-spacing:.02em;color:var(--white);margin-bottom:20px}
+.h-lg-w em{color:var(--pink);font-style:normal}
+.lead{font-family:'Lora',serif;font-size:17px;font-style:italic;color:var(--g4);line-height:1.65;max-width:520px;margin-bottom:28px}
+.body{font-size:14px;font-weight:300;color:var(--g5);line-height:1.85;max-width:600px}
+.body strong{font-weight:600;color:var(--black)}
+.body-w{font-size:14px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.85}
+.body-w strong{font-weight:600;color:var(--white)}
+.g2c{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
+.g3c{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--g2);border:1px solid var(--g2)}
+.stat{background:var(--white);padding:28px 24px}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:52px;line-height:1;color:var(--black);margin-bottom:6px}
+.stat-n em{color:var(--pink);font-style:normal}
+.stat-d{font-size:12px;color:var(--g5);line-height:1.5}
+.stat-s{font-size:10px;color:var(--g3);margin-top:5px}
+.comp-row{display:grid;grid-template-columns:155px 1fr 130px;align-items:center;gap:18px;padding:13px 0;border-bottom:1px solid var(--g2)}
+.comp-row:last-child{border-bottom:none}
+.cn{font-size:13px;font-weight:600;color:var(--black)}
+.cn.fr{color:var(--pink)}
+.bw{height:3px;background:var(--g2);border-radius:2px;overflow:hidden}
+.bf{height:100%;border-radius:2px;background:var(--black)}
+.bf.fr{background:var(--pink)}
+.ct{font-size:11px;color:var(--g4);text-align:right}
+.ct.fr{color:var(--pink);font-weight:500}
+.score-box{display:flex;align-items:stretch;border:1px solid var(--g2);margin-top:32px;overflow:hidden}
+.score-l{background:var(--black);padding:24px 28px;text-align:center;flex-shrink:0}
+.score-n{font-family:'Bebas Neue',sans-serif;font-size:60px;line-height:1;color:var(--pink);letter-spacing:-1px}
+.score-d{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-top:4px}
+.score-r{padding:18px 22px;display:flex;flex-direction:column;justify-content:center}
+.score-t{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--pink);margin-bottom:6px}
+.score-b{font-size:13px;font-weight:300;color:var(--g5);line-height:1.65}
+.blist{list-style:none;margin-top:4px}
+.blist li{display:grid;grid-template-columns:8px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--g2);align-items:start}
+.blist li:last-child{border-bottom:none}
+.bdot{width:5px;height:5px;border-radius:50%;background:var(--pink);margin-top:6px;flex-shrink:0}
+.bt{font-size:13px;font-weight:600;color:var(--black);margin-bottom:2px}
+.bd{font-size:12px;font-weight:300;color:var(--g4);line-height:1.6}
+.tl{position:relative;padding-left:28px;margin-top:8px}
+.tl::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--g2)}
+.tl-item{position:relative;padding:0 0 32px 24px}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{position:absolute;left:-28px;top:3px;width:10px;height:10px;border-radius:50%;background:var(--white);border:2px solid var(--g3)}
+.tl-dot.on{background:var(--pink);border-color:var(--pink)}
+.tl-month{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--pink);margin-bottom:5px}
+.tl-title{font-size:14px;font-weight:600;color:var(--black);margin-bottom:4px}
+.tl-pts{font-size:12px;font-weight:300;color:var(--g4);line-height:1.7}
+.proj-phase{border:1px solid var(--g2);padding:28px 26px;position:relative;overflow:hidden}
+.proj-phase::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--g2)}
+.proj-phase.active::before{background:var(--pink)}
+.proj-num{font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:1;color:var(--g2);margin-bottom:10px}
+.proj-phase.active .proj-num{color:var(--pink)}
+.proj-title{font-size:13px;font-weight:600;color:var(--black);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.proj-body{font-size:13px;font-weight:300;color:var(--g4);line-height:1.75}
+.strip{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--g2);border-bottom:1px solid var(--g2)}
+.strip-item{padding:22px 26px;border-right:1px solid var(--g2)}
+.strip-item:last-child{border-right:none}
+.sk{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--pink);margin-bottom:5px}
+.sv{font-size:13px;color:var(--g5);line-height:1.5}
+footer{padding:26px 0;border-top:3px solid var(--pink);background:var(--white)}
+.fi{display:flex;justify-content:space-between;align-items:center}
+.fb{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.05em;color:var(--black)}
+.fb span{color:var(--pink)}
+.fm{font-size:11px;color:var(--g4);text-align:right;line-height:1.6}
+/* competitor activity card */
+.comp-card{background:var(--white);border:1px solid var(--g2);overflow:hidden;margin-bottom:2px}
+.comp-card-head{padding:16px 20px;border-bottom:1px solid var(--g2);display:flex;align-items:center;justify-content:space-between}
+.comp-card-name{font-size:14px;font-weight:600;color:var(--black)}
+.comp-card-ig{font-size:11px;color:var(--pink);text-decoration:none}
+.comp-card-body{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0}
+.comp-card-col{padding:14px 18px;border-right:1px solid var(--g2)}
+.comp-card-col:last-child{border-right:none}
+.ccc-label{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g4);margin-bottom:6px}
+.ccc-val{font-size:13px;font-weight:500;color:var(--black);margin-bottom:3px}
+.ccc-note{font-size:11px;font-weight:300;color:var(--g4);line-height:1.5}
+/* channel row */
+.ch-row{border:1px solid #1E1E1E;overflow:hidden;margin-bottom:2px}
+.ch-row-head{display:grid;grid-template-columns:4px 1fr;background:#181818}
+.ch-bar{height:100%}
+.ch-row-inner{padding:17px 24px;display:flex;align-items:center;justify-content:space-between}
+.ch-rn{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.03em;color:var(--white)}
+.ch-pct{font-family:'Bebas Neue',sans-serif;font-size:28px}
+.ch-row-body{padding:16px 28px;background:#131313;border-top:1px solid #222;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.ch-col-t{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:8px}
+.ch-pts{list-style:none}
+.ch-pts li{font-size:12px;font-weight:300;color:rgba(255,255,255,.45);padding:4px 0;border-bottom:1px solid #1E1E1E;line-height:1.5}
+.ch-pts li:last-child{border-bottom:none}
+.ch-pts li::before{content:'→ ';color:var(--pink);font-size:11px}
+@media(max-width:640px){
+  .wrap{padding:0 24px}
+  .h-xl{font-size:48px}
+  .h-lg,.h-lg-w{font-size:34px}
+  .g2c,.g3c{grid-template-columns:1fr}
+  .comp-row{grid-template-columns:130px 1fr}
+  .ct{display:none}
+  .strip{grid-template-columns:1fr}
+  .strip-item{border-right:none;border-bottom:1px solid var(--g2)}
+  .strip-item:last-child{border-bottom:none}
+  .comp-card-body{grid-template-columns:1fr}
+  .comp-card-col{border-right:none;border-bottom:1px solid var(--g2)}
+  .ch-row-body{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-i">
+      <span class="nb">Ad<span>Forge</span>.</span>
+      <span class="nm">Friendly Ride LLC<b>2026 · Confidential</b></span>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ═══ COVER ═══ -->
+<section class="sw" style="padding-top:80px;padding-bottom:80px">
+  <div class="wrap">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:36px">
+      <span style="font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.06em;color:var(--g4)">Ad<span style="color:var(--pink)">Forge</span> Global</span>
+      <span style="width:1px;height:12px;background:var(--g2)"></span>
+      <span style="font-size:12px;color:var(--g4)">Friendly Ride LLC</span>
+      <span style="font-size:11px;color:var(--g3);margin-left:auto">June 2026 · Confidential</span>
+    </div>
+    <p class="ey">Strategy Proposal</p>
+    <h1 class="h-xl" style="font-size:clamp(38px,5.5vw,62px);line-height:1.0;margin-bottom:20px">REBUILDING &<br>CONSTRUCTING A<br>SUSTAINABLE ONLINE<br>SALES CHANNEL FOR<br><em>FRIENDLY RIDE LLC.</em></h1>
+    <p class="lead" style="max-width:560px">A comprehensive plan to build the digital infrastructure, establish an active sales pipeline, and position Friendly Ride as the leading luxury chauffeur brand — online and beyond.</p>
+    <p class="body" style="border-left:2px solid var(--pink);padding-left:18px;max-width:580px">This is not a marketing refresh. It is a full commercial build — from website to paid channels to brand content — designed to generate revenue from day one and compound over time.</p>
+  </div>
+</section>
+
+
+<!-- ═══ 01 · INTRODUCTION ═══ -->
+<section class="sg">
+  <div class="wrap">
+    <p class="ey">01 · Introduction</p>
+    <h2 class="h-lg">THE MARKET IS<br>MOVING. THE<br>BRANDS THAT<br>SHOW UP ONLINE<br><em>ARE WINNING IT.</em></h2>
+    <p class="body" style="margin-bottom:16px">The luxury ground transportation market in New York and across the US is one of the fastest-growing segments in the service industry. It is large, it is expanding, and it is increasingly being shaped online. Clients are searching Google, discovering brands on Instagram, and booking directly — and the digital channel is now a meaningful part of how the best operators in this space grow.</p>
+    <p class="body">Friendly Ride has built something genuinely valuable over the years — a reputation, a fleet, and a network of relationships that most competitors cannot replicate. The opportunity now is to give that foundation the digital presence it deserves, and open a channel that brings the right clients in consistently, at scale. Starting in New York, growing nationally, and building toward a global operation.</p>
+    <div style="margin-top:40px">
+      <div class="g3c">
+        <div class="stat"><p class="stat-n"><em>$</em>4.2B</p><p class="stat-d">NYC luxury ground transport — largest US market</p><p class="stat-s">Allied Market Research, 2026</p></div>
+        <div class="stat"><p class="stat-n">7.2<em>%</em></p><p class="stat-d">Annual market growth through 2033</p><p class="stat-s">DataIntelo / GrowthMarket Reports</p></div>
+        <div class="stat"><p class="stat-n">46<em>%</em></p><p class="stat-d">Luxury travel now booked online — rising to 55% by 2029</p><p class="stat-s">Future Market Insights, 2026</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 02 · COMPETITOR ANALYSIS ═══ -->
+<section class="sw">
+  <div class="wrap">
+    <p class="ey">02 · Competitor Analysis</p>
+    <div class="g2c" style="margin-bottom:52px">
+      <div>
+        <h2 class="h-lg">WHO IS<br>WINNING &<br><em>WHERE THEY<br>FALL SHORT.</em></h2>
+        <p class="body">The established players in this market have invested heavily in their digital channels — active ad accounts, consistent social content, strong SEO. They are competing seriously online. What is notable, however, is that every major operator has defaulted to the same mode: corporate, transactional, and impersonal. The focus has been on scale, not on the client as an individual.</p>
+        <p class="body" style="margin-top:16px"><strong>That is the opening. Friendly Ride's entire identity — warm, personal, genuinely premium — is exactly what the market is missing online.</strong></p>
+        <div style="margin-top:24px;background:var(--g1);border:1px solid var(--g2);border-left:2px solid var(--pink);padding:18px 20px">
+          <p style="font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--pink);margin-bottom:6px">The opportunity</p>
+          <p style="font-size:13px;font-weight:300;color:var(--g5);line-height:1.7">Warm, personal, and premium. No major competitor owns this position online. It is Friendly Ride's to claim — and AdForge will build content, ads, and a brand presence that reflects the quality of the service and stands apart from anything the competition is currently putting out.</p>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--g4);margin-bottom:18px">Digital presence · relative strength</p>
+        <div class="comp-row"><span class="cn">EmpireCLS</span><div class="bw"><div class="bf" style="width:92%"></div></div><span class="ct">Global · institutional</span></div>
+        <div class="comp-row"><span class="cn">Detailed Drivers</span><div class="bw"><div class="bf" style="width:80%"></div></div><span class="ct">NYC SEO · fast-growing</span></div>
+        <div class="comp-row"><span class="cn">Blacklane</span><div class="bw"><div class="bf" style="width:74%"></div></div><span class="ct">App-first · global</span></div>
+        <div class="comp-row"><span class="cn">Carey International</span><div class="bw"><div class="bf" style="width:62%"></div></div><span class="ct">Corporate B2B</span></div>
+        <div class="comp-row"><span class="cn fr">Friendly Ride</span><div class="bw"><div class="bf fr" style="width:7%"></div></div><span class="ct fr">Starts here</span></div>
+      </div>
+    </div>
+
+    <!-- Competitor activity deep-dive -->
+    <p style="font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--g4);margin-bottom:16px">How competitors are actively spending online right now</p>
+
+    <div class="comp-card">
+      <div class="comp-card-head">
+        <span class="comp-card-name">Detailed Drivers</span>
+        <a href="https://www.instagram.com/detaileddrivers" target="_blank" class="comp-card-ig">@detaileddrivers ↗</a>
+      </div>
+      <div class="comp-card-body">
+        <div class="comp-card-col">
+          <p class="ccc-label">Google Ads</p>
+          <p class="ccc-val">Actively running</p>
+          <p class="ccc-note">Bidding on "chauffeur NYC", "luxury car service", "JFK black car" — high-volume, high-spend keywords</p>
+        </div>
+        <div class="comp-card-col">
+          <p class="ccc-label">Meta Ads</p>
+          <p class="ccc-val">Running since 2023+</p>
+          <p class="ccc-note">Consistent paid campaigns on Instagram and Facebook — fleet visuals, corporate targeting, NYC audience</p>
+        </div>
+        <div class="comp-card-col">
+          <p class="ccc-label">TikTok</p>
+          <p class="ccc-val">@detaileddrivers</p>
+          <p class="ccc-note">Active TikTok presence — fleet content, behind-the-scenes, NYC chauffeur lifestyle</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-card-head">
+        <span class="comp-card-name">EmpireCLS</span>
+        <a href="https://www.instagram.com/empirecls" target="_blank" class="comp-card-ig">@empirecls ↗</a>
+      </div>
+      <div class="comp-card-body">
+        <div class="comp-card-col">
+          <p class="ccc-label">Google Ads</p>
+          <p class="ccc-val">Heavy spender</p>
+          <p class="ccc-note">Dominating broad luxury car service terms globally — significant monthly ad budget across all major cities</p>
+        </div>
+        <div class="comp-card-col">
+          <p class="ccc-label">Meta Ads</p>
+          <p class="ccc-val">Running since 2022+</p>
+          <p class="ccc-note">Long-running paid social — corporate audience targeting, event transport, hotel partnership content</p>
+        </div>
+        <div class="comp-card-col">
+          <p class="ccc-label">Instagram</p>
+          <p class="ccc-val">@empirecls</p>
+          <p class="ccc-note">Polished feed — fleet photography, global destinations, corporate lifestyle imagery at scale</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-card-head">
+        <span class="comp-card-name">Blacklane</span>
+        <a href="https://www.instagram.com/blacklane" target="_blank" class="comp-card-ig">@blacklane ↗</a>
+      </div>
+      <div class="comp-card-body">
+        <div class="comp-card-col">
+          <p class="ccc-label">Google Ads</p>
+          <p class="ccc-val">Global scale</p>
+          <p class="ccc-note">Massive search presence worldwide — app-download campaigns, airport transfer terms, business travel</p>
+        </div>
+        <div class="comp-card-col">
+          <p class="ccc-label">Meta Ads</p>
+          <p class="ccc-val">Running since 2021+</p>
+          <p class="ccc-note">Long-running global campaigns — app installs, travel audience targeting, international business clientele</p>
+        </div>
+        <div class="comp-card-col">
+          <p class="ccc-label">TikTok</p>
+          <p class="ccc-val">Active presence</p>
+          <p class="ccc-note">Travel content, airport experience, luxury fleet visuals — building brand with a younger affluent audience</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;background:var(--black);padding:28px 32px">
+      <p style="font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--pink);margin-bottom:12px">The bottom line</p>
+      <p style="font-size:14px;font-weight:300;color:rgba(255,255,255,.6);line-height:1.8;max-width:640px">These businesses have been investing in digital consistently because the channel delivers. What the data also shows is a clear gap in how they communicate — clinical, transactional, and largely devoid of personality. <strong style="color:var(--white);font-weight:600">Friendly Ride has a story worth telling, and a service worth showing.</strong> AdForge's role is to build content and campaigns that do both — and do them better than anything currently in the market.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 03 · BRAND DIAGNOSTIC ═══ -->
+<section class="sg">
+  <div class="wrap">
+    <p class="ey">03 · Brand Diagnostic</p>
+    <div class="g2c">
+      <div>
+        <h2 class="h-lg">THE WEBSITE<br>DOES NOT<br>JUSTIFY THE<br><em>SERVICE.</em></h2>
+        <p class="body">Friendly Ride delivers a premium, personal luxury experience — and that reputation has been built the right way, through quality of service and long-standing relationships. The opportunity now is to ensure the digital presence reflects that same standard. Currently, a client arriving online encounters something that undersells what Friendly Ride actually is and does.</p>
+        <p class="body" style="margin-top:14px">Getting this right is the foundation of everything that follows. Every dollar invested in advertising ultimately points back here — so before the channel is activated, the destination needs to represent the brand properly.</p>
+        <div class="score-box">
+          <div class="score-l"><p class="score-n">50</p><p class="score-d">/100</p></div>
+          <div class="score-r">
+            <p class="score-t">Website Assessment · friendlyrideinc.com</p>
+            <p class="score-b">The site communicates a car service. It does not communicate the quality, warmth, or luxury positioning of the brand operating behind it.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--g4);margin-bottom:4px">What needs to change</p>
+        <ul class="blist" style="margin-top:8px">
+          <li><div class="bdot"></div><div><p class="bt">No real fleet photography</p><p class="bd">Stock imagery throughout — no visual proof of the actual service level.</p></div></li>
+          <li><div class="bdot"></div><div><p class="bt">Booking flow leaves the brand</p><p class="bd">Third-party widget breaks brand continuity at the moment of conversion.</p></div></li>
+          <li><div class="bdot"></div><div><p class="bt">No brand voice</p><p class="bd">Copy is interchangeable with any mid-tier competitor in the market.</p></div></li>
+          <li><div class="bdot"></div><div><p class="bt">Flagship fleet has no visual presence</p><p class="bd">Specialty vehicles buried — no dedicated pages, no moment of impact.</p></div></li>
+          <li><div class="bdot"></div><div><p class="bt">No social proof</p><p class="bd">No testimonials, no hotel partnerships, no signal of a long-standing client base.</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 04 · STRATEGY ═══ -->
+<section class="sb">
+  <div class="wrap">
+    <p class="ey-w">04 · Strategy</p>
+    <h2 class="h-lg-w">THE PLAN.<br>THREE STEPS.<br><em>ONE DIRECTION.</em></h2>
+    <p class="body-w" style="max-width:560px;margin-bottom:48px">Everything runs in sequence. Build the right foundation, then activate the channels, then scale. No shortcuts — and no ad spend until step one is complete.</p>
+
+    <!-- Step cards -->
+    <div class="g3c" style="background:#1E1E1E;border-color:#1E1E1E;margin-bottom:44px">
+      <div style="background:#171717;padding:28px 24px;border-top:3px solid var(--pink)">
+        <p style="font-family:'Bebas Neue',sans-serif;font-size:44px;line-height:1;color:var(--pink);margin-bottom:10px">01</p>
+        <p style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--white);margin-bottom:8px">Rebuild the website</p>
+        <p style="font-size:12px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.7">Real photography. Native booking flow. Brand voice. Dedicated vehicle pages. Social proof. The digital storefront rebuilt to match the standard of the service.</p>
+      </div>
+      <div style="background:#171717;padding:28px 24px;border-top:3px solid #2A2A2A">
+        <p style="font-family:'Bebas Neue',sans-serif;font-size:44px;line-height:1;color:#2A2A2A;margin-bottom:10px">02</p>
+        <p style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--white);margin-bottom:8px">Launch Google Search</p>
+        <p style="font-size:12px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.7">Target high-intent keywords — luxury chauffeur, airport transfers, specialty fleet, Long Island and Hamptons. Intercept buyers at the exact moment of decision.</p>
+      </div>
+      <div style="background:#171717;padding:28px 24px;border-top:3px solid #2A2A2A">
+        <p style="font-family:'Bebas Neue',sans-serif;font-size:44px;line-height:1;color:#2A2A2A;margin-bottom:10px">03</p>
+        <p style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--white);margin-bottom:8px">Activate Meta & TikTok</p>
+        <p style="font-size:12px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.7">Fleet visuals, paid social, and monthly content for the occasion buyer — date nights, events, anniversaries, NYC lifestyle. Build brand and convert simultaneously.</p>
+      </div>
+    </div>
+
+    <!-- Channel allocation -->
+    <p style="font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:16px">Budget allocation across channels</p>
+
+    <div class="ch-row">
+      <div class="ch-row-head">
+        <div class="ch-bar" style="background:var(--pink);width:4px"></div>
+        <div class="ch-row-inner">
+          <span class="ch-rn">Google Search</span>
+          <span class="ch-pct" style="color:var(--pink)">55%</span>
+        </div>
+      </div>
+      <div class="ch-row-body">
+        <div>
+          <p class="ch-col-t">Target keywords</p>
+          <ul class="ch-pts">
+            <li>Luxury chauffeur NYC / New York</li>
+            <li>JFK / EWR luxury airport transfer</li>
+            <li>Hamptons car service / Long Island</li>
+            <li>Specialty fleet hire Manhattan</li>
+            <li>Hotel transfer NYC luxury</li>
+          </ul>
+        </div>
+        <div>
+          <p class="ch-col-t">Approach</p>
+          <p style="font-size:12px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.7">High-intent, lower-competition clusters. Sniper targeting — no broad match. Capture buyers at the moment of need. Scale only after cost-per-booking is confirmed.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ch-row">
+      <div class="ch-row-head">
+        <div class="ch-bar" style="background:#444;width:4px"></div>
+        <div class="ch-row-inner">
+          <span class="ch-rn">Meta · Instagram & Facebook</span>
+          <span class="ch-pct" style="color:#666">30%</span>
+        </div>
+      </div>
+      <div class="ch-row-body">
+        <div>
+          <p class="ch-col-t">Paid ads</p>
+          <ul class="ch-pts">
+            <li>Reel — fleet arriving, NYC at night</li>
+            <li>Carousel — interior fleet showcase</li>
+            <li>Story — occasion-led, direct booking CTA</li>
+            <li>Remarketing — site visitors who didn't book</li>
+          </ul>
+        </div>
+        <div>
+          <p class="ch-col-t">Monthly content</p>
+          <ul class="ch-pts">
+            <li>8–12 posts/month — fleet, service moments</li>
+            <li>Short-form video — cabin, chauffeur, city</li>
+            <li>Occasion content — events, anniversaries</li>
+            <li>Brand story — warmth, trust, New York</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="ch-row">
+      <div class="ch-row-head">
+        <div class="ch-bar" style="background:#333;width:4px"></div>
+        <div class="ch-row-inner">
+          <span class="ch-rn">TikTok</span>
+          <span class="ch-pct" style="color:#444">15%</span>
+        </div>
+      </div>
+      <div class="ch-row-body">
+        <div>
+          <p class="ch-col-t">Content direction</p>
+          <ul class="ch-pts">
+            <li>Chauffeur prep — 5am, suit, cabin detail</li>
+            <li>NYC at night from inside the vehicle</li>
+            <li>Behind the scenes — fleet, service ritual</li>
+            <li>Occasion moments — arrivals, events</li>
+          </ul>
+        </div>
+        <div>
+          <p class="ch-col-t">Role</p>
+          <p style="font-size:12px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.7">Brand awareness for the 25–38 affluent audience. Lower CPCs, strong organic upside. Activated in Month 3 once the foundation and primary channels are established.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 05 · TIMELINE ═══ -->
+<section class="sg">
+  <div class="wrap">
+    <p class="ey">05 · Timeline</p>
+    <h2 class="h-lg">90 DAYS TO A<br>LIVE <em>SALES CHANNEL.</em></h2>
+    <div class="g2c" style="margin-top:8px">
+      <div class="tl">
+        <div class="tl-item">
+          <div class="tl-dot on"></div>
+          <p class="tl-month">Month 1</p>
+          <p class="tl-title">Foundation</p>
+          <p class="tl-pts">Website rebuild · Fleet photography brief · Brand voice and copy · Google Analytics setup · Keyword research · Google Business Profile · Instagram account launch</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot on"></div>
+          <p class="tl-month">Month 2</p>
+          <p class="tl-title">Launch</p>
+          <p class="tl-pts">New website live · Google Search campaigns activated · Brand protection keywords · First content calendar · Hotel concierge outreach begins · Week 6 performance review</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <p class="tl-month">Month 3</p>
+          <p class="tl-title">Scale</p>
+          <p class="tl-pts">Meta paid social activated · TikTok content begins · Lookalike audiences from site visitors · Expand to Tier 2 keywords · Full channel performance review</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <p class="tl-month">Month 4–6</p>
+          <p class="tl-title">Optimize & grow</p>
+          <p class="tl-pts">Double down on converting keywords · Meta video creative · Concierge partnerships formalized · Monthly reporting · Budget increase based on proven returns</p>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--g4);margin-bottom:16px">What gets built</p>
+        <div style="border:1px solid var(--g2);overflow:hidden">
+          <div style="display:grid;grid-template-columns:3px 1fr;background:var(--white)"><div style="background:var(--pink)"></div><div style="padding:13px 17px"><p style="font-size:12px;font-weight:600;color:var(--black);margin-bottom:2px">Website & brand identity</p><p style="font-size:11px;font-weight:300;color:var(--g4)">Photography · copy · booking flow · fleet pages · social proof</p></div></div>
+          <div style="display:grid;grid-template-columns:3px 1fr;background:var(--white);border-top:1px solid var(--g2)"><div style="background:var(--g3)"></div><div style="padding:13px 17px"><p style="font-size:12px;font-weight:600;color:var(--black);margin-bottom:2px">Google Search campaigns</p><p style="font-size:11px;font-weight:300;color:var(--g4)">Keyword architecture · ad groups · conversion tracking</p></div></div>
+          <div style="display:grid;grid-template-columns:3px 1fr;background:var(--white);border-top:1px solid var(--g2)"><div style="background:var(--g3)"></div><div style="padding:13px 17px"><p style="font-size:12px;font-weight:600;color:var(--black);margin-bottom:2px">Meta paid social</p><p style="font-size:11px;font-weight:300;color:var(--g4)">Creative strategy · formats · audience targeting · remarketing</p></div></div>
+          <div style="display:grid;grid-template-columns:3px 1fr;background:var(--white);border-top:1px solid var(--g2)"><div style="background:var(--g3)"></div><div style="padding:13px 17px"><p style="font-size:12px;font-weight:600;color:var(--black);margin-bottom:2px">Monthly content</p><p style="font-size:11px;font-weight:300;color:var(--g4)">Instagram · TikTok · short-form video · fleet and occasion content</p></div></div>
+          <div style="display:grid;grid-template-columns:3px 1fr;background:var(--white);border-top:1px solid var(--g2)"><div style="background:var(--g3)"></div><div style="padding:13px 17px"><p style="font-size:12px;font-weight:600;color:var(--black);margin-bottom:2px">Reporting & optimization</p><p style="font-size:11px;font-weight:300;color:var(--g4)">Monthly ROAS · keyword rankings · creative performance</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 06 · WHAT TO EXPECT ═══ -->
+<section class="sw">
+  <div class="wrap">
+    <p class="ey">06 · What to Expect</p>
+    <h2 class="h-lg">HOW THIS<br>FEELS AS IT<br><em>COMES TO LIFE.</em></h2>
+    <p class="body" style="margin-bottom:40px">These are not abstract projections. This is what the business looks and feels like at each stage — if the plan is executed correctly and consistently.</p>
+
+    <div class="g3c" style="margin-bottom:32px">
+      <div class="proj-phase active">
+        <p class="proj-num">01</p>
+        <p class="proj-title">Month 1–2 · The foundation</p>
+        <p class="proj-body">The new website is live. For the first time, a client landing on friendlyrideinc.com sees a brand that matches the service — real photography, real voice, a booking flow that doesn't send them somewhere else. Google campaigns are running. The phone starts ringing from people who found Friendly Ride by searching. The first online bookings come in. It is a small number — but it is real, trackable revenue from a channel that previously generated nothing.</p>
+      </div>
+      <div class="proj-phase">
+        <p class="proj-num">02</p>
+        <p class="proj-title">Month 3–4 · The channel activates</p>
+        <p class="proj-body">Meta and TikTok are live. The Instagram feed looks like a luxury brand. Ads are reaching the right people — the couple planning an anniversary dinner, the executive PA researching car services, the visiting client arriving at JFK. Booking volume grows month on month. The cost-per-booking is established and improving. The brand is visible in places it has never been before. Clients begin mentioning they found Friendly Ride on Instagram.</p>
+      </div>
+      <div class="proj-phase">
+        <p class="proj-num">03</p>
+        <p class="proj-title">Month 5–6+ · The flywheel</p>
+        <p class="proj-body">The channel is now a proper revenue engine. Google delivers consistent high-intent bookings. Meta content builds brand equity and converts the occasion buyer. TikTok grows the brand's cultural footprint. Clients who booked online are coming back and referring others. The referral flywheel — online to offline to online — begins compounding. Revenue from the digital channel is now a meaningful and growing part of the business. The foundation for national expansion is in place.</p>
+      </div>
+    </div>
+
+    <div style="background:var(--g1);border:1px solid var(--g2);border-left:2px solid var(--pink);padding:24px 28px">
+      <p style="font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--pink);margin-bottom:10px">The long-term picture</p>
+      <p style="font-size:14px;font-weight:300;color:var(--g5);line-height:1.8">Friendly Ride has spent years building something real — a reputation for quality, discretion, and a level of service that clients remember and refer. The digital channel is the next step: a way to bring that reputation to a wider audience, consistently and sustainably. Built correctly and run with discipline, it becomes an asset that grows the business for years to come. That is what this proposal is designed to deliver.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- CLOSING STRIP -->
+<div class="strip">
+  <div class="strip-item"><p class="sk">The mission</p><p class="sv">New York first. National next. Global eventually.</p></div>
+  <div class="strip-item"><p class="sk">The approach</p><p class="sv">Build the foundation right. Then scale with data.</p></div>
+  <div class="strip-item"><p class="sk">Next step</p><p class="sv">iamabque@adforgeglobal.com · adforgeglobal.com</p></div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="fi">
+      <span class="fb">Ad<span>Forge</span>. Global</span>
+      <div class="fm"><p>Prepared for Friendly Ride LLC · Confidential · 2026</p><p>adforgeglobal.com · iamabque@adforgeglobal.com</p></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
