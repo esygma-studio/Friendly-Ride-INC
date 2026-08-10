@@ -57,6 +57,22 @@ function drawMap() {
   }
 }
 
+// New York is active by default (see .city--key.is-active in the HTML).
+// Clicking/tapping a city pin makes it the active one instead, one at a
+// time — desktop keeps hover as a bonus preview, but a click always pins
+// the tooltip open, which is what touch devices need since they have no
+// hover state at all.
+function setupCityTooltips() {
+  const cities = document.querySelectorAll('.city');
+  if (!cities.length) return;
+  cities.forEach((el) => {
+    el.addEventListener('click', () => {
+      cities.forEach((c) => c.classList.remove('is-active'));
+      el.classList.add('is-active');
+    });
+  });
+}
+
 function setupExperienceReveal() {
   const el = document.querySelector('[data-reveal]');
   if (!el) return;
@@ -127,6 +143,7 @@ function setupPartnerTapReveal() {
 
 drawMap();
 document.addEventListener('DOMContentLoaded', () => {
+  setupCityTooltips();
   setupExperienceReveal();
   setupNavToggle();
   setupPartnerTapReveal();
