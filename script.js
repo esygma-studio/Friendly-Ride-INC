@@ -32,26 +32,37 @@ const LAND = [
 
 const BRASS_RGB = '168,137,92';
 
+// Renders at the canvas's actual CSS size (times devicePixelRatio), instead
+// of one fixed bitmap that then gets scaled by the browser to fit whatever
+// width it lands in. That fixed-bitmap approach is why the dots used to look
+// noticeably lighter/softer on mobile than desktop: shrinking a solid,
+// opaque, drop-shadowed dot down to a few device pixels blends it with the
+// transparent background at scale-dependent ratios, so the same fill color
+// rendered differently depending on viewport width. Rendering at native
+// resolution removes that dependency, and a fixed (not fully opaque) alpha
+// keeps the soft look consistent everywhere.
 function drawMap() {
   const cv = document.getElementById('worldMap');
   if (!cv) return;
-  const COLS = 60, ROWS = 27, S = 22;
-  cv.width = COLS * S;
-  cv.height = ROWS * S;
+  const COLS = 60, ROWS = 27;
+  const cssWidth = cv.clientWidth || cv.parentElement.clientWidth || 800;
+  const S = cssWidth / COLS;
+  const cssHeight = S * ROWS;
+  const dpr = window.devicePixelRatio || 1;
+  cv.width = Math.round(cssWidth * dpr);
+  cv.height = Math.round(cssHeight * dpr);
   const ctx = cv.getContext('2d');
-  ctx.clearRect(0, 0, cv.width, cv.height);
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, cssWidth, cssHeight);
+  const dotRadius = Math.max(1.6, S * 0.16);
   for (let r = 0; r < ROWS; r++) {
     for (const [a, b] of LAND[r]) {
       for (let c = a; c <= b; c++) {
         const cx = c * S + S / 2, cy = r * S + S / 2;
-        ctx.save();
-        ctx.shadowColor = 'rgba(0,0,0,0.6)';
-        ctx.shadowBlur = 3;
         ctx.beginPath();
-        ctx.arc(cx, cy, 4, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(' + BRASS_RGB + ',1)';
+        ctx.arc(cx, cy, dotRadius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + BRASS_RGB + ',0.55)';
         ctx.fill();
-        ctx.restore();
       }
     }
   }
