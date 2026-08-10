@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Friendly Ride — New York's Premiere Luxury Chauffeur Service</title>
+<meta name="description" content="Personalised chauffeured service in New York, with reach across 200+ cities and 90+ countries. Where world-class vehicles meet the warmth of a trusted personal relationship.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <a href="#top" class="nav__logo">
+    <img src="assets/frl-monogram.png" alt="Friendly Ride monogram" class="nav__mark">
+    <span class="nav__wordmark">FRIENDLY RIDE</span>
+  </a>
+  <nav class="nav__links">
+    <a href="#services" class="nav__link">SERVICES</a>
+    <a href="#fleet" class="nav__link">FLEET</a>
+    <a href="partners.html" class="nav__link">PARTNERS &amp; CLIENTS</a>
+    <a href="#why" class="nav__link">WHY FRL</a>
+  </nav>
+  <div class="nav__phones">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="nav__phone-icon"><path d="M6.5 3.5h3l1.5 4-2 1.4a12 12 0 0 0 6.1 6.1l1.4-2 4 1.5v3a2 2 0 0 1-2.2 2A17.5 17.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"></path></svg>
+    <div class="nav__phone-numbers">
+      <a href="tel:8773741122" class="nav__phone">877-374-1122</a>
+      <a href="tel:7185455466" class="nav__phone">718-545-5466</a>
+    </div>
+  </div>
+  <a href="#reserve" class="btn btn--nav">RESERVE</a>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="top" class="hero">
+  <img class="hero__media" src="assets/hero-sedan.jpg" alt="Rolls-Royce Phantom at night, side profile, city lights">
+  <div class="hero__scrim-x"></div>
+  <div class="hero__scrim-y"></div>
+  <div class="hero__content">
+    <div class="eyebrow">Personalised Chauffeured Service</div>
+    <h1 class="hero__title">New York&rsquo;s premiere luxury chauffeur service.</h1>
+    <p class="hero__desc">Where world-class vehicles and impeccable professionalism meet the warmth of a trusted personal relationship.</p>
+    <div class="hero__actions">
+      <a href="https://www.mytripcenter.com/Default.aspx?sys=6F23763A-EFAD-409A-9B96-662146A9ACC7" class="btn btn--solid">RESERVE YOUR RIDE</a>
+      <a href="#fleet" class="link-underline">EXPLORE THE FLEET</a>
+    </div>
+    <div class="hero__stats">20+ YEARS&nbsp;&nbsp;&middot;&nbsp;&nbsp;90+ COUNTRIES&nbsp;&nbsp;&middot;&nbsp;&nbsp;200+ CITIES</div>
+  </div>
+</section>
+
+<!-- ============ GLOBAL REACH ============ -->
+<section id="reach" class="reach">
+  <img class="reach__bg" src="assets/global-reach.jpg" alt="Aerial view of a global metropolis, soft daylight">
+  <div class="reach__scrim-y"></div>
+  <div class="reach__scrim-x"></div>
+  <div class="reach__scrim-radial"></div>
+  <div class="reach__grid">
+    <div>
+      <div class="eyebrow">Global Reach</div>
+      <h2 class="section-title">Wherever you are, your ride is there.</h2>
+      <p class="section-desc reach__desc">Heads of state, royal families, executives and touring artists trust Friendly Ride across the world. The same standard of excellence, every continent.</p>
+      <div class="stats">
+        <div class="stats__item">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s7-7.4 7-12.5A7 7 0 0 0 5 8.5C5 13.6 12 21 12 21z"></path><circle cx="12" cy="8.5" r="2.3"></circle></svg>
+          <div class="stats__num">200+</div>
+          <div class="stats__label">Cities</div>
+        </div>
+        <div class="stats__item">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="8.5"></circle><path d="M3.5 12h17M12 3.5c2.8 2.4 2.8 15.6 0 17M12 3.5c-2.8 2.4-2.8 15.6 0 17"></path></svg>
+          <div class="stats__num">90+</div>
+          <div class="stats__label">Countries</div>
+        </div>
+        <div class="stats__item">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7v5l3.5 2" stroke-linecap="round"></path></svg>
+          <div class="stats__num">20+</div>
+          <div class="stats__label">Years</div>
+        </div>
+        <div class="stats__item">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M4 9.5h16L12 21 4 9.5z"></path><path d="M8.5 9.5L12 3l3.5 6.5"></path></svg>
+          <div class="stats__num">One</div>
+          <div class="stats__label">Standard</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="map">
+        <canvas id="worldMap" class="map__canvas"></canvas>
+        <div class="city city--key" style="left:29.17%;top:27.78%">
+          <span class="city__pulse" style="animation-delay:0ms"></span>
+          <span class="city__pin"></span>
+          <span class="city__label">New York</span>
+          <div class="city__tooltip"><div class="city__tooltip-name">New York</div><div class="city__tooltip-note">Home base — airports, hotels, events, UNGA</div></div>
+        </div>
+        <div class="city" style="left:17.5%;top:35.19%">
+          <span class="city__pulse" style="animation-delay:300ms"></span>
+          <span class="city__pin"></span>
+          <span class="city__label">Los Angeles</span>
+          <div class="city__tooltip"><div class="city__tooltip-name">Los Angeles</div><div class="city__tooltip-note">Entertainment &amp; celebrity transport</div></div>
+        </div>
+        <div class="city" style="left:37.5%;top:75.93%">
+          <span class="city__pulse" style="animation-delay:600ms"></span>
+          <span class="city__pin"></span>
+          <span class="city__label">S&atilde;o Paulo</span>
+          <div class="city__tooltip"><div class="city__tooltip-name">S&atilde;o Paulo</div><div class="city__tooltip-note">Executive travel</div></div>
+        </div>
+        <div class="city" style="left:47.5%;top:20.37%">
+          <span class="city__pulse" style="animation-delay:900ms"></span>
+          <span class="city__pin"></span>
+          <span class="city__label">London</span>
+          <div class="city__tooltip"><div class="city__tooltip-name">London</div><div class="city__tooltip-note">Executive &amp; diplomatic transfers</div></div>
+        </div>
+        <div class="city" style="left:52.5%;top:24.07%">
+          <span class="city__pulse" style="animation-delay:1200ms"></span>
+          <span class="city__pin"></span>
+          <span class="city__label">Paris</span>
+          <div class="city__tooltip"><div class="city__tooltip-name">Paris</div><div class="city__tooltip-note">Hotels &amp; concierge partners</div></div>
+        </div>
+        <div class="city" style="left:65.83%;top:38.89%">
+          <span class="city__pulse" style="animation-delay:1500ms"></span>
+          <span class="city__pin"></span>
+          <span class="city__label">Dubai</span>
+          <div class="city__tooltip"><div class="city__tooltip-name">Dubai</div><div class="city__tooltip-note">VIP &amp; royal family service</div></div>
+        </div>
+        <div class="city" style="left:79.17%;top:57.41%">
+          <span class="city__pulse" style="animation-delay:1800ms"></span>
+          <span class="city__pin"></span>
+          <span class="city__label">Singapore</span>
+          <div class="city__tooltip"><div class="city__tooltip-name">Singapore</div><div class="city__tooltip-note">Corporate roadshows</div></div>
+        </div>
+        <div class="city" style="left:89.17%;top:31.48%">
+          <span class="city__pulse" style="animation-delay:2100ms"></span>
+          <span class="city__pin"></span>
+          <span class="city__label">Tokyo</span>
+          <div class="city__tooltip"><div class="city__tooltip-name">Tokyo</div><div class="city__tooltip-note">Corporate &amp; executive travel</div></div>
+        </div>
+        <div class="city" style="left:92.5%;top:83.33%">
+          <span class="city__pulse" style="animation-delay:2400ms"></span>
+          <span class="city__pin"></span>
+          <span class="city__label">Sydney</span>
+          <div class="city__tooltip"><div class="city__tooltip-name">Sydney</div><div class="city__tooltip-note">Touring &amp; entertainment</div></div>
+        </div>
+      </div>
+      <div class="map__caption">Hover a city &mdash; one standard, every continent</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FLEET ============ -->
+<section id="fleet" class="fleet">
+  <div class="fleet__head">
+    <div>
+      <div class="eyebrow">Our Fleet</div>
+      <h2 class="section-title">The vehicles your moment deserves.</h2>
+      <p class="section-desc">A curated selection of premium vehicles, all under two years old, meticulously maintained.</p>
+    </div>
+    <a href="https://www.friendlyrideinc.com/fleet/" class="link-underline link-underline--brass">VIEW FULL FLEET &rarr;</a>
+  </div>
+  <div class="fleet__grid">
+    <a href="https://www.friendlyrideinc.com/fleet/rolls-royce-phantom/" class="car">
+      <img src="assets/fleet-rolls-royce.jpg" alt="Rolls-Royce Phantom" class="car__image">
+      <span class="car__line"></span>
+      <div class="car__row">
+        <span class="car__name">Rolls-Royce Phantom</span>
+        <span class="car__link">VIEW DETAILS &rarr;</span>
+      </div>
+    </a>
+    <a href="https://www.friendlyrideinc.com/fleet/bentley-mulsanne/" class="car">
+      <img src="assets/fleet-bentley.jpg" alt="Bentley Mulsanne" class="car__image">
+      <span class="car__line"></span>
+      <div class="car__row">
+        <span class="car__name">Bentley Mulsanne</span>
+        <span class="car__link">VIEW DETAILS &rarr;</span>
+      </div>
+    </a>
+    <a href="https://www.friendlyrideinc.com/fleet/mercedes-benz-maybach/" class="car">
+      <img src="assets/fleet-maybach.jpg" alt="Mercedes-Maybach" class="car__image">
+      <span class="car__line"></span>
+      <div class="car__row">
+        <span class="car__name">Mercedes-Maybach</span>
+        <span class="car__link">VIEW DETAILS &rarr;</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ============ THE EXPERIENCE ============ -->
+<section id="experience" class="experience">
+  <div class="experience__grid">
+    <div>
+      <div class="eyebrow">The Experience</div>
+      <h2 class="section-title">Unparalleled comfort at every kilometer.</h2>
+      <p class="section-desc section-desc--narrow">Hand-stitched leather, whisper-quiet cabins, and climate-controlled comfort &mdash; every vehicle is prepared down to the smallest detail, so the journey feels as considered as the destination.</p>
+      <a href="https://www.friendlyrideinc.com/fleet/" class="btn btn--outline">EXPLORE OUR FLEET</a>
+    </div>
+    <div class="experience__media-wrap" data-reveal>
+      <img src="assets/experience-bentley.jpg" alt="Bentley Mulsanne, three-quarter view, studio" class="experience__media">
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY FRIENDLY RIDE ============ -->
+<section id="why" class="why">
+  <img class="why__bg" src="assets/why-nyc.jpg" alt="New York, bright daylight, Fifth Avenue, luxury">
+  <div class="why__scrim-y"></div>
+  <div class="why__scrim-x"></div>
+  <div class="why__grid">
+    <div>
+      <div class="eyebrow why__eyebrow">Why Friendly Ride</div>
+      <div class="why__list">
+        <div class="why__item">
+          <div class="why__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"></path></svg></div>
+          <div>
+            <div class="why__title">Warmth</div>
+            <p class="why__text">Your driver knows your name and your preferences. Not a transaction &mdash; a relationship.</p>
+          </div>
+        </div>
+        <div class="why__item">
+          <div class="why__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M12 3l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.2-5.4 3.2 1.3-6-4.6-4.1 6.1-.6z"></path></svg></div>
+          <div>
+            <div class="why__title">Excellence</div>
+            <p class="why__text">World-class vehicles. Impeccable service. 24 hours a day, 365 days a year.</p>
+          </div>
+        </div>
+        <div class="why__item why__item--last">
+          <div class="why__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="9" rx="1.5"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path></svg></div>
+          <div>
+            <div class="why__title">Discretion</div>
+            <p class="why__text">Your privacy is sacred. Your ride is your sanctuary.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <img src="assets/interior-day.jpg" alt="Cabin interior, daylight, cream leather, sunlit window" class="why__media">
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services" class="services">
+  <div class="eyebrow">Services</div>
+  <h2 class="section-title services__title">Service for every moment.</h2>
+  <div class="services__grid">
+    <a href="https://www.friendlyrideinc.com/services/airport-transfers/" class="service">
+      <img src="assets/service-jet.jpg" alt="Tarmac, golden hour" class="service__image">
+      <div class="service__title">Airport Transfers</div>
+      <p class="service__text">Transportation to and from any of the NYC airports has never been easier.</p>
+    </a>
+    <a href="https://www.friendlyrideinc.com/services/corporate-travel/" class="service">
+      <img src="assets/service-corporate.jpg" alt="Corporate sedan, city" class="service__image">
+      <div class="service__title">Corporate Limousine</div>
+      <p class="service__text">We understand the importance of being on time in business.</p>
+    </a>
+    <a href="https://www.friendlyrideinc.com/services/hotels-concierge/" class="service">
+      <img src="assets/service-hotels.jpg" alt="Hotel entrance, evening" class="service__image">
+      <div class="service__title">Hotels &amp; Luxury Concierge</div>
+      <p class="service__text">Pick-up and drop service to your luxury hotel, coordinated with your concierge.</p>
+    </a>
+    <a href="https://www.friendlyrideinc.com/services/special-events/" class="service">
+      <img src="assets/service-events.jpg" alt="Event / gala arrival" class="service__image">
+      <div class="service__title">Meetings &amp; Events</div>
+      <p class="service__text">First-class transportation for corporate meetings, events and celebrations.</p>
+    </a>
+    <a href="https://www.friendlyrideinc.com/services/road-shows/" class="service">
+      <img src="assets/service-roadshow.jpg" alt="Motorcade, multi-city" class="service__image">
+      <div class="service__title">Roadshow Transportation</div>
+      <p class="service__text">Extensive roadshow experience &mdash; teams coordinated, statuses kept up to date.</p>
+    </a>
+    <a href="https://www.friendlyrideinc.com/services/embassies/" class="service">
+      <img src="assets/service-embassies-armored-opt.jpg" alt="Armored vehicle, motorcade" class="service__image">
+      <div class="service__title">Embassies &amp; Armored Service</div>
+      <p class="service__text">Proud to serve embassies and consulates, with armored vehicles available.</p>
+    </a>
+  </div>
+</section>
+
+<!-- ============ PARTNERS ============ -->
+<section id="partners" class="partners">
+  <img class="partners__bg" src="assets/partners-nyc.jpg" alt="New York by day — Manhattan skyline, bright, luxury">
+  <div class="partners__scrim-y"></div>
+  <div class="partners__scrim-tint"></div>
+  <div class="partners__content">
+    <div class="partners__head">
+      <div class="eyebrow">Partners &amp; Clients</div>
+      <h2 class="section-title partners__title">Worked with, and trusted by the world&rsquo;s finest.</h2>
+      <p class="partners__desc">Landmark hotels, celebrated residences and national delegations rely on Friendly Ride to carry the people who matter most to them.</p>
+    </div>
+    <div class="partners__grid">
+      <div class="partners__grid-pattern"></div>
+      <a href="https://www.baccarathotels.com/" target="_blank" rel="noopener" class="partner" style="left:30%;top:19%;width:190px;height:190px">
+        <span class="partner__diamond"></span>
+        <span class="partner__logo" style="background-image:url(assets/logo-baccarat.svg);width:68%;height:52%"></span>
+        <span class="partner__plate">
+          <span class="partner__plate-name">Baccarat Hotel</span>
+          <span class="partner__plate-rule"></span>
+          <span class="partner__plate-city">New York</span>
+        </span>
+      </a>
+      <a href="https://www.fairmont.com/" target="_blank" rel="noopener" class="partner" style="left:70%;top:19%;width:190px;height:190px">
+        <span class="partner__diamond"></span>
+        <span class="partner__logo" style="background-image:url(assets/logo-fairmont.svg);width:68%;height:52%"></span>
+        <span class="partner__plate">
+          <span class="partner__plate-name">Fairmont Hotels &amp; Resorts</span>
+          <span class="partner__plate-rule"></span>
+          <span class="partner__plate-city">Worldwide</span>
+        </span>
+      </a>
+      <a href="https://www.raffles.com/boston/" target="_blank" rel="noopener" class="partner" style="left:15%;top:44%;width:170px;height:170px">
+        <span class="partner__diamond"></span>
+        <span class="partner__logo" style="background-image:url(assets/logo-raffles.svg);width:68%;height:52%"></span>
+        <span class="partner__plate">
+          <span class="partner__plate-name">Raffles Boston</span>
+          <span class="partner__plate-rule"></span>
+          <span class="partner__plate-city">Boston</span>
+        </span>
+      </a>
+      <a href="https://www.fourseasons.com/newyork/" target="_blank" rel="noopener" class="partner" style="left:85%;top:44%;width:170px;height:170px">
+        <span class="partner__diamond"></span>
+        <span class="partner__logo" style="background-image:url(assets/logo-fourseasons.svg);width:68%;height:52%"></span>
+        <span class="partner__plate">
+          <span class="partner__plate-name">Four Seasons</span>
+          <span class="partner__plate-rule"></span>
+          <span class="partner__plate-city">New York</span>
+        </span>
+      </a>
+      <a href="https://www.cartier.com/" target="_blank" rel="noopener" class="partner" style="left:20%;top:82%;width:160px;height:160px">
+        <span class="partner__diamond"></span>
+        <span class="partner__logo" style="background-image:url(assets/logo-cartier.svg);width:68%;height:52%"></span>
+        <span class="partner__plate">
+          <span class="partner__plate-name">Cartier</span>
+          <span class="partner__plate-rule"></span>
+          <span class="partner__plate-city">Worldwide</span>
+        </span>
+      </a>
+      <a href="https://embassies.mofa.gov.sa/sites/usa/EN/Pages/default.aspx" target="_blank" rel="noopener" class="partner" style="left:50%;top:82%;width:160px;height:160px">
+        <span class="partner__diamond"></span>
+        <span class="partner__logo" style="background-image:url(assets/logo-saudi-consulate.svg);width:68%;height:52%"></span>
+        <span class="partner__plate">
+          <span class="partner__plate-name">Consulate General of Saudi Arabia</span>
+          <span class="partner__plate-rule"></span>
+          <span class="partner__plate-city">New York &middot; Diplomatic</span>
+        </span>
+      </a>
+      <a href="https://www.breitling.com/us-en/" target="_blank" rel="noopener" class="partner" style="left:80%;top:82%;width:160px;height:160px">
+        <span class="partner__diamond"></span>
+        <span class="partner__logo" style="background-image:url(assets/logo-breitling-alpha.png);width:68%;height:52%"></span>
+        <span class="partner__plate">
+          <span class="partner__plate-name">Breitling USA</span>
+          <span class="partner__plate-rule"></span>
+          <span class="partner__plate-city">United States</span>
+        </span>
+      </a>
+      <a href="https://www.theplazany.com/" target="_blank" rel="noopener" class="partner partner--featured" style="left:50%;top:43%;width:238px;height:238px">
+        <span class="partner__diamond"></span>
+        <span class="partner__logo" style="background-image:url(assets/logo-plaza.png);width:62%;height:46%"></span>
+        <span class="partner__plate">
+          <span class="partner__plate-name">The Plaza</span>
+          <span class="partner__plate-rule"></span>
+          <span class="partner__plate-city">New York</span>
+        </span>
+      </a>
+    </div>
+    <div class="partners__footer">
+      <div class="partners__footer-label">Selected partners &amp; clients &middot; among many more worldwide</div>
+      <a href="partners.html" class="btn btn--outline btn--partners">View all partners &amp; clients <span>&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="testimonials">
+  <img src="assets/testimonials-bg.jpg" alt="City skyline through a car window at night" class="testimonials__bg">
+  <div class="testimonials__scrim-x"></div>
+  <div class="testimonials__scrim-y"></div>
+  <div class="testimonials__content">
+    <div class="eyebrow">In Their Words</div>
+    <h2 class="section-title testimonials__title">Trusted by the world&rsquo;s most discerning travelers.</h2>
+    <div class="testimonials__grid">
+      <div class="testimonial">
+        <div class="testimonial__quote">&ldquo;</div>
+        <p class="testimonial__text">They know the terminal, the timing, the quiet. In eight years I have never repeated an instruction.</p>
+        <div class="testimonial__author">
+          <div class="testimonial__avatar">RM</div>
+          <div class="testimonial__meta">Private Client<br>Manhattan</div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial__quote">&ldquo;</div>
+        <p class="testimonial__text">A three-city roadshow, statuses updated before we thought to ask. Flawless is the only word.</p>
+        <div class="testimonial__author">
+          <div class="testimonial__avatar">JK</div>
+          <div class="testimonial__meta">Managing Director<br>Investment Banking</div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial__quote">&ldquo;</div>
+        <p class="testimonial__text">The same driver, the same standard &mdash; UNGA week or an ordinary Tuesday.</p>
+        <div class="testimonial__author">
+          <div class="testimonial__avatar">AS</div>
+          <div class="testimonial__meta">Transportation Lead<br>Consulate, NYC</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESERVE CTA ============ -->
+<section id="reserve" class="reserve">
+  <div class="reserve__line"></div>
+  <div class="eyebrow">Reservations</div>
+  <h2 class="section-title reserve__title">Ready to experience the difference?</h2>
+  <div class="reserve__actions">
+    <a href="https://www.mytripcenter.com/Default.aspx?sys=6F23763A-EFAD-409A-9B96-662146A9ACC7" class="btn btn--solid">RESERVE A RIDE</a>
+    <a href="https://www.friendlyrideinc.com/contacts/" class="btn btn--outline btn--outline-alt">CONTACT CONCIERGE</a>
+  </div>
+  <div class="reserve__contact">Call or text <a href="tel:8773741122">877-374-1122</a> &nbsp;&middot;&nbsp; Office <a href="tel:7185455466">718-545-5466</a> &nbsp;&middot;&nbsp; 24 hours a day, 365 days a year</div>
+</section>
+
+<!-- ============ CONCIERGE BAR ============ -->
+<section class="concierge">
+  <div class="concierge__inner">
+    <div class="concierge__left">
+      <div class="concierge__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 13v-1a8 8 0 0 1 16 0v1"></path><rect x="2.5" y="13" width="4" height="6" rx="1.5"></rect><rect x="17.5" y="13" width="4" height="6" rx="1.5"></rect><path d="M20 19v1a3 3 0 0 1-3 3h-2"></path></svg></div>
+      <div>
+        <div class="concierge__title">Speak with a concierge, anytime.</div>
+        <div class="concierge__text">Let Friendly Ride take you there &mdash; 24 hours a day, 365 days a year.</div>
+      </div>
+    </div>
+    <a href="tel:8773741122" class="btn btn--solid">CALL 877-374-1122</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer__grid">
+    <div class="footer__brand">
+      <a href="#top">
+        <img src="assets/frl-lockup-dark.png" alt="Friendly Ride — Personalised Chauffeured Service" class="footer__lockup">
+      </a>
+      <div class="footer__tagline">New York&ndash;based, global reach.</div>
+    </div>
+    <div class="footer__col">
+      <div class="footer__heading">Services</div>
+      <div class="footer__links">
+        <a href="https://www.friendlyrideinc.com/services/airport-transfers/">Airport Transfers</a>
+        <a href="https://www.friendlyrideinc.com/services/corporate-travel/">Corporate Limousine</a>
+        <a href="https://www.friendlyrideinc.com/services/hotels-concierge/">Hotels &amp; Concierge</a>
+        <a href="https://www.friendlyrideinc.com/services/road-shows/">Roadshows</a>
+        <a href="https://www.friendlyrideinc.com/services/armour-vehicle-car/">Armored Cars</a>
+      </div>
+    </div>
+    <div class="footer__col">
+      <div class="footer__heading">Fleet</div>
+      <div class="footer__links">
+        <a href="https://www.friendlyrideinc.com/fleet/rolls-royce-phantom/">Rolls-Royce Phantom</a>
+        <a href="https://www.friendlyrideinc.com/fleet/bentley-mulsanne/">Bentley Mulsanne</a>
+        <a href="https://www.friendlyrideinc.com/fleet/mercedes-benz-maybach/">Mercedes-Maybach</a>
+        <a href="https://www.friendlyrideinc.com/fleet/mercedes-s-class/">Mercedes S-Class</a>
+        <a href="https://www.friendlyrideinc.com/fleet/">View all &rarr;</a>
+      </div>
+    </div>
+    <div class="footer__col">
+      <div class="footer__heading">Company</div>
+      <div class="footer__links">
+        <a href="https://www.friendlyrideinc.com/our-company/">Our Company</a>
+        <a href="https://www.friendlyrideinc.com/our-team/">Team</a>
+        <a href="https://www.friendlyrideinc.com/open-an-account/">Open an Account</a>
+        <a href="https://www.friendlyrideinc.com/privacy/">Privacy</a>
+        <a href="https://www.friendlyrideinc.com/contacts/">Contacts</a>
+      </div>
+    </div>
+    <div class="footer__col">
+      <div class="footer__heading">Contact</div>
+      <div class="footer__contact">
+        <a href="https://maps.app.goo.gl/Rcb3aawA6Z7mt4yG6">32-72 Gale Ave<br>Long Island City, NY 11101</a>
+        <a href="tel:8773741122">877-374-1122 (call or text)</a>
+        <a href="tel:7185455466">718-545-5466</a>
+        <div class="footer__hours">24 Hours a Day. 365 Days a Year.</div>
+      </div>
+      <div class="footer__social">
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="Facebook">FB</a>
+        <a href="#" aria-label="LinkedIn">IN</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="footer__copy">&copy; 2026 Friendly Ride Inc. All rights reserved.</div>
+    <div class="footer__values">Luxury &nbsp;&middot;&nbsp; Trust &nbsp;&middot;&nbsp; Comfort &nbsp;&middot;&nbsp; Excellence</div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
