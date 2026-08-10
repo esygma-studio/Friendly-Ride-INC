@@ -185,6 +185,7 @@
 .trade__content { position: relative; z-index: 2; max-width: 1280px; margin: 0 auto; }
 .trade__head { max-width: 700px; margin-bottom: 64px; }
 .trade__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.trade__grid > * { min-width: 0; }
 .trade__card {
   border: 1px solid rgba(26,21,18,.14);
   border-radius: 3px;
@@ -228,3 +229,71 @@
 .p-cta__title { margin: 20px 0 22px; }
 .p-cta__desc { font-size: 16.5px; font-weight: 300; line-height: 1.8; color: #D9D0C1; margin: 0 auto 44px; max-width: 600px; }
 .p-cta__actions { display: flex; gap: 26px; justify-content: center; align-items: center; }
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width: 1024px) {
+  .p-hero__content { padding: 160px 40px 90px; max-width: 620px; }
+  .standard__content { padding: 100px 40px; }
+  .standard__media { min-height: 480px; }
+  .hospitality { padding: 100px 40px; }
+  .logo-grid--4 { grid-template-columns: repeat(2,1fr); }
+  .logo-grid--3 { grid-template-columns: repeat(2,1fr); max-width: none !important; }
+  .maisons__grid.logo-grid--3 { grid-template-columns: repeat(2,1fr); }
+  .detail__content { padding: 100px 40px; }
+  .detail__media { min-height: 420px; }
+  .maisons { padding: 100px 40px; }
+  .trade { padding: 100px 40px; }
+  .trade__grid { gap: 20px; }
+  .p-cta { padding: 100px 40px; }
+}
+
+@media (max-width: 640px) {
+  .p-hero { min-height: 74vh; }
+  .p-hero__content { padding: 120px 22px 56px; }
+  .p-hero__title { font-size: clamp(32px, 9vw, 46px); }
+  .p-hero__desc { font-size: 15.5px; }
+
+  .eyebrow-light { font-size: 10px; letter-spacing: .26em; }
+  .section-title-light { font-size: clamp(28px, 8vw, 36px); margin: 14px 0 18px; }
+  .light-desc { font-size: 15px; margin-bottom: 26px; }
+
+  .standard { grid-template-columns: 1fr; }
+  .standard__media { min-height: 320px; border-right: none; border-bottom: 1px solid rgba(26,21,18,.14); }
+  .standard__content { padding: 60px 22px; }
+  .standard__item { grid-template-columns: 44px 1fr; gap: 16px; padding: 20px 0; }
+
+  .hospitality { padding: 70px 22px; }
+  .hospitality__head { flex-direction: column; align-items: flex-start; gap: 20px; margin-bottom: 40px; }
+  .hospitality__desc { max-width: 100%; }
+  .logo-grid { gap: 14px; margin-bottom: 14px; }
+  .logo-grid--4, .logo-grid--3, .maisons__grid.logo-grid--3 { grid-template-columns: 1fr 1fr; }
+  .logo-card { padding: 30px 18px; min-height: 170px; gap: 18px; }
+  .logo-card--lg { padding: 34px 18px; min-height: 190px; }
+
+  .detail { grid-template-columns: 1fr; }
+  .detail__content { padding: 60px 22px; order: 2; }
+  .detail__media { min-height: 300px; border-left: none; order: 1; }
+  .detail__stats { gap: 28px; }
+  .detail__stat-num { font-size: 34px; }
+
+  .maisons { padding: 70px 22px; }
+  .maisons__head { margin-bottom: 40px; }
+
+  .trade { padding: 70px 22px; }
+  .trade__head { margin-bottom: 40px; }
+  .trade__grid { grid-template-columns: 1fr; gap: 20px; }
+  .trade__card { padding: 30px 24px 18px; }
+  .trade__card-head { flex-wrap: wrap; gap: 10px 18px; }
+  .trade__card-label { white-space: normal; }
+  .trade__card-rule { flex: 1 1 60px; }
+  .trade__name { font-size: 22px; }
+
+  .p-cta { padding: 76px 22px; }
+  .p-cta__scrim { background: linear-gradient(180deg, rgba(11,10,8,.6) 0%, rgba(11,10,8,.28) 40%, rgba(11,10,8,.5) 100%); }
+  .p-cta__title, .p-cta__eyebrow, .p-cta__desc { text-shadow: 0 2px 14px rgba(0,0,0,.65); }
+  .p-cta__desc { font-size: 15.5px; }
+  .p-cta__actions { flex-direction: column; gap: 18px; width: 100%; }
+  .p-cta__actions .btn { width: 100%; text-align: center; }
+}

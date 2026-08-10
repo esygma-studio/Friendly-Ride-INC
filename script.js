@@ -75,6 +75,32 @@ function setupExperienceReveal() {
   obs.observe(el);
 }
 
+function setupNavToggle() {
+  const btn = document.getElementById('navToggle');
+  const menu = document.getElementById('navMenu');
+  if (!btn || !menu) return;
+  const close = () => {
+    menu.classList.remove('is-open');
+    btn.classList.remove('is-open');
+    btn.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('nav-open');
+  };
+  btn.addEventListener('click', () => {
+    const open = !menu.classList.contains('is-open');
+    menu.classList.toggle('is-open', open);
+    btn.classList.toggle('is-open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('nav-open', open);
+  });
+  menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) close();
+  });
+}
+
 drawMap();
-document.addEventListener('DOMContentLoaded', setupExperienceReveal);
+document.addEventListener('DOMContentLoaded', () => {
+  setupExperienceReveal();
+  setupNavToggle();
+});
 window.addEventListener('resize', drawMap);
