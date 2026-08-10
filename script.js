@@ -98,9 +98,37 @@ function setupNavToggle() {
   });
 }
 
+// Touch devices have no :hover, so the desktop pattern (hover reveals name,
+// click follows the link) would send a tap straight to the partner's site
+// with no chance to see who it was. On no-hover devices, the first tap just
+// reveals the name/location (same visuals as :hover, via .is-active); only
+// a second tap on an already-revealed card follows the link.
+function setupPartnerTapReveal() {
+  const partners = document.querySelectorAll('.partner');
+  if (!partners.length) return;
+  if (window.matchMedia('(hover: hover)').matches) return;
+
+  partners.forEach((el) => {
+    el.addEventListener('click', (e) => {
+      if (!el.classList.contains('is-active')) {
+        e.preventDefault();
+        partners.forEach((p) => { if (p !== el) p.classList.remove('is-active'); });
+        el.classList.add('is-active');
+      }
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.partner')) {
+      partners.forEach((p) => p.classList.remove('is-active'));
+    }
+  });
+}
+
 drawMap();
 document.addEventListener('DOMContentLoaded', () => {
   setupExperienceReveal();
   setupNavToggle();
+  setupPartnerTapReveal();
 });
 window.addEventListener('resize', drawMap);
