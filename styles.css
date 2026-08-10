@@ -1024,14 +1024,13 @@ img { display: block; }
     gap: 14px;
   }
   .partner {
-    position: static;
+    position: relative;
     width: auto !important;
     height: auto !important;
     transform: none;
     display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
-    gap: 14px;
     padding: 22px 10px;
   }
   .partner--featured { grid-column: span 2; }
@@ -1059,22 +1058,23 @@ img { display: block; }
   }
   .partner:hover .partner__logo,
   .partner.is-active .partner__logo { transform: none !important; }
+  /* Plate stays absolutely positioned (like desktop) so it floats below the
+     card instead of reserving empty space when hidden, and it's only
+     revealed — with the same dark box treatment as desktop's hover state —
+     once the card is tapped active. */
   .partner__plate {
-    grid-column: 1;
-    grid-row: 2;
-    position: static;
-    opacity: 1;
-    transform: none;
-    background: none;
-    border: none;
-    box-shadow: none;
-    padding: 0;
-    pointer-events: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    z-index: 8;
+    margin-top: 10px;
+    transform: translateX(-50%) translateY(6px);
     white-space: normal;
-    max-width: 100%;
+    width: max-content;
+    max-width: 42vw;
   }
   .partner:hover .partner__plate,
-  .partner.is-active .partner__plate { transform: none; }
+  .partner.is-active .partner__plate { transform: translateX(-50%) translateY(0); }
   .partner__plate-name { white-space: normal; font-size: 18px; }
   .partners__footer { margin-top: 36px; gap: 20px; }
 

@@ -68,11 +68,11 @@ function drawMap() {
   }
 }
 
-// New York is active by default (see .city--key.is-active in the HTML).
-// Clicking/tapping a city pin makes it the active one instead, one at a
-// time — desktop keeps hover as a bonus preview, but a click always pins
-// the tooltip open, which is what touch devices need since they have no
-// hover state at all.
+// No city is shown by default — a tooltip only appears once the user
+// hovers or clicks/taps a pin. Clicking/tapping makes that city the active
+// one, one at a time. Desktop keeps hover as a bonus preview, but a click
+// always pins the tooltip open, which is what touch devices need since
+// they have no hover state at all.
 function setupCityTooltips() {
   const cities = document.querySelectorAll('.city');
   if (!cities.length) return;
