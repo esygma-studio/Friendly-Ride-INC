@@ -1025,6 +1025,12 @@ img { display: block; }
   }
   .partner {
     position: relative;
+    /* Each card also carries inline left/top percentages for the desktop
+       diamond layout (e.g. left:70%). Those are inert under position:static
+       but become live relative-offsets under position:relative, shoving
+       cards sideways off-screen — reset them here. */
+    left: auto !important;
+    top: auto !important;
     width: auto !important;
     height: auto !important;
     transform: none;
