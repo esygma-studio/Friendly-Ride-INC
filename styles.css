@@ -156,6 +156,62 @@ img { display: block; }
 }
 .nav__link:hover { color: var(--brass); }
 .nav__link--active { color: var(--brass); }
+
+/* Click-driven (not hover-only) so it behaves identically on touch and
+   mouse — the map and Partners cards elsewhere on this site both had to
+   learn this lesson the hard way. */
+.nav__dropdown { position: relative; }
+.nav__dropdown-trigger {
+  background: none;
+  border: none;
+  font-family: inherit;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.nav__dropdown-caret {
+  width: 7px; height: 7px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform .25s;
+}
+.nav__dropdown.is-open .nav__dropdown-caret { transform: translateY(1px) rotate(225deg); }
+.nav__dropdown-menu {
+  position: absolute;
+  top: calc(100% + 20px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  min-width: 232px;
+  background: #0F0C09;
+  border: 1px solid rgba(168,137,92,.25);
+  box-shadow: 0 24px 60px rgba(0,0,0,.5);
+  padding: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease;
+  z-index: 30;
+}
+.nav__dropdown.is-open .nav__dropdown-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.nav__dropdown-link {
+  display: block;
+  padding: 11px 16px;
+  font-size: 12px;
+  letter-spacing: .1em;
+  color: var(--nav-link);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color .2s, background .2s;
+}
+.nav__dropdown-link:hover { color: var(--brass); background: rgba(168,137,92,.08); }
+.nav__dropdown-link--active { color: var(--brass); }
+
 .nav__phone {
   font-size: 12px;
   letter-spacing: .08em;
@@ -959,6 +1015,30 @@ img { display: block; }
   }
   .nav__phone-numbers .nav__phone { font-size: 15px; }
   .btn--nav { padding: 10px 18px; font-size: 10px; }
+
+  /* Services becomes an inline accordion in the drawer instead of a
+     floating panel — there's no room to float anything in a narrow
+     off-canvas column. */
+  .nav__dropdown-trigger { justify-content: space-between; text-align: left; }
+  .nav__dropdown-menu {
+    position: static;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s ease;
+  }
+  .nav__dropdown.is-open .nav__dropdown-menu { max-height: 320px; }
+  .nav__dropdown-link {
+    padding: 13px 0 13px 18px;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(168,137,92,.1);
+  }
 }
 
 /* ---- Mobile: single column, compact spacing ---- */

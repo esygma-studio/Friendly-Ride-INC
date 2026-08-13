@@ -84,6 +84,34 @@ function setupCityTooltips() {
   });
 }
 
+// Click/tap-driven, not hover — works identically whether the trigger is
+// clicked with a mouse or tapped on a touchscreen, and doubles as the
+// expand/collapse control for the inline accordion version inside the
+// mobile drawer (same markup, same class, CSS just displays it differently
+// below the 900px breakpoint).
+function setupServicesDropdown() {
+  const dropdown = document.querySelector('.nav__dropdown');
+  const trigger = document.querySelector('.nav__dropdown-trigger');
+  if (!dropdown || !trigger) return;
+  const close = () => {
+    dropdown.classList.remove('is-open');
+    trigger.setAttribute('aria-expanded', 'false');
+  };
+  trigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = !dropdown.classList.contains('is-open');
+    dropdown.classList.toggle('is-open', open);
+    trigger.setAttribute('aria-expanded', String(open));
+  });
+  document.addEventListener('click', (e) => {
+    if (!dropdown.contains(e.target)) close();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') close();
+  });
+  dropdown.querySelectorAll('.nav__dropdown-link').forEach((a) => a.addEventListener('click', close));
+}
+
 function setupExperienceReveal() {
   const el = document.querySelector('[data-reveal]');
   if (!el) return;
@@ -157,6 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupCityTooltips();
   setupExperienceReveal();
   setupNavToggle();
+  setupServicesDropdown();
   setupPartnerTapReveal();
 });
 window.addEventListener('resize', drawMap);

@@ -19,7 +19,17 @@
     <span class="nav__wordmark">FRIENDLY RIDE</span>
   </a>
   <nav class="nav__links" id="navMenu">
-    <a href="index.html#services" class="nav__link">SERVICES</a>
+    <div class="nav__dropdown">
+      <button type="button" class="nav__link nav__dropdown-trigger" aria-expanded="false" aria-controls="servicesMenu">SERVICES <span class="nav__dropdown-caret"></span></button>
+      <div class="nav__dropdown-menu" id="servicesMenu">
+        <a href="airport-transfers.html" class="nav__dropdown-link">Airport Transfers</a>
+        <a href="index.html#services" class="nav__dropdown-link">Corporate Limousine</a>
+        <a href="index.html#services" class="nav__dropdown-link">Hotels &amp; Concierge</a>
+        <a href="index.html#services" class="nav__dropdown-link">Meetings &amp; Events</a>
+        <a href="index.html#services" class="nav__dropdown-link">Roadshow Transportation</a>
+        <a href="index.html#services" class="nav__dropdown-link">Embassies &amp; Armored Service</a>
+      </div>
+    </div>
     <a href="index.html#fleet" class="nav__link">FLEET</a>
     <a href="#top" class="nav__link nav__link--active">PARTNERS &amp; CLIENTS</a>
     <a href="index.html#why" class="nav__link">WHY FRL</a>
@@ -249,7 +259,7 @@
     <div class="footer__col">
       <div class="footer__heading">Services</div>
       <div class="footer__links">
-        <a href="https://www.friendlyrideinc.com/services/airport-transfers/">Airport Transfers</a>
+        <a href="airport-transfers.html">Airport Transfers</a>
         <a href="https://www.friendlyrideinc.com/services/corporate-travel/">Corporate Limousine</a>
         <a href="https://www.friendlyrideinc.com/services/hotels-concierge/">Hotels &amp; Concierge</a>
         <a href="https://www.friendlyrideinc.com/services/road-shows/">Roadshows</a>
