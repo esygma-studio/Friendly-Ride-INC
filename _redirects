@@ -2,4 +2,9 @@
 # 503 so search engines treat this as transient, not a real removal.
 # The real site is untouched underneath; to go back live, delete this
 # file (or comment out the rule below) and redeploy.
-/*    /maintenance.html   503
+#
+# The trailing "!" forces this rule to win even though matching files
+# (index.html, etc.) already exist in the deploy — Netlify normally lets
+# real files shadow redirect rules, which is why the first version of
+# this file had no effect.
+/*    /maintenance.html   503!
