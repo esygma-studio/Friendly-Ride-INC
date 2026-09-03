@@ -40,7 +40,7 @@
       <span class="rsv-step__num">3</span>
       <span class="rsv-step__label">Details</span>
     </button>
-    <button type="button" class="rsv-step rsv-step--last" data-step="4">
+    <button type="button" class="rsv-step" data-step="4">
       <span class="rsv-step__num">&#10003;</span>
       <span class="rsv-step__label">Sent</span>
     </button>
@@ -104,7 +104,7 @@
 
           <div class="rsv-field rsv-field--full rsv-hourly-note" id="hourlyNote" hidden>Pickup only &mdash; your chauffeur stays with you for the booked hours and follows your direction.</div>
 
-          <div class="rsv-field rsv-field--full" id="stopsWrap"></div>
+          <div id="stopsWrap"></div>
 
           <div class="rsv-field rsv-field--full">
             <button type="button" class="rsv-link-add" id="addStopBtn">+ Add a stop</button>
@@ -114,11 +114,11 @@
 
           <div class="rsv-field">
             <label class="rsv-label" for="fDate">Date</label>
-            <input class="rsv-input" type="date" id="fDate">
+            <input class="rsv-input rsv-input--tight" type="date" id="fDate">
           </div>
           <div class="rsv-field">
             <label class="rsv-label" for="fTime">Time</label>
-            <input class="rsv-input" type="time" id="fTime">
+            <input class="rsv-input rsv-input--tight" type="time" id="fTime">
           </div>
 
           <div class="rsv-field rsv-field--full" id="hoursWrap" hidden>
@@ -189,7 +189,7 @@
       <section class="rsv-panel" id="panel2" hidden>
         <div class="rsv-vehicle-list" id="vehicleList"></div>
         <div class="rsv-actions">
-          <button type="button" class="rsv-btn-back" id="backTo1Btn">&larr; Back</button>
+          <button type="button" class="rsv-link-back" id="backTo1Btn">&larr; Back</button>
           <button type="button" class="rsv-btn-primary" id="toStep3Btn">Continue &rarr;</button>
           <span class="rsv-hint" id="hint2"></span>
         </div>
@@ -207,15 +207,15 @@
           <div class="rsv-row">
             <div class="rsv-field">
               <label class="rsv-label" for="authEmail1">Email</label>
-              <input class="rsv-input" id="authEmail1" placeholder="you@company.com">
+              <input class="rsv-input rsv-input--tight" id="authEmail1" placeholder="you@company.com">
             </div>
             <div class="rsv-field">
               <label class="rsv-label" for="authPass1">Password</label>
-              <input class="rsv-input" type="password" id="authPass1" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;">
+              <input class="rsv-input rsv-input--tight" type="password" id="authPass1" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;">
             </div>
           </div>
           <div class="rsv-auth-actions">
-            <button type="button" class="rsv-btn-outline" id="signInBtn">Sign in</button>
+            <button type="button" class="rsv-btn-outline rsv-btn-outline--sm" id="signInBtn">Sign in</button>
             <a href="mailto:reservations@friendlyrideinc.com?subject=Password%20reset" class="rsv-forgot">Forgot your password?</a>
           </div>
           <div class="rsv-auth-status" id="authStatus1"></div>
@@ -225,15 +225,15 @@
           <div class="rsv-row rsv-row--3">
             <div class="rsv-field rsv-field--full">
               <label class="rsv-label" for="authEmail2">Email</label>
-              <input class="rsv-input" id="authEmail2" placeholder="you@company.com">
+              <input class="rsv-input rsv-input--tight" id="authEmail2" placeholder="you@company.com">
             </div>
             <div class="rsv-field">
               <label class="rsv-label" for="authPass2">Choose a password</label>
-              <input class="rsv-input" type="password" id="authPass2" placeholder="At least 8 characters">
+              <input class="rsv-input rsv-input--tight" type="password" id="authPass2" placeholder="At least 8 characters">
             </div>
             <div class="rsv-field">
               <label class="rsv-label" for="authConfirm2">Confirm password</label>
-              <input class="rsv-input" type="password" id="authConfirm2" placeholder="Repeat password">
+              <input class="rsv-input rsv-input--tight" type="password" id="authConfirm2" placeholder="Repeat password">
             </div>
           </div>
           <button type="button" class="rsv-checkbox-row" id="saveProfileToggle">
@@ -269,7 +269,7 @@
         <p class="rsv-quote-note">No card details are taken and nothing is charged. We confirm availability and send a firm all-inclusive quote for your approval.</p>
 
         <div class="rsv-actions">
-          <button type="button" class="rsv-btn-back" id="backTo2Btn">&larr; Back</button>
+          <button type="button" class="rsv-link-back" id="backTo2Btn">&larr; Back</button>
           <button type="button" class="rsv-btn-primary" id="submitBtn">Submit inquiry</button>
           <span class="rsv-hint" id="hint3"></span>
         </div>
@@ -292,7 +292,7 @@
       <div class="rsv-sidebar__head">Summary</div>
       <div class="rsv-sidebar__body" id="summaryBody"></div>
       <div class="rsv-sidebar__total">
-        <span>Total</span>
+        <span class="rsv-sidebar__total-label">Total</span>
         <span class="rsv-sidebar__total-val">Quoted on request</span>
       </div>
     </aside>

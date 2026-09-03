@@ -230,24 +230,33 @@
     state.stops.forEach(function (v, i) {
       var row = document.createElement('div');
       row.className = 'rsv-stop-row';
+
+      var field = document.createElement('div');
+      field.className = 'rsv-field';
+      var label = document.createElement('label');
+      label.className = 'rsv-label';
+      label.textContent = 'Stop ' + (i + 1);
       var input = document.createElement('input');
       input.className = 'rsv-input';
-      input.placeholder = 'Stop ' + (i + 1) + ' address';
+      input.placeholder = 'Intermediate address';
       input.value = v;
       input.addEventListener('input', function (e) {
         var arr = state.stops.slice();
         arr[i] = e.target.value;
         state.stops = arr;
       });
+      field.appendChild(label);
+      field.appendChild(input);
+
       var rm = document.createElement('button');
       rm.type = 'button';
       rm.className = 'rsv-stop-remove';
-      rm.setAttribute('aria-label', 'Remove stop');
-      rm.textContent = '✕';
+      rm.textContent = 'Remove';
       rm.addEventListener('click', function () {
         setState({ stops: state.stops.filter(function (_, j) { return j !== i; }) });
       });
-      row.appendChild(input);
+
+      row.appendChild(field);
       row.appendChild(rm);
       el.stopsWrap.appendChild(row);
     });
@@ -269,9 +278,10 @@
         var card = document.createElement('div');
         card.className = 'rsv-option-card';
         card.innerHTML =
-          '<span class="rsv-option-card__label">' + c.name + '<span class="rsv-option-card__sub">' + c.note + '</span></span>';
+          '<div class="rsv-option-card__name">' + c.name + '</div>' +
+          '<div class="rsv-option-card__note">' + c.note + '</div>';
         var counter = document.createElement('div');
-        counter.className = 'rsv-counter';
+        counter.className = 'rsv-option-card__counter';
         var down = document.createElement('button');
         down.type = 'button'; down.className = 'rsv-counter__btn'; down.textContent = '−';
         down.addEventListener('click', function () { bumpSeat(c.key, -1); });
@@ -314,16 +324,19 @@
     VEHICLES.forEach(function (v) {
       var on = v.id === state.vehicle;
       var small = v.guests < state.pax;
+      var tag = small ? 'Too small' : v.tag;
       var card = document.createElement('div');
       card.className = 'rsv-vehicle-card' + (on ? ' is-selected' : '');
       card.innerHTML =
-        '<img class="rsv-vehicle-card__img" src="' + v.img + '" alt="' + v.name + '">' +
-        '<div>' +
+        '<img class="rsv-vehicle-card__img" src="' + v.img + '" alt="' + v.name + '" style="filter:' + (small ? 'grayscale(.8) brightness(.8)' : 'none') + '">' +
+        '<div style="min-width:0">' +
+          '<div class="rsv-vehicle-card__top">' +
+            '<div class="rsv-vehicle-card__klass">' + v.klass + '</div>' +
+            '<div class="rsv-vehicle-card__tag"' + (small ? ' style="color:#B4705A;border-color:rgba(180,112,90,.5)"' : '') + '>' + tag + '</div>' +
+          '</div>' +
           '<div class="rsv-vehicle-card__name">' + v.name + '</div>' +
-          '<div class="rsv-vehicle-card__meta">' + v.klass + ' &middot; Up to ' + v.guests + ' guests &middot; ' + v.luggage + ' bags</div>' +
-          (small ? '<div class="rsv-vehicle-card__warn">May be tight for ' + state.pax + ' passengers</div>' : '') +
-        '</div>' +
-        '<div class="rsv-vehicle-card__price">' + (small ? 'Too small' : v.tag) + '</div>';
+          '<div class="rsv-vehicle-card__capacity">Up to ' + v.guests + ' guests &middot; ' + v.luggage + ' bags</div>' +
+        '</div>';
       card.addEventListener('click', function () { setState({ vehicle: v.id, hint: '' }); });
       el.vehicleList.appendChild(card);
     });
