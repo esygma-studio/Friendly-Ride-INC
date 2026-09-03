@@ -1,0 +1,8 @@
+# Netlify-only maintenance-mode files. Vercel also understands the
+# _redirects file format, so without this exclusion a `vercel deploy`
+# could start applying the same catch-all "everything -> maintenance"
+# rule here too — defeating the point of using Vercel as the full,
+# always-browsable site for testing while friendlyrideinc.com (on
+# Netlify) shows maintenance.
+_redirects
+maintenance.html

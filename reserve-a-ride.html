@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reserve Your Ride | Friendly Ride Inc.</title>
+<meta name="description" content="Reserve a chauffeured ride with Friendly Ride. Airport transfers, point-to-point trips and as-directed hourly service — three steps, no card required, we reply with a quote.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="reserve-a-ride.css">
+</head>
+<body>
+
+<header class="rsv-header">
+  <a href="index.html" class="rsv-header__logo">
+    <img src="assets/frl-monogram.png" alt="Friendly Ride monogram" class="rsv-header__mark">
+    <span class="rsv-header__wordmark">FRIENDLY RIDE</span>
+  </a>
+  <a href="tel:8773741122" class="rsv-header__phone">877.374.1122</a>
+</header>
+
+<main class="rsv-page">
+
+  <div class="rsv-title-wrap">
+    <h1 class="rsv-title">Reserve your ride</h1>
+    <p class="rsv-subtitle">Three steps. No card required &mdash; we reply with a quote.</p>
+  </div>
+
+  <nav class="rsv-steps" id="rsvSteps" aria-label="Booking progress">
+    <button type="button" class="rsv-step" data-step="1">
+      <span class="rsv-step__num">1</span>
+      <span class="rsv-step__label">Trip</span>
+    </button>
+    <button type="button" class="rsv-step" data-step="2">
+      <span class="rsv-step__num">2</span>
+      <span class="rsv-step__label">Vehicle</span>
+    </button>
+    <button type="button" class="rsv-step" data-step="3">
+      <span class="rsv-step__num">3</span>
+      <span class="rsv-step__label">Details</span>
+    </button>
+    <button type="button" class="rsv-step rsv-step--last" data-step="4">
+      <span class="rsv-step__num">&#10003;</span>
+      <span class="rsv-step__label">Sent</span>
+    </button>
+  </nav>
+
+  <div class="rsv-layout">
+    <div class="rsv-form">
+
+      <!-- ============ STEP 1: TRIP ============ -->
+      <section class="rsv-panel" id="panel1">
+        <div class="rsv-grid">
+
+          <div class="rsv-field rsv-field--full">
+            <label class="rsv-label" for="fService">Service type</label>
+            <select class="rsv-select" id="fService">
+              <option value="airport">Airport Transfer</option>
+              <option value="p2p">Point to Point</option>
+              <option value="directed">As Directed &mdash; Hourly</option>
+            </select>
+          </div>
+
+          <div class="rsv-field rsv-field--full" id="dirToggleWrap" hidden>
+            <div class="rsv-toggle-group">
+              <button type="button" class="rsv-toggle" id="dirArrival">From airport</button>
+              <button type="button" class="rsv-toggle" id="dirDeparture">To airport</button>
+            </div>
+          </div>
+
+          <div class="rsv-field rsv-field--full" id="pickupAirportWrap" hidden>
+            <label class="rsv-label" for="fPickupAirport">Pickup airport</label>
+            <select class="rsv-select" id="fPickupAirport"></select>
+          </div>
+
+          <div class="rsv-field rsv-field--full" id="pickupAddressWrap" hidden>
+            <label class="rsv-label" for="fPickup">Pickup address</label>
+            <input class="rsv-input" id="fPickup" placeholder="Street address, hotel or office">
+          </div>
+
+          <div class="rsv-field rsv-field--full" id="dropAddressWrap" hidden>
+            <label class="rsv-label" for="fDropoff">Drop-off address</label>
+            <input class="rsv-input" id="fDropoff" placeholder="Street address, hotel or office">
+          </div>
+
+          <div class="rsv-field rsv-field--full" id="dropAirportWrap" hidden>
+            <label class="rsv-label" for="fDropAirport">Drop-off airport</label>
+            <select class="rsv-select" id="fDropAirport"></select>
+          </div>
+
+          <div class="rsv-field rsv-field--full" id="flightWrap" hidden>
+            <div class="rsv-row">
+              <div class="rsv-field">
+                <label class="rsv-label" for="fAirline">Airline</label>
+                <input class="rsv-input" id="fAirline" placeholder="Emirates">
+              </div>
+              <div class="rsv-field">
+                <label class="rsv-label" for="fFlight">Flight no.</label>
+                <input class="rsv-input" id="fFlight" placeholder="EK 201">
+              </div>
+            </div>
+          </div>
+
+          <div class="rsv-field rsv-field--full rsv-hourly-note" id="hourlyNote" hidden>Pickup only &mdash; your chauffeur stays with you for the booked hours and follows your direction.</div>
+
+          <div class="rsv-field rsv-field--full" id="stopsWrap"></div>
+
+          <div class="rsv-field rsv-field--full">
+            <button type="button" class="rsv-link-add" id="addStopBtn">+ Add a stop</button>
+          </div>
+
+          <div class="rsv-field rsv-field--full rsv-divider"></div>
+
+          <div class="rsv-field">
+            <label class="rsv-label" for="fDate">Date</label>
+            <input class="rsv-input" type="date" id="fDate">
+          </div>
+          <div class="rsv-field">
+            <label class="rsv-label" for="fTime">Time</label>
+            <input class="rsv-input" type="time" id="fTime">
+          </div>
+
+          <div class="rsv-field rsv-field--full" id="hoursWrap" hidden>
+            <label class="rsv-label" for="fHours">Hours</label>
+            <select class="rsv-select" id="fHours">
+              <option value="2">2 hours (minimum)</option>
+              <option value="3">3 hours</option>
+              <option value="4">4 hours</option>
+              <option value="5">5 hours</option>
+              <option value="6">6 hours</option>
+              <option value="8">8 hours</option>
+              <option value="10">10 hours</option>
+              <option value="12">12 hours</option>
+              <option value="multi">Multiple days</option>
+            </select>
+          </div>
+
+          <div class="rsv-field">
+            <label class="rsv-label">Passengers</label>
+            <div class="rsv-counter">
+              <button type="button" class="rsv-counter__btn" id="paxDown" aria-label="Decrease passengers">&minus;</button>
+              <span class="rsv-counter__val" id="paxVal">2</span>
+              <button type="button" class="rsv-counter__btn" id="paxUp" aria-label="Increase passengers">+</button>
+            </div>
+          </div>
+          <div class="rsv-field">
+            <label class="rsv-label">Luggage</label>
+            <div class="rsv-counter">
+              <button type="button" class="rsv-counter__btn" id="bagDown" aria-label="Decrease luggage">&minus;</button>
+              <span class="rsv-counter__val" id="bagVal">2</span>
+              <button type="button" class="rsv-counter__btn" id="bagUp" aria-label="Increase luggage">+</button>
+            </div>
+          </div>
+
+          <div class="rsv-field rsv-field--full rsv-divider"></div>
+
+          <div class="rsv-field rsv-field--full rsv-addlinks">
+            <button type="button" class="rsv-link-add" id="showSeatsBtn">+ Add child seat</button>
+            <button type="button" class="rsv-link-add" id="showExtrasBtn">+ Add special request</button>
+          </div>
+
+          <div class="rsv-field rsv-field--full rsv-fade" id="seatsPanel" hidden>
+            <div class="rsv-subhead-row">
+              <div class="rsv-subhead">Child seats</div>
+              <button type="button" class="rsv-remove-link" id="hideSeatsBtn">Remove</button>
+            </div>
+            <div class="rsv-seat-grid" id="seatGrid"></div>
+          </div>
+
+          <div class="rsv-field rsv-field--full rsv-fade" id="extrasPanel" hidden>
+            <div class="rsv-subhead-row">
+              <div class="rsv-subhead">Special requests</div>
+              <button type="button" class="rsv-remove-link" id="hideExtrasBtn">Remove</button>
+            </div>
+            <div class="rsv-extra-grid" id="extraGrid"></div>
+            <div class="rsv-extra-note">Anything else goes in the notes at the final step.</div>
+          </div>
+
+        </div>
+
+        <div class="rsv-actions">
+          <button type="button" class="rsv-btn-primary" id="toStep2Btn">Choose vehicle &rarr;</button>
+          <span class="rsv-hint" id="hint1"></span>
+        </div>
+      </section>
+
+      <!-- ============ STEP 2: VEHICLE ============ -->
+      <section class="rsv-panel" id="panel2" hidden>
+        <div class="rsv-vehicle-list" id="vehicleList"></div>
+        <div class="rsv-actions">
+          <button type="button" class="rsv-btn-back" id="backTo1Btn">&larr; Back</button>
+          <button type="button" class="rsv-btn-primary" id="toStep3Btn">Continue &rarr;</button>
+          <span class="rsv-hint" id="hint2"></span>
+        </div>
+      </section>
+
+      <!-- ============ STEP 3: DETAILS ============ -->
+      <section class="rsv-panel" id="panel3" hidden>
+        <div class="rsv-auth-tabs" id="authTabs">
+          <button type="button" class="rsv-auth-tab" data-mode="signin">Sign in</button>
+          <button type="button" class="rsv-auth-tab" data-mode="create">Create account</button>
+          <button type="button" class="rsv-auth-tab" data-mode="guest">Continue as guest</button>
+        </div>
+
+        <div class="rsv-auth-panel" id="signinPanel" hidden>
+          <div class="rsv-row">
+            <div class="rsv-field">
+              <label class="rsv-label" for="authEmail1">Email</label>
+              <input class="rsv-input" id="authEmail1" placeholder="you@company.com">
+            </div>
+            <div class="rsv-field">
+              <label class="rsv-label" for="authPass1">Password</label>
+              <input class="rsv-input" type="password" id="authPass1" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;">
+            </div>
+          </div>
+          <div class="rsv-auth-actions">
+            <button type="button" class="rsv-btn-outline" id="signInBtn">Sign in</button>
+            <a href="mailto:reservations@friendlyrideinc.com?subject=Password%20reset" class="rsv-forgot">Forgot your password?</a>
+          </div>
+          <div class="rsv-auth-status" id="authStatus1"></div>
+        </div>
+
+        <div class="rsv-auth-panel" id="createPanel" hidden>
+          <div class="rsv-row rsv-row--3">
+            <div class="rsv-field rsv-field--full">
+              <label class="rsv-label" for="authEmail2">Email</label>
+              <input class="rsv-input" id="authEmail2" placeholder="you@company.com">
+            </div>
+            <div class="rsv-field">
+              <label class="rsv-label" for="authPass2">Choose a password</label>
+              <input class="rsv-input" type="password" id="authPass2" placeholder="At least 8 characters">
+            </div>
+            <div class="rsv-field">
+              <label class="rsv-label" for="authConfirm2">Confirm password</label>
+              <input class="rsv-input" type="password" id="authConfirm2" placeholder="Repeat password">
+            </div>
+          </div>
+          <button type="button" class="rsv-checkbox-row" id="saveProfileToggle">
+            <span class="rsv-checkbox" id="saveProfileBox"></span>
+            <span>Save my addresses and preferences for future rides</span>
+          </button>
+          <div class="rsv-auth-status" id="authStatus2">Optional &mdash; your inquiry is submitted either way.</div>
+        </div>
+
+        <div class="rsv-row">
+          <div class="rsv-field">
+            <label class="rsv-label" for="fFirst">First name</label>
+            <input class="rsv-input" id="fFirst" placeholder="First name">
+          </div>
+          <div class="rsv-field">
+            <label class="rsv-label" for="fLast">Last name</label>
+            <input class="rsv-input" id="fLast" placeholder="Last name">
+          </div>
+          <div class="rsv-field">
+            <label class="rsv-label" for="fEmail">Email</label>
+            <input class="rsv-input" id="fEmail" placeholder="you@company.com">
+          </div>
+          <div class="rsv-field">
+            <label class="rsv-label" for="fPhone">Mobile</label>
+            <input class="rsv-input" id="fPhone" placeholder="+1 212 555 0142">
+          </div>
+          <div class="rsv-field rsv-field--full">
+            <label class="rsv-label" for="fNotes">Notes <span class="rsv-label-optional">&mdash; optional</span></label>
+            <textarea class="rsv-textarea" id="fNotes" rows="4" placeholder="Passenger name for the placard, gate codes, preferences&hellip;"></textarea>
+          </div>
+        </div>
+
+        <p class="rsv-quote-note">No card details are taken and nothing is charged. We confirm availability and send a firm all-inclusive quote for your approval.</p>
+
+        <div class="rsv-actions">
+          <button type="button" class="rsv-btn-back" id="backTo2Btn">&larr; Back</button>
+          <button type="button" class="rsv-btn-primary" id="submitBtn">Submit inquiry</button>
+          <span class="rsv-hint" id="hint3"></span>
+        </div>
+      </section>
+
+      <!-- ============ STEP 4: SENT ============ -->
+      <section class="rsv-panel rsv-done" id="panel4" hidden>
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#A8895C" stroke-width="1.1"><circle cx="12" cy="12" r="10"></circle><path d="M7.5 12.4l3 3 6-6.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <h2 class="rsv-done__title">Inquiry received</h2>
+        <p class="rsv-done__text">Reference <span id="referenceCode"></span>. A reservations manager replies within the hour with your quote.</p>
+        <div class="rsv-done__actions">
+          <a href="tel:8773741122" class="rsv-btn-primary">Call dispatch</a>
+          <button type="button" class="rsv-btn-outline" id="newReservationBtn">New reservation</button>
+        </div>
+      </section>
+
+    </div>
+
+    <aside class="rsv-sidebar">
+      <div class="rsv-sidebar__head">Summary</div>
+      <div class="rsv-sidebar__body" id="summaryBody"></div>
+      <div class="rsv-sidebar__total">
+        <span>Total</span>
+        <span class="rsv-sidebar__total-val">Quoted on request</span>
+      </div>
+    </aside>
+  </div>
+
+</main>
+
+<footer class="rsv-footer">
+  <div>&copy; 2026 Friendly Ride Inc &middot; New York</div>
+  <div>Inquiry only &middot; No payment collected</div>
+</footer>
+
+<script src="reserve-a-ride.js" defer></script>
+</body>
+</html>
