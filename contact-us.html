@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact Friendly Ride Inc. | 24/7 NYC Dispatch</title>
+<meta name="description" content="Reach Friendly Ride Inc. dispatch 24 hours a day at 877-374-1122, email info@friendlyridelimo.com, or send an inquiry. Chauffeured transportation in New York City.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="contact-us.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Friendly Ride Inc.","telephone":"+1-877-374-1122","email":"info@friendlyridelimo.com","address":{"@type":"PostalAddress","streetAddress":"32-72 Gale Ave","addressLocality":"Long Island City","addressRegion":"NY","postalCode":"11101","addressCountry":"US"},"url":"https://www.friendlyrideinc.com/","openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"00:00","closes":"23:59"}}</script>
+</head>
+<body>
+
+<!-- Static form so Netlify's build-time bot detects and registers this form.
+     Never shown or filled by a user — contact-us.js submits the real data to
+     this same form name via fetch(). Netlify emails a notification for every
+     submission to whatever address is set under Site settings -> Forms ->
+     Form notifications in the Netlify dashboard. -->
+<form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="contact">
+  <input type="text" name="bot-field">
+  <input type="text" name="Full name">
+  <input type="text" name="Company">
+  <input type="text" name="Email">
+  <input type="text" name="Phone">
+  <input type="text" name="Topic">
+  <input type="text" name="Message">
+  <input type="text" name="Urgent">
+</form>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <a href="index.html" class="nav__logo">
+    <img src="assets/frl-logo-full.png" alt="Friendly Ride — Worldwide Chauffeured Transportation" class="nav__mark">
+  </a>
+  <nav class="nav__links" id="navMenu">
+    <div class="nav__dropdown">
+      <button type="button" class="nav__link nav__dropdown-trigger" aria-expanded="false" aria-controls="servicesMenu">SERVICES <span class="nav__dropdown-caret"></span></button>
+      <div class="nav__dropdown-menu" id="servicesMenu">
+        <a href="airport-transfers.html" class="nav__dropdown-link">Airport Transfers</a>
+        <a href="corporate-limousine.html" class="nav__dropdown-link">Corporate Limousine</a>
+        <a href="hotels-concierge.html" class="nav__dropdown-link">Hotels &amp; Concierge</a>
+        <a href="https://www.friendlyrideinc.com/services/special-events/" class="nav__dropdown-link">Meetings &amp; Events</a>
+        <a href="https://www.friendlyrideinc.com/services/road-shows/" class="nav__dropdown-link">Roadshow Transportation</a>
+        <a href="https://www.friendlyrideinc.com/services/embassies/" class="nav__dropdown-link">Embassies &amp; Armored Service</a>
+      </div>
+    </div>
+    <a href="index.html#fleet" class="nav__link">FLEET</a>
+    <a href="partners.html" class="nav__link">PARTNERS &amp; CLIENTS</a>
+    <a href="index.html#why" class="nav__link">WHY FRL</a>
+    <a href="contact-us.html" class="nav__link nav__link--active">CONTACT</a>
+    <div class="nav__phones">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="nav__phone-icon"><path d="M6.5 3.5h3l1.5 4-2 1.4a12 12 0 0 0 6.1 6.1l1.4-2 4 1.5v3a2 2 0 0 1-2.2 2A17.5 17.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"></path></svg>
+      <div class="nav__phone-numbers">
+        <a href="tel:8773741122" class="nav__phone">877-374-1122</a>
+        <a href="tel:7185455466" class="nav__phone">718-545-5466</a>
+      </div>
+    </div>
+  </nav>
+  <a href="reserve-a-ride.html" class="btn btn--nav">RESERVE</a>
+  <a href="tel:8773741122" class="nav__call" aria-label="Call Friendly Ride">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h3l1.5 4-2 1.4a12 12 0 0 0 6.1 6.1l1.4-2 4 1.5v3a2 2 0 0 1-2.2 2A17.5 17.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"></path></svg>
+  </a>
+  <button class="nav__toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navMenu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="top" class="ct-hero">
+  <img class="ct-hero__media" src="assets/contact-hero.jpg" alt="Bright midday aerial view of Midtown Manhattan, clear blue sky, sunlit avenues">
+  <div class="ct-hero__scrim"></div>
+  <div class="ct-hero__content">
+    <div class="ct-hero__inner">
+      <div class="ct-hero__breadcrumb">
+        <a href="index.html">Home</a><span>/</span>
+        <span class="ct-hero__breadcrumb-current">Contact</span>
+      </div>
+      <div class="ct-hero__eyebrow">Contact Us</div>
+      <h1 class="ct-hero__title">Someone answers. Every hour of every day.</h1>
+      <p class="ct-hero__desc">Dispatch is staffed around the clock &mdash; not a voicemail box, not a queue. Call or text for anything time-sensitive; email or use the form for everything else.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT BAR ============ -->
+<section class="ct-bar">
+  <div class="ct-bar__inner">
+    <a href="tel:8773741122" class="ct-bar__item">
+      <div class="ct-bar__icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9C7B3E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"></path></svg>
+      </div>
+      <div>
+        <div class="ct-bar__label">24/7 Dispatch</div>
+        <div class="ct-bar__value">877-374-1122</div>
+        <div class="ct-bar__note">Toll free &middot; Call or text &middot; 365 days a year</div>
+      </div>
+    </a>
+    <a href="mailto:info@friendlyridelimo.com" class="ct-bar__item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9C7B3E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ct-bar__icon-sm"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m2.5 6.5 9.5 7 9.5-7"></path></svg>
+      <div>
+        <div class="ct-bar__label">Email</div>
+        <div class="ct-bar__value ct-bar__value--sm">info@friendlyridelimo.com</div>
+      </div>
+    </a>
+    <a href="tel:7185455466" class="ct-bar__item ct-bar__item--last">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9C7B3E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ct-bar__icon-sm"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"></path></svg>
+      <div>
+        <div class="ct-bar__label">Local Line</div>
+        <div class="ct-bar__value ct-bar__value--md">718-545-5466</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ============ FORM + ASIDE ============ -->
+<section class="ct-main">
+  <div class="ct-main__inner">
+
+    <div class="ct-form-col">
+      <div class="ct-form__eyebrow">Send an Inquiry</div>
+      <h2 class="ct-form__title">Tell us what you need and we&rsquo;ll come back with an answer.</h2>
+      <p class="ct-form__desc">Replies within one business hour, and within minutes if you mark it urgent. For a same-day ride, please call dispatch instead.</p>
+
+      <div class="ct-success" id="ctSuccess" hidden>
+        <div class="ct-success__icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#9C7B3E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5 5L20 6.5"></path></svg>
+        </div>
+        <div class="ct-success__title">Your inquiry is with dispatch.</div>
+        <p class="ct-success__text">A coordinator will reply to <span class="ct-success__email" id="ctSuccessEmail"></span> shortly. If it can&rsquo;t wait, call <a href="tel:8773741122" class="ct-success__link">877-374-1122</a>.</p>
+        <button type="button" class="ct-success__reset" id="ctResetBtn">SEND ANOTHER</button>
+      </div>
+
+      <div class="ct-form" id="ctForm">
+        <div class="ct-field">
+          <label class="ct-label ct-label--accent" for="ctName">Full name</label>
+          <input type="text" class="ct-input" id="ctName" placeholder="Jane Whitfield">
+        </div>
+        <div class="ct-field">
+          <label class="ct-label" for="ctCompany">Company <span class="ct-label__optional">(optional)</span></label>
+          <input type="text" class="ct-input" id="ctCompany" placeholder="Whitfield Capital">
+        </div>
+        <div class="ct-field">
+          <label class="ct-label" for="ctEmail">Email</label>
+          <input type="email" class="ct-input" id="ctEmail" placeholder="jane@company.com">
+        </div>
+        <div class="ct-field">
+          <label class="ct-label" for="ctPhone">Phone</label>
+          <input type="tel" class="ct-input" id="ctPhone" placeholder="(212) 555-0148">
+        </div>
+        <div class="ct-field ct-field--full">
+          <label class="ct-label" for="ctTopic">What is this about?</label>
+          <select class="ct-select" id="ctTopic">
+            <option>New reservation or quote</option>
+            <option>Corporate account</option>
+            <option>Hotel or concierge partnership</option>
+            <option>Roadshow or multi-day program</option>
+            <option>Armored or embassy transport</option>
+            <option>Existing reservation</option>
+            <option>Billing</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="ct-field ct-field--full">
+          <label class="ct-label" for="ctMessage">Your message</label>
+          <textarea class="ct-textarea" id="ctMessage" rows="6" placeholder="Dates, times, pickup and drop-off, number of passengers — anything that helps us quote accurately."></textarea>
+        </div>
+        <div class="ct-field--full ct-checkbox-row">
+          <input type="checkbox" id="ctUrgent" class="ct-checkbox">
+          <label for="ctUrgent" class="ct-checkbox-label">This is time-sensitive &mdash; reply as soon as possible</label>
+        </div>
+        <div class="ct-field--full ct-actions">
+          <button type="button" class="ct-submit" id="ctSubmitBtn">SEND INQUIRY</button>
+          <span class="ct-error" id="ctError"></span>
+        </div>
+      </div>
+    </div>
+
+    <aside class="ct-aside">
+      <div class="ct-aside__item">
+        <div class="ct-aside__label">Office</div>
+        <a href="https://maps.app.goo.gl/Rcb3aawA6Z7mt4yG6" class="ct-aside__value ct-aside__link">32-72 Gale Ave<br>Long Island City, NY 11101</a>
+      </div>
+      <div class="ct-aside__item">
+        <div class="ct-aside__label">Hours</div>
+        <div class="ct-aside__value">24 hours a day.<br>365 days a year.</div>
+      </div>
+      <div class="ct-aside__item">
+        <div class="ct-aside__label">Service area</div>
+        <div class="ct-aside__value ct-aside__value--sm">New York City &middot; Long Island &middot; Westchester &middot; New Jersey &middot; Connecticut</div>
+      </div>
+      <div class="ct-aside__item ct-aside__item--last">
+        <div class="ct-aside__label">Booking now?</div>
+        <p class="ct-aside__cta-text">Skip the form &mdash; build the trip and we&rsquo;ll quote it.</p>
+        <a href="reserve-a-ride.html" class="ct-aside__cta-btn">RESERVE A RIDE</a>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer__grid">
+    <div class="footer__brand">
+      <a href="index.html">
+        <img src="assets/frl-logo-full.png" alt="Friendly Ride — Worldwide Chauffeured Transportation" class="footer__lockup">
+      </a>
+      <div class="footer__tagline">New York&ndash;based, global reach.</div>
+    </div>
+    <div class="footer__col">
+      <div class="footer__heading">Services</div>
+      <div class="footer__links">
+        <a href="reserve-a-ride.html">Reserve a Ride</a>
+        <a href="airport-transfers.html">Airport Transfers</a>
+        <a href="corporate-limousine.html">Corporate Limousine</a>
+        <a href="hotels-concierge.html">Hotels &amp; Concierge</a>
+        <a href="https://www.friendlyrideinc.com/services/road-shows/">Roadshows</a>
+        <a href="https://www.friendlyrideinc.com/services/armour-vehicle-car/">Armored Cars</a>
+      </div>
+    </div>
+    <div class="footer__col">
+      <div class="footer__heading">Fleet</div>
+      <div class="footer__links">
+        <a href="https://www.friendlyrideinc.com/fleet/rolls-royce-phantom/">Rolls-Royce Phantom</a>
+        <a href="https://www.friendlyrideinc.com/fleet/bentley-mulsanne/">Bentley Mulsanne</a>
+        <a href="https://www.friendlyrideinc.com/fleet/mercedes-benz-maybach/">Mercedes-Maybach</a>
+        <a href="https://www.friendlyrideinc.com/fleet/mercedes-s-class/">Mercedes S-Class</a>
+        <a href="https://www.friendlyrideinc.com/fleet/">View all &rarr;</a>
+      </div>
+    </div>
+    <div class="footer__col">
+      <div class="footer__heading">Company</div>
+      <div class="footer__links">
+        <a href="https://www.friendlyrideinc.com/our-company/">Our Company</a>
+        <a href="https://www.friendlyrideinc.com/our-team/">Team</a>
+        <a href="https://www.friendlyrideinc.com/open-an-account/">Open an Account</a>
+        <a href="https://www.friendlyrideinc.com/privacy/">Privacy</a>
+        <a href="contact-us.html">Contacts</a>
+      </div>
+    </div>
+    <div class="footer__col">
+      <div class="footer__heading">Contact</div>
+      <div class="footer__contact">
+        <a href="https://maps.app.goo.gl/Rcb3aawA6Z7mt4yG6">32-72 Gale Ave<br>Long Island City, NY 11101</a>
+        <a href="tel:8773741122">877-374-1122 (call or text)</a>
+        <a href="tel:7185455466">718-545-5466</a>
+        <div class="footer__hours">24 Hours a Day. 365 Days a Year.</div>
+      </div>
+      <div class="footer__social">
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="Facebook">FB</a>
+        <a href="#" aria-label="LinkedIn">IN</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="footer__copy">&copy; 2026 Friendly Ride Inc. All rights reserved.</div>
+    <div class="footer__values">Luxury &nbsp;&middot;&nbsp; Trust &nbsp;&middot;&nbsp; Comfort &nbsp;&middot;&nbsp; Excellence</div>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+<script src="contact-us.js" defer></script>
+</body>
+</html>
