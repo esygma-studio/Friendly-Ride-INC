@@ -175,8 +175,12 @@
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encodeForm(payload),
+    }).then(function (res) {
+      if (!res.ok) {
+        console.error('Reservation form submission was rejected (HTTP ' + res.status + '). This page is not being served by Netlify, so the inquiry was NOT delivered.');
+      }
     }).catch(function (err) {
-      console.warn('Reservation form submission failed to send:', err);
+      console.error('Reservation form submission failed to send:', err);
     });
   }
 
