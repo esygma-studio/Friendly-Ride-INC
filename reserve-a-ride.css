@@ -31,13 +31,7 @@
   white-space: nowrap;
   flex: none;
 }
-.rsv-header__mark { height: 42px; width: auto; mix-blend-mode: screen; }
-.rsv-header__wordmark {
-  font-family: var(--serif);
-  font-size: 18px;
-  letter-spacing: .24em;
-  font-weight: 500;
-}
+.rsv-header__mark { height: 34px; width: auto; }
 .rsv-header__phone {
   margin-left: auto;
   font-size: 13px;
@@ -551,7 +545,7 @@
   .rsv-footer { padding: 24px 20px; flex-direction: column; gap: 8px; text-align: center; }
 }
 @media (max-width: 520px) {
-  .rsv-header__wordmark { display: none; }
+  .rsv-header__mark { height: 28px; }
   .rsv-addlinks { flex-direction: column; gap: 12px; }
   .rsv-auth-tabs { flex-wrap: wrap; }
   .rsv-auth-tab { flex: 1 1 50%; }

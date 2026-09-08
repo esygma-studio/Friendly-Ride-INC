@@ -134,13 +134,7 @@ img { display: block; }
   flex: none;
   margin-right: auto;
 }
-.nav__mark { height: 48px; mix-blend-mode: screen; }
-.nav__wordmark {
-  font-family: var(--serif);
-  font-size: 19px;
-  letter-spacing: .24em;
-  font-weight: 500;
-}
+.nav__mark { height: 40px; width: auto; }
 .nav__links {
   display: flex;
   gap: 34px;
@@ -919,7 +913,7 @@ img { display: block; }
   gap: 48px;
   align-items: start;
 }
-.footer__lockup { width: 230px; display: block; margin: -24px 0 0 -12px; }
+.footer__lockup { width: 230px; display: block; }
 .footer__tagline { font-size: 12.5px; font-weight: 300; color: var(--text-faint); letter-spacing: .06em; margin-top: 6px; }
 .footer__heading {
   font-size: 10.5px;
@@ -1001,8 +995,7 @@ img { display: block; }
 /* ---- Nav collapses to hamburger drawer ---- */
 @media (max-width: 900px) {
   .nav { padding: 18px 20px; gap: 14px; }
-  .nav__mark { height: 38px; }
-  .nav__wordmark { font-size: 15px; letter-spacing: .18em; }
+  .nav__mark { height: 32px; }
   .nav__toggle { display: flex; }
   .nav__call { display: flex; }
   .nav__links {
@@ -1067,11 +1060,11 @@ img { display: block; }
 @media (max-width: 640px) {
   /* Logo + Reserve + call icon + hamburger were overflowing the header
      on narrow phones (~390px and below), pushing the hamburger off
-     screen entirely. Drop the wordmark and tighten everything else. */
-  .nav { padding: 16px 14px; gap: 8px; }
-  .nav__wordmark { display: none; }
-  .btn--nav { padding: 9px 14px; font-size: 9px; letter-spacing: .16em; }
-  .nav__call, .nav__toggle { width: 32px; height: 32px; }
+     screen entirely. Shrink the logo and tighten everything else. */
+  .nav { padding: 16px 12px; gap: 6px; }
+  .nav__mark { height: 22px; }
+  .btn--nav { padding: 9px 12px; font-size: 9px; letter-spacing: .12em; }
+  .nav__call, .nav__toggle { width: 30px; height: 30px; }
 
   .eyebrow { font-size: 10px; letter-spacing: .26em; }
   .section-title { margin: 14px 0 16px; }
@@ -1235,6 +1228,6 @@ img { display: block; }
   .footer { padding: 60px 22px 32px; }
   .footer__grid { grid-template-columns: 1fr; gap: 36px; }
   .footer__brand { grid-column: auto; }
-  .footer__lockup { width: 190px; margin: -16px 0 0 -10px; }
+  .footer__lockup { width: 190px; }
   .footer__bottom { flex-direction: column; align-items: flex-start; gap: 14px; margin-top: 48px; }
 }
