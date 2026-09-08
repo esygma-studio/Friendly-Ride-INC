@@ -7,4 +7,6 @@
 # (index.html, etc.) already exist in the deploy — Netlify normally lets
 # real files shadow redirect rules, which is why the first version of
 # this file had no effect.
-/*    /maintenance.html   503!
+# TEMPORARILY DISABLED — testing Netlify Forms delivery end-to-end.
+# Re-enable by uncommenting the line below once the test is confirmed.
+# /*    /maintenance.html   503!
