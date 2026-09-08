@@ -12,6 +12,36 @@
 </head>
 <body>
 
+<!-- Static form so Netlify's build-time bot detects and registers this form.
+     Never shown or filled by a user — reserve-a-ride.js submits the real
+     data to this same form name via fetch(). Netlify emails a notification
+     for every submission to whatever address is set under Site settings ->
+     Forms -> Form notifications in the Netlify dashboard. -->
+<form name="reservation" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="bot-field">
+  <input type="text" name="Reference">
+  <input type="text" name="Service">
+  <input type="text" name="Direction">
+  <input type="text" name="Pickup">
+  <input type="text" name="Dropoff">
+  <input type="text" name="Stops">
+  <input type="text" name="Airline">
+  <input type="text" name="Flight">
+  <input type="text" name="Date">
+  <input type="text" name="Time">
+  <input type="text" name="Hours">
+  <input type="text" name="Passengers">
+  <input type="text" name="Luggage">
+  <input type="text" name="Vehicle">
+  <input type="text" name="Child seats">
+  <input type="text" name="Special requests">
+  <input type="text" name="First name">
+  <input type="text" name="Last name">
+  <input type="text" name="Email">
+  <input type="text" name="Phone">
+  <input type="text" name="Notes">
+</form>
+
 <header class="rsv-header">
   <a href="index.html" class="rsv-header__logo">
     <img src="assets/frl-monogram.png" alt="Friendly Ride monogram" class="rsv-header__mark">

@@ -129,11 +129,64 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  function encodeForm(data) {
+    return Object.keys(data)
+      .map(function (k) { return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]); })
+      .join('&');
+  }
+
+  function submitToNetlify(reference) {
+    var sv = svc(), sh = shape();
+    var isHourly = sv.mode === 'hourly';
+    var veh = null;
+    VEHICLES.forEach(function (v) { if (v.id === state.vehicle) veh = v; });
+    var pickupText = sh.pickup === 'airport' ? state.airport : state.pickup.trim();
+    var dropText = sh.drop === 'none' ? 'As directed' : sh.drop === 'airport' ? state.airport : state.dropoff.trim();
+    var seatList = SEATS.filter(function (c) { return state.seats[c.key]; }).map(function (c) { return state.seats[c.key] + '× ' + c.name; });
+    var exList = EXTRAS.filter(function (x) { return state.extras[x.key]; }).map(function (x) { return x.name; });
+
+    var payload = {
+      'form-name': 'reservation',
+      'bot-field': '',
+      'Reference': reference,
+      'Service': sv.name,
+      'Direction': sv.airport ? state.direction : '',
+      'Pickup': pickupText,
+      'Dropoff': dropText,
+      'Stops': state.stops.filter(function (x) { return x.trim(); }).join(' -> '),
+      'Airline': state.airline,
+      'Flight': state.flight,
+      'Date': fmtDate(),
+      'Time': fmtTime(),
+      'Hours': isHourly ? state.hours : '',
+      'Passengers': state.pax,
+      'Luggage': state.bags,
+      'Vehicle': veh ? veh.name : '',
+      'Child seats': seatList.join(', '),
+      'Special requests': exList.join(', '),
+      'First name': state.first.trim(),
+      'Last name': state.last.trim(),
+      'Email': state.email.trim(),
+      'Phone': state.phone.trim(),
+      'Notes': state.notes.trim(),
+    };
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encodeForm(payload),
+    }).catch(function (err) {
+      console.warn('Reservation form submission failed to send:', err);
+    });
+  }
+
   function submit() {
     if (!state.first.trim() || !state.email.trim() || !state.phone.trim()) {
       return setState({ hint: 'Name, email and mobile are required.' });
     }
-    setState({ step: 4, hint: '', reference: 'FRL-' + Math.random().toString(36).slice(2, 7).toUpperCase() });
+    var reference = 'FRL-' + Math.random().toString(36).slice(2, 7).toUpperCase();
+    submitToNetlify(reference);
+    setState({ step: 4, hint: '', reference: reference });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
