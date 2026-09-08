@@ -241,6 +241,25 @@ img { display: block; }
 .nav__phone-numbers .nav__phone { font-size: 13px; letter-spacing: .06em; color: #BFA06B; }
 .nav__phone-numbers .nav__phone:hover { color: var(--brass); }
 
+/* Mobile-only one-tap call button. On desktop the phone numbers already
+   sit inline in the nav (.nav__phones above) and stay untouched — this
+   exists only because .nav__phones lives inside .nav__links, which
+   becomes an off-canvas drawer below 900px, so without this a mobile
+   visitor would have to open the full menu just to call. */
+.nav__call {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  flex: none;
+  border: 1px solid rgba(168,137,92,.5);
+  color: var(--brass);
+  text-decoration: none;
+  transition: background .2s, color .2s;
+}
+.nav__call:hover { background: var(--brass); color: #0B0A08; }
+
 .nav__toggle {
   display: none;
   flex: none;
@@ -985,6 +1004,7 @@ img { display: block; }
   .nav__mark { height: 38px; }
   .nav__wordmark { font-size: 15px; letter-spacing: .18em; }
   .nav__toggle { display: flex; }
+  .nav__call { display: flex; }
   .nav__links {
     position: fixed;
     inset: 0 0 0 auto;
@@ -1045,6 +1065,14 @@ img { display: block; }
 
 /* ---- Mobile: single column, compact spacing ---- */
 @media (max-width: 640px) {
+  /* Logo + Reserve + call icon + hamburger were overflowing the header
+     on narrow phones (~390px and below), pushing the hamburger off
+     screen entirely. Drop the wordmark and tighten everything else. */
+  .nav { padding: 16px 14px; gap: 8px; }
+  .nav__wordmark { display: none; }
+  .btn--nav { padding: 9px 14px; font-size: 9px; letter-spacing: .16em; }
+  .nav__call, .nav__toggle { width: 32px; height: 32px; }
+
   .eyebrow { font-size: 10px; letter-spacing: .26em; }
   .section-title { margin: 14px 0 16px; }
   .btn { padding: 15px 26px; font-size: 10.5px; }
