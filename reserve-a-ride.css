@@ -31,7 +31,7 @@
   white-space: nowrap;
   flex: none;
 }
-.rsv-header__mark { height: 34px; width: auto; }
+.rsv-header__mark { height: 48px; width: auto; }
 .rsv-header__phone {
   margin-left: auto;
   font-size: 13px;
@@ -545,7 +545,7 @@
   .rsv-footer { padding: 24px 20px; flex-direction: column; gap: 8px; text-align: center; }
 }
 @media (max-width: 520px) {
-  .rsv-header__mark { height: 28px; }
+  .rsv-header__mark { height: 36px; }
   .rsv-addlinks { flex-direction: column; gap: 12px; }
   .rsv-auth-tabs { flex-wrap: wrap; }
   .rsv-auth-tab { flex: 1 1 50%; }

@@ -134,7 +134,7 @@ img { display: block; }
   flex: none;
   margin-right: auto;
 }
-.nav__mark { height: 40px; width: auto; }
+.nav__mark { height: 56px; width: auto; }
 .nav__links {
   display: flex;
   gap: 34px;
@@ -995,7 +995,7 @@ img { display: block; }
 /* ---- Nav collapses to hamburger drawer ---- */
 @media (max-width: 900px) {
   .nav { padding: 18px 20px; gap: 14px; }
-  .nav__mark { height: 32px; }
+  .nav__mark { height: 44px; }
   .nav__toggle { display: flex; }
   .nav__call { display: flex; }
   .nav__links {
@@ -1062,7 +1062,7 @@ img { display: block; }
      on narrow phones (~390px and below), pushing the hamburger off
      screen entirely. Shrink the logo and tighten everything else. */
   .nav { padding: 16px 12px; gap: 6px; }
-  .nav__mark { height: 22px; }
+  .nav__mark { height: 32px; }
   .btn--nav { padding: 9px 12px; font-size: 9px; letter-spacing: .12em; }
   .nav__call, .nav__toggle { width: 30px; height: 30px; }
 
