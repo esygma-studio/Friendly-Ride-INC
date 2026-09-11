@@ -2,17 +2,87 @@
   'use strict';
 
   var PLACE_ID = 'ChIJZanh-0VfwokRjLg_MhyxGWs';
-  var MAX_CARDS = 3; // grid is a fixed 3-column row — keep it a clean single row
   var MAX_CHARS = 230;
+  var MOBILE_BREAKPOINT = 640;
 
   var grid = document.getElementById('testimonialsGrid');
   var ratingWrap = document.getElementById('testimonialsRating');
   var ratingStars = document.getElementById('testimonialsRatingStars');
   var ratingText = document.getElementById('testimonialsRatingText');
   var attribution = document.getElementById('testimonialsAttribution');
+  var prevBtn = document.getElementById('testimonialsPrev');
+  var nextBtn = document.getElementById('testimonialsNext');
+  var dotsWrap = document.getElementById('testimonialsDots');
 
   if (!grid) return;
 
+  // ---------- carousel ----------
+  var carouselIndex = 0;
+
+  function visibleCount() {
+    return window.innerWidth <= MOBILE_BREAKPOINT ? 1 : 3;
+  }
+
+  function cardStep() {
+    var card = grid.querySelector('.testimonial');
+    if (!card) return 0;
+    var gap = parseFloat(getComputedStyle(grid).gap) || 0;
+    return card.getBoundingClientRect().width + gap;
+  }
+
+  function maxIndex() {
+    return Math.max(0, grid.children.length - visibleCount());
+  }
+
+  function updateCarousel() {
+    var total = grid.children.length;
+    var vc = visibleCount();
+    carouselIndex = Math.min(carouselIndex, maxIndex());
+    grid.style.transform = 'translateX(-' + (carouselIndex * cardStep()) + 'px)';
+
+    var needsNav = total > vc;
+    prevBtn.hidden = !needsNav;
+    nextBtn.hidden = !needsNav;
+    prevBtn.disabled = carouselIndex <= 0;
+    nextBtn.disabled = carouselIndex >= maxIndex();
+
+    var dotCount = maxIndex() + 1;
+    dotsWrap.innerHTML = '';
+    if (!needsNav || dotCount <= 1) {
+      dotsWrap.hidden = true;
+    } else {
+      dotsWrap.hidden = false;
+      for (var i = 0; i < dotCount; i++) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'testimonials__dot' + (i === carouselIndex ? ' is-active' : '');
+        dot.setAttribute('aria-label', 'Go to review ' + (i + 1));
+        dot.addEventListener('click', (function (idx) {
+          return function () { carouselIndex = idx; updateCarousel(); };
+        })(i));
+        dotsWrap.appendChild(dot);
+      }
+    }
+  }
+
+  function resetCarousel() {
+    carouselIndex = 0;
+    updateCarousel();
+  }
+
+  prevBtn.addEventListener('click', function () {
+    carouselIndex = Math.max(0, carouselIndex - 1);
+    updateCarousel();
+  });
+  nextBtn.addEventListener('click', function () {
+    carouselIndex = Math.min(maxIndex(), carouselIndex + 1);
+    updateCarousel();
+  });
+  window.addEventListener('resize', updateCarousel);
+
+  resetCarousel(); // sets up nav for the static fallback cards already in the HTML
+
+  // ---------- live Google reviews ----------
   function starsSvg(filled) {
     var path = 'M12 2.5l2.9 6 6.6.8-4.8 4.6 1.2 6.6L12 17l-5.9 3.5 1.2-6.6L2.5 9.3l6.6-.8z';
     var color = filled ? '#A8895C' : 'rgba(168,137,92,.28)';
@@ -99,7 +169,11 @@
       return;
     }
 
-    var reviews = (place.reviews || []).slice();
+    // Google's Place Details endpoint caps this at 5 reviews total (its own
+    // "most relevant" selection, not the full list) — there is no request
+    // parameter to raise that. We show whichever of those 5 are 5-star,
+    // newest first; it will rarely be more than 5 cards.
+    var reviews = (place.reviews || []).filter(function (r) { return r.rating === 5; });
     reviews.sort(function (a, b) {
       var ta = a.publishTime ? new Date(a.publishTime).getTime() : 0;
       var tb = b.publishTime ? new Date(b.publishTime).getTime() : 0;
@@ -107,18 +181,19 @@
     });
 
     var cards = [];
-    for (var i = 0; i < reviews.length && cards.length < MAX_CARDS; i++) {
+    for (var i = 0; i < reviews.length; i++) {
       var card = buildCard(reviews[i]);
       if (card) cards.push(card);
     }
 
     if (!cards.length) {
-      console.warn('No usable Google reviews returned — showing fallback testimonials.');
+      console.warn('No usable 5-star Google reviews returned — showing fallback testimonials.');
       return;
     }
 
     grid.innerHTML = '';
     cards.forEach(function (c) { grid.appendChild(c); });
+    resetCarousel();
 
     if (typeof place.rating === 'number') {
       ratingStars.innerHTML = renderStars(place.rating);

@@ -401,32 +401,43 @@
       <span class="testimonials__rating-stars" id="testimonialsRatingStars"></span>
       <span class="testimonials__rating-text" id="testimonialsRatingText"></span>
     </div>
-    <div class="testimonials__grid" id="testimonialsGrid">
-      <div class="testimonial">
-        <div class="testimonial__quote">&ldquo;</div>
-        <p class="testimonial__text">They know the terminal, the timing, the quiet. In eight years I have never repeated an instruction.</p>
-        <div class="testimonial__author">
-          <div class="testimonial__avatar">RM</div>
-          <div class="testimonial__meta">Private Client<br>Manhattan</div>
+    <div class="testimonials__carousel">
+      <button type="button" class="testimonials__nav testimonials__nav--prev" id="testimonialsPrev" aria-label="Previous reviews">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg>
+      </button>
+      <div class="testimonials__track-wrap">
+        <div class="testimonials__grid" id="testimonialsGrid">
+          <div class="testimonial">
+            <div class="testimonial__quote">&ldquo;</div>
+            <p class="testimonial__text">They know the terminal, the timing, the quiet. In eight years I have never repeated an instruction.</p>
+            <div class="testimonial__author">
+              <div class="testimonial__avatar">RM</div>
+              <div class="testimonial__meta">Private Client<br>Manhattan</div>
+            </div>
+          </div>
+          <div class="testimonial">
+            <div class="testimonial__quote">&ldquo;</div>
+            <p class="testimonial__text">A three-city roadshow, statuses updated before we thought to ask. Flawless is the only word.</p>
+            <div class="testimonial__author">
+              <div class="testimonial__avatar">JK</div>
+              <div class="testimonial__meta">Managing Director<br>Investment Banking</div>
+            </div>
+          </div>
+          <div class="testimonial">
+            <div class="testimonial__quote">&ldquo;</div>
+            <p class="testimonial__text">The same driver, the same standard &mdash; UNGA week or an ordinary Tuesday.</p>
+            <div class="testimonial__author">
+              <div class="testimonial__avatar">AS</div>
+              <div class="testimonial__meta">Transportation Lead<br>Consulate, NYC</div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="testimonial">
-        <div class="testimonial__quote">&ldquo;</div>
-        <p class="testimonial__text">A three-city roadshow, statuses updated before we thought to ask. Flawless is the only word.</p>
-        <div class="testimonial__author">
-          <div class="testimonial__avatar">JK</div>
-          <div class="testimonial__meta">Managing Director<br>Investment Banking</div>
-        </div>
-      </div>
-      <div class="testimonial">
-        <div class="testimonial__quote">&ldquo;</div>
-        <p class="testimonial__text">The same driver, the same standard &mdash; UNGA week or an ordinary Tuesday.</p>
-        <div class="testimonial__author">
-          <div class="testimonial__avatar">AS</div>
-          <div class="testimonial__meta">Transportation Lead<br>Consulate, NYC</div>
-        </div>
-      </div>
+      <button type="button" class="testimonials__nav testimonials__nav--next" id="testimonialsNext" aria-label="Next reviews">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg>
+      </button>
     </div>
+    <div class="testimonials__dots" id="testimonialsDots"></div>
     <a href="https://search.google.com/local/reviews?placeid=ChIJZanh-0VfwokRjLg_MhyxGWs" target="_blank" rel="noopener" class="testimonials__attribution" id="testimonialsAttribution" hidden>Reviews powered by Google</a>
   </div>
 </section>
