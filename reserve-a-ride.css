@@ -130,7 +130,7 @@
   gap: 22px 22px;
 }
 .rsv-row--3 { grid-template-columns: 1fr 1fr; }
-.rsv-field { display: flex; flex-direction: column; min-width: 0; }
+.rsv-field { display: flex; flex-direction: column; min-width: 0; position: relative; }
 .rsv-field--full { grid-column: span 2; }
 #stopsWrap { display: contents; }
 .rsv-label {
@@ -193,6 +193,31 @@
   line-height: 1.6;
   color: var(--r-text-mut);
 }
+
+/* ============ ADDRESS AUTOCOMPLETE ============ */
+.rsv-autocomplete-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  margin-top: 4px;
+  background: var(--r-bg);
+  border: 1px solid rgba(168,137,92,.35);
+  box-shadow: 0 18px 44px rgba(0,0,0,.5);
+  max-height: 260px;
+  overflow-y: auto;
+}
+.rsv-autocomplete-item {
+  padding: 12px 14px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(168,137,92,.1);
+  transition: background .15s;
+}
+.rsv-autocomplete-item:last-child { border-bottom: none; }
+.rsv-autocomplete-item:hover, .rsv-autocomplete-item.is-active { background: rgba(168,137,92,.12); }
+.rsv-autocomplete-item__main { display: block; font-size: 14px; font-weight: 400; color: var(--r-text); }
+.rsv-autocomplete-item__secondary { display: block; font-size: 12px; font-weight: 300; color: var(--r-text-faint); margin-top: 2px; }
 
 /* ============ STOPS ============ */
 .rsv-stop-row {

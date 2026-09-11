@@ -8,6 +8,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<script>
+  (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+    key: "AIzaSyAPYEVt_hLhGWz5lzISGuayMxNXZeAf78s",
+    v: "weekly",
+  });
+</script>
 </head>
 <body>
 
@@ -391,7 +397,11 @@
   <div class="testimonials__content">
     <div class="eyebrow">In Their Words</div>
     <h2 class="section-title testimonials__title">Trusted by the world&rsquo;s most discerning travelers.</h2>
-    <div class="testimonials__grid">
+    <div class="testimonials__rating" id="testimonialsRating" hidden>
+      <span class="testimonials__rating-stars" id="testimonialsRatingStars"></span>
+      <span class="testimonials__rating-text" id="testimonialsRatingText"></span>
+    </div>
+    <div class="testimonials__grid" id="testimonialsGrid">
       <div class="testimonial">
         <div class="testimonial__quote">&ldquo;</div>
         <p class="testimonial__text">They know the terminal, the timing, the quiet. In eight years I have never repeated an instruction.</p>
@@ -417,6 +427,7 @@
         </div>
       </div>
     </div>
+    <a href="https://search.google.com/local/reviews?placeid=ChIJZanh-0VfwokRjLg_MhyxGWs" target="_blank" rel="noopener" class="testimonials__attribution" id="testimonialsAttribution" hidden>Reviews powered by Google</a>
   </div>
 </section>
 
@@ -508,5 +519,6 @@
 </footer>
 
 <script src="script.js" defer></script>
+<script src="google-reviews.js" defer></script>
 </body>
 </html>

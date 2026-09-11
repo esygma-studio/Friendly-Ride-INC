@@ -129,6 +129,137 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  // ---------- Google Places address autocomplete ----------
+  // Renders our own dropdown (styled to match the rest of the form) fed by
+  // Google's suggestion data, rather than using Google's own autocomplete
+  // widget — keeps full control over look and the existing state model.
+  var placesLibraryPromise = null;
+  var autocompleteSessionToken = null;
+
+  function loadPlacesLibrary() {
+    if (!placesLibraryPromise) {
+      placesLibraryPromise = (window.google && google.maps && google.maps.importLibrary)
+        ? google.maps.importLibrary('places').catch(function (err) {
+            console.warn('Google Places library failed to load — address autocomplete disabled.', err);
+            return null;
+          })
+        : Promise.resolve(null);
+    }
+    return placesLibraryPromise;
+  }
+
+  function predictionText(part) {
+    if (!part) return '';
+    if (typeof part === 'string') return part;
+    return part.text || '';
+  }
+
+  function wireAddressAutocomplete(inputEl) {
+    if (!inputEl || inputEl.dataset.autocompleteWired) return;
+    inputEl.dataset.autocompleteWired = '1';
+
+    var field = inputEl.closest('.rsv-field');
+    if (!field) return;
+    var list = document.createElement('div');
+    list.className = 'rsv-autocomplete-list';
+    list.hidden = true;
+    field.appendChild(list);
+
+    var items = [];
+    var activeIndex = -1;
+    var debounceTimer = null;
+    var lastQuery = '';
+
+    function closeList() {
+      list.hidden = true;
+      list.innerHTML = '';
+      items = [];
+      activeIndex = -1;
+    }
+
+    function highlight(i) {
+      var rows = list.querySelectorAll('.rsv-autocomplete-item');
+      rows.forEach(function (row, idx) { row.classList.toggle('is-active', idx === i); });
+      activeIndex = i;
+    }
+
+    function selectItem(i) {
+      var chosen = items[i];
+      if (!chosen) return;
+      var pred = chosen.placePrediction;
+      inputEl.value = predictionText(pred.text);
+      inputEl.dispatchEvent(new Event('input', { bubbles: true }));
+      closeList();
+      autocompleteSessionToken = null;
+    }
+
+    async function search(query) {
+      var lib = await loadPlacesLibrary();
+      if (!lib) return;
+      if (!autocompleteSessionToken) autocompleteSessionToken = new lib.AutocompleteSessionToken();
+
+      var request = {
+        input: query,
+        sessionToken: autocompleteSessionToken,
+        includedRegionCodes: ['us'],
+        locationBias: { center: { lat: 40.7484, lng: -73.9438 }, radius: 80000 },
+      };
+
+      var result;
+      try {
+        result = await lib.AutocompleteSuggestion.fetchAutocompleteSuggestions(request);
+      } catch (err) {
+        console.warn('Address suggestion request failed:', err);
+        closeList();
+        return;
+      }
+
+      if (inputEl.value.trim() !== query) return; // stale response, input changed since
+
+      items = (result.suggestions || []).filter(function (s) { return s.placePrediction; });
+      if (!items.length) { closeList(); return; }
+
+      list.innerHTML = '';
+      items.forEach(function (s, i) {
+        var pred = s.placePrediction;
+        var main = predictionText(pred.mainText) || predictionText(pred.text);
+        var secondary = predictionText(pred.secondaryText);
+        var row = document.createElement('div');
+        row.className = 'rsv-autocomplete-item';
+        row.innerHTML =
+          '<span class="rsv-autocomplete-item__main"></span>' +
+          (secondary ? '<span class="rsv-autocomplete-item__secondary"></span>' : '');
+        row.querySelector('.rsv-autocomplete-item__main').textContent = main;
+        if (secondary) row.querySelector('.rsv-autocomplete-item__secondary').textContent = secondary;
+        row.addEventListener('mousedown', function (e) { e.preventDefault(); selectItem(i); });
+        row.addEventListener('mouseenter', function () { highlight(i); });
+        list.appendChild(row);
+      });
+      list.hidden = false;
+      activeIndex = -1;
+    }
+
+    inputEl.addEventListener('input', function () {
+      var q = inputEl.value.trim();
+      lastQuery = q;
+      clearTimeout(debounceTimer);
+      if (q.length < 3) { closeList(); return; }
+      debounceTimer = setTimeout(function () { search(q); }, 220);
+    });
+
+    inputEl.addEventListener('keydown', function (e) {
+      if (list.hidden) return;
+      if (e.key === 'ArrowDown') { e.preventDefault(); highlight(Math.min(activeIndex + 1, items.length - 1)); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); highlight(Math.max(activeIndex - 1, 0)); }
+      else if (e.key === 'Enter') { if (activeIndex >= 0) { e.preventDefault(); selectItem(activeIndex); } }
+      else if (e.key === 'Escape') { closeList(); }
+    });
+
+    inputEl.addEventListener('blur', function () {
+      setTimeout(closeList, 150);
+    });
+  }
+
   function encodeForm(data) {
     return Object.keys(data)
       .map(function (k) { return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]); })
@@ -302,6 +433,7 @@
         arr[i] = e.target.value;
         state.stops = arr;
       });
+      wireAddressAutocomplete(input);
       field.appendChild(label);
       field.appendChild(input);
 
@@ -529,6 +661,9 @@
   el.fEmail.addEventListener('input', function (e) { state.email = e.target.value; });
   el.fPhone.addEventListener('input', function (e) { state.phone = e.target.value; });
   el.fNotes.addEventListener('input', function (e) { state.notes = e.target.value; });
+
+  wireAddressAutocomplete(el.fPickup);
+  wireAddressAutocomplete(el.fDropoff);
 
   render();
 })();
