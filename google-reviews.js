@@ -191,8 +191,10 @@
       return;
     }
 
+    var moreCard = document.getElementById('testimonialsMoreCard');
     grid.innerHTML = '';
     cards.forEach(function (c) { grid.appendChild(c); });
+    if (moreCard) grid.appendChild(moreCard); // re-append the "see more on Google" slide, wiped by innerHTML=''
     resetCarousel();
 
     if (typeof place.rating === 'number') {
