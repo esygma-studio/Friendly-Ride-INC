@@ -2,7 +2,7 @@
   'use strict';
 
   var PLACE_ID = 'ChIJZanh-0VfwokRjLg_MhyxGWs';
-  var MAX_CARDS = 6;
+  var MAX_CARDS = 3; // grid is a fixed 3-column row — keep it a clean single row
   var MAX_CHARS = 230;
 
   var grid = document.getElementById('testimonialsGrid');

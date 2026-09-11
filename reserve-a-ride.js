@@ -202,7 +202,7 @@
         input: query,
         sessionToken: autocompleteSessionToken,
         includedRegionCodes: ['us'],
-        locationBias: { center: { lat: 40.7484, lng: -73.9438 }, radius: 80000 },
+        locationBias: { center: { lat: 40.7484, lng: -73.9438 }, radius: 50000 },
       };
 
       var result;
