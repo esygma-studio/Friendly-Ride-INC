@@ -198,10 +198,14 @@
       if (!lib) return;
       if (!autocompleteSessionToken) autocompleteSessionToken = new lib.AutocompleteSessionToken();
 
+      // No includedRegionCodes / locationRestriction — this is a worldwide
+      // search on purpose (the fleet serves international clients).
+      // locationBias is a soft ranking hint only: it nudges NYC-area
+      // results to the top for ambiguous queries, it never excludes
+      // results elsewhere in the world.
       var request = {
         input: query,
         sessionToken: autocompleteSessionToken,
-        includedRegionCodes: ['us'],
         locationBias: { center: { lat: 40.7484, lng: -73.9438 }, radius: 50000 },
       };
 
