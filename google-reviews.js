@@ -141,7 +141,7 @@
       '<div class="testimonial__author">' +
         avatarHtml +
         '<div>' + nameHtml +
-          '<div class="testimonial__meta">Google review &middot; ' + escapeHtml(review.relativePublishTimeDescription || '') + '</div>' +
+          '<div class="testimonial__meta">Google review</div>' +
         '</div>' +
       '</div>';
     return card;
