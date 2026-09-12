@@ -217,6 +217,21 @@
 .rsv-autocomplete-item:last-child { border-bottom: none; }
 .rsv-autocomplete-item:hover, .rsv-autocomplete-item.is-active { background: rgba(168,137,92,.12); }
 .rsv-autocomplete-item__main { display: block; font-size: 14px; font-weight: 400; color: var(--r-text); }
+
+.rsv-airport-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.rsv-airport-chip {
+  font-family: inherit;
+  font-size: 11.5px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--r-text-mut);
+  background: transparent;
+  border: 1px solid rgba(168,137,92,.3);
+  padding: 7px 13px;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, background .2s;
+}
+.rsv-airport-chip:hover, .rsv-airport-chip:focus-visible { color: var(--r-brass); border-color: var(--r-brass); background: rgba(168,137,92,.1); }
 .rsv-autocomplete-item__secondary { display: block; font-size: 12px; font-weight: 300; color: var(--r-text-faint); margin-top: 2px; }
 
 /* ============ STOPS ============ */

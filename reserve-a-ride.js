@@ -15,7 +15,10 @@
     { id: 'sprinter', name: 'Executive Sprinter Van', klass: 'Luxury Van', guests: 14, luggage: 14, tag: 'Up to fourteen', img: 'assets/reserve-veh-sprinter.webp' },
   ];
 
-  var AIRPORTS = ['JFK — John F. Kennedy', 'LGA — LaGuardia', 'EWR — Newark Liberty', 'TEB — Teterboro', 'HPN — Westchester County', 'ISP — Long Island MacArthur', 'Private FBO — specify in notes'];
+  // Quick-pick suggestions shown as chips under the airport field — the
+  // full field is a worldwide Google Places search (see wireAddressAutocomplete),
+  // these just shortcut the airports we're asked for most.
+  var QUICK_AIRPORTS = ['JFK — John F. Kennedy', 'LGA — LaGuardia', 'EWR — Newark Liberty', 'LHR — London Heathrow', 'DXB — Dubai International', 'CDG — Paris Charles de Gaulle'];
 
   var SEATS = [
     { key: 'infant', name: 'Infant', note: '0–12 months' },
@@ -44,7 +47,7 @@
     service: 'airport',
     direction: 'arrival',
     pickup: '', dropoff: '',
-    airport: AIRPORTS[0], airline: '', flight: '',
+    airport: '', airline: '', flight: '',
     stops: [],
     date: todayPlusOne(), time: '09:00',
     hours: '4',
@@ -84,6 +87,8 @@
     var sh = shape();
     if (sh.pickup === 'address' && !state.pickup.trim()) return 'Add a pickup address.';
     if (sh.drop === 'address' && !state.dropoff.trim()) return 'Add a drop-off address.';
+    if (sh.pickup === 'airport' && !state.airport.trim()) return 'Add a pickup airport.';
+    if (sh.drop === 'airport' && !state.airport.trim()) return 'Add a drop-off airport.';
     return '';
   }
 
@@ -154,8 +159,9 @@
     return part.text || '';
   }
 
-  function wireAddressAutocomplete(inputEl) {
+  function wireAddressAutocomplete(inputEl, options) {
     if (!inputEl || inputEl.dataset.autocompleteWired) return;
+    options = options || {};
     inputEl.dataset.autocompleteWired = '1';
 
     var field = inputEl.closest('.rsv-field');
@@ -208,6 +214,7 @@
         sessionToken: autocompleteSessionToken,
         locationBias: { center: { lat: 40.7484, lng: -73.9438 }, radius: 50000 },
       };
+      if (options.includedPrimaryTypes) request.includedPrimaryTypes = options.includedPrimaryTypes;
 
       var result;
       try {
@@ -341,10 +348,10 @@
     steps: $('rsvSteps'),
     fService: $('fService'),
     dirToggleWrap: $('dirToggleWrap'), dirArrival: $('dirArrival'), dirDeparture: $('dirDeparture'),
-    pickupAirportWrap: $('pickupAirportWrap'), fPickupAirport: $('fPickupAirport'),
+    pickupAirportWrap: $('pickupAirportWrap'), fPickupAirport: $('fPickupAirport'), pickupAirportChips: $('pickupAirportChips'),
     pickupAddressWrap: $('pickupAddressWrap'), fPickup: $('fPickup'),
     dropAddressWrap: $('dropAddressWrap'), fDropoff: $('fDropoff'),
-    dropAirportWrap: $('dropAirportWrap'), fDropAirport: $('fDropAirport'),
+    dropAirportWrap: $('dropAirportWrap'), fDropAirport: $('fDropAirport'), dropAirportChips: $('dropAirportChips'),
     flightWrap: $('flightWrap'), fAirline: $('fAirline'), fFlight: $('fFlight'),
     hourlyNote: $('hourlyNote'),
     stopsWrap: $('stopsWrap'), addStopBtn: $('addStopBtn'),
@@ -368,10 +375,23 @@
   };
 
   // ---------- static option lists (built once) ----------
-  AIRPORTS.forEach(function (a) {
-    el.fPickupAirport.appendChild(new Option(a, a));
-    el.fDropAirport.appendChild(new Option(a, a));
-  });
+  function buildAirportChips(wrap, inputEl) {
+    QUICK_AIRPORTS.forEach(function (a) {
+      var chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'rsv-airport-chip';
+      chip.textContent = a.split(' — ')[0];
+      chip.title = a;
+      chip.addEventListener('click', function () {
+        inputEl.value = a;
+        state.airport = a;
+        state.hint = '';
+      });
+      wrap.appendChild(chip);
+    });
+  }
+  buildAirportChips(el.pickupAirportChips, el.fPickupAirport);
+  buildAirportChips(el.dropAirportChips, el.fDropAirport);
 
   // ---------- render ----------
   function render() {
@@ -612,8 +632,8 @@
 
   el.fPickup.addEventListener('input', function (e) { state.pickup = e.target.value; state.hint = ''; });
   el.fDropoff.addEventListener('input', function (e) { state.dropoff = e.target.value; state.hint = ''; });
-  el.fPickupAirport.addEventListener('change', function (e) { state.airport = e.target.value; });
-  el.fDropAirport.addEventListener('change', function (e) { state.airport = e.target.value; });
+  el.fPickupAirport.addEventListener('input', function (e) { state.airport = e.target.value; state.hint = ''; });
+  el.fDropAirport.addEventListener('input', function (e) { state.airport = e.target.value; state.hint = ''; });
   el.fAirline.addEventListener('input', function (e) { state.airline = e.target.value; });
   el.fFlight.addEventListener('input', function (e) { state.flight = e.target.value; });
   el.fDate.addEventListener('change', function (e) { state.date = e.target.value; });
@@ -668,6 +688,8 @@
 
   wireAddressAutocomplete(el.fPickup);
   wireAddressAutocomplete(el.fDropoff);
+  wireAddressAutocomplete(el.fPickupAirport, { includedPrimaryTypes: ['airport'] });
+  wireAddressAutocomplete(el.fDropAirport, { includedPrimaryTypes: ['airport'] });
 
   render();
 })();
