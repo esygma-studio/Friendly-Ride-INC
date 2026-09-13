@@ -175,6 +175,7 @@
     var activeIndex = -1;
     var debounceTimer = null;
     var lastQuery = '';
+    var suppressNextSearch = false;
 
     function closeList() {
       list.hidden = true;
@@ -193,6 +194,10 @@
       var chosen = items[i];
       if (!chosen) return;
       var pred = chosen.placePrediction;
+      // Setting .value + dispatching 'input' re-enters this same listener
+      // synchronously (below) — without this guard it would re-schedule a
+      // search on the now-selected address and pop the list back open.
+      suppressNextSearch = true;
       inputEl.value = predictionText(pred.text);
       inputEl.dispatchEvent(new Event('input', { bubbles: true }));
       closeList();
@@ -251,6 +256,7 @@
     }
 
     inputEl.addEventListener('input', function () {
+      if (suppressNextSearch) { suppressNextSearch = false; clearTimeout(debounceTimer); return; }
       var q = inputEl.value.trim();
       lastQuery = q;
       clearTimeout(debounceTimer);
