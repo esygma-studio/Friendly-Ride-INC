@@ -56,10 +56,13 @@
     seats: { infant: 0, toddler: 0, booster: 0 },
     extras: {},
     vehicle: '',
-    authMode: 'guest', authEmail: '', authPass: '', authConfirm: '', authStatus: '', saveProfile: true,
+    authMode: 'guest', authEmail: '', authPass: '', authConfirm: '', authStatus: '', authStatusKind: '', authBusy: false, saveProfile: true,
+    authUser: null, savedAddresses: [],
     first: '', last: '', email: '', phone: '', notes: '',
     hint: '', reference: '',
   };
+
+  var sb = window.frlSupabase || null;
 
   function setState(patch) {
     Object.assign(state, patch);
@@ -338,6 +341,10 @@
     }
     var reference = 'FRL-' + Math.random().toString(36).slice(2, 7).toUpperCase();
     submitToNetlify(reference);
+    if (state.authUser) {
+      saveProfileRow(state.authUser.id);
+      saveCurrentAddresses(state.authUser.id);
+    }
     setState({ step: 4, hint: '', reference: reference });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -345,6 +352,131 @@
   function resetForm() {
     setState({ step: 1, vehicle: '', pickup: '', dropoff: '', stops: [], notes: '', hint: '', reference: '' });
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ---------- accounts (Supabase) ----------
+  // Auth (password hashing, sessions, email confirmation) is handled
+  // entirely by Supabase Auth — we never see or store a raw password
+  // ourselves beyond the input field. Profile/address reads and writes are
+  // scoped per-user by Row Level Security policies (see supabase-schema.sql),
+  // not by anything enforced client-side here.
+  function saveProfileRow(userId) {
+    if (!sb) return;
+    sb.from('profiles').upsert({
+      id: userId,
+      first_name: state.first.trim(),
+      last_name: state.last.trim(),
+      phone: state.phone.trim(),
+    }).then(function (res) {
+      if (res.error) console.warn('Saving profile failed:', res.error.message);
+    });
+  }
+
+  function saveCurrentAddresses(userId) {
+    if (!sb || !state.saveProfile) return;
+    var sh = shape();
+    var candidates = [];
+    if (sh.pickup === 'address' && state.pickup.trim()) candidates.push({ label: 'Pickup', address: state.pickup.trim() });
+    if (sh.drop === 'address' && state.dropoff.trim()) candidates.push({ label: 'Drop-off', address: state.dropoff.trim() });
+    var existing = state.savedAddresses.map(function (a) { return a.address; });
+    var fresh = candidates.filter(function (a) { return existing.indexOf(a.address) === -1; });
+    if (!fresh.length) return;
+    sb.from('saved_addresses').insert(fresh.map(function (a) {
+      return { user_id: userId, label: a.label, address: a.address };
+    })).then(function (res) {
+      if (res.error) console.warn('Saving address failed:', res.error.message);
+    });
+  }
+
+  function loadAccountData(userId) {
+    Promise.all([
+      sb.from('profiles').select('first_name,last_name,phone').eq('id', userId).maybeSingle(),
+      sb.from('saved_addresses').select('id,label,address').eq('user_id', userId).order('created_at', { ascending: false }),
+    ]).then(function (results) {
+      var profile = results[0].data;
+      var addresses = results[1].data || [];
+      setState({
+        first: (profile && profile.first_name) || state.first,
+        last: (profile && profile.last_name) || state.last,
+        phone: (profile && profile.phone) || state.phone,
+        savedAddresses: addresses,
+      });
+    });
+  }
+
+  function handleSignIn() {
+    if (!sb) return setState({ authStatus: 'Accounts are temporarily unavailable — continue as guest.', authStatusKind: 'error' });
+    var email = state.authEmail.trim();
+    var pass = state.authPass;
+    if (!email || !pass) return setState({ authStatus: 'Enter your email and password to sign in.', authStatusKind: 'error' });
+    setState({ authBusy: true, authStatus: 'Signing in…', authStatusKind: '' });
+    sb.auth.signInWithPassword({ email: email, password: pass }).then(function (res) {
+      if (res.error) return setState({ authBusy: false, authStatus: res.error.message, authStatusKind: 'error' });
+      var user = res.data.user;
+      setState({ authBusy: false, authUser: user, email: user.email, authStatus: '', authStatusKind: '', authPass: '' });
+      loadAccountData(user.id);
+    });
+  }
+
+  function handleSignUp() {
+    if (!sb) return setState({ authStatus: 'Accounts are temporarily unavailable — continue as guest.', authStatusKind: 'error' });
+    var email = state.authEmail.trim();
+    var pass = state.authPass;
+    if (!email || !pass) return setState({ authStatus: 'Enter an email and password.', authStatusKind: 'error' });
+    if (pass.length < 8) return setState({ authStatus: 'Password must be at least 8 characters.', authStatusKind: 'error' });
+    if (pass !== state.authConfirm) return setState({ authStatus: 'Passwords do not match.', authStatusKind: 'error' });
+    setState({ authBusy: true, authStatus: 'Creating your account…', authStatusKind: '' });
+    sb.auth.signUp({ email: email, password: pass }).then(function (res) {
+      if (res.error) return setState({ authBusy: false, authStatus: res.error.message, authStatusKind: 'error' });
+      var user = res.data.user;
+      var hasSession = !!res.data.session;
+      if (hasSession && user) {
+        setState({ authBusy: false, authUser: user, email: user.email, authStatus: '', authStatusKind: '', authPass: '', authConfirm: '' });
+        saveProfileRow(user.id);
+      } else {
+        setState({
+          authBusy: false,
+          authStatus: 'Account created — check your email to confirm it. You can continue this booking as a guest meanwhile.',
+          authStatusKind: '',
+          authPass: '', authConfirm: '',
+        });
+      }
+    });
+  }
+
+  function handleSignOut() {
+    if (!sb) return;
+    sb.auth.signOut();
+    setState({ authUser: null, savedAddresses: [], authMode: 'guest', authStatus: '', authStatusKind: '' });
+  }
+
+  function restoreSession() {
+    if (!sb) return;
+    sb.auth.getSession().then(function (res) {
+      var session = res.data && res.data.session;
+      if (!session) return;
+      setState({ authUser: session.user, email: session.user.email });
+      loadAccountData(session.user.id);
+    });
+  }
+
+  function renderSavedChips(wrap, inputEl, stateKey) {
+    wrap.innerHTML = '';
+    if (!state.savedAddresses.length) { wrap.hidden = true; return; }
+    wrap.hidden = false;
+    state.savedAddresses.forEach(function (a) {
+      var chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'rsv-saved-chip';
+      chip.textContent = a.label;
+      chip.title = a.address;
+      chip.addEventListener('click', function () {
+        inputEl.value = a.address;
+        state[stateKey] = a.address;
+        state.hint = '';
+      });
+      wrap.appendChild(chip);
+    });
   }
 
   // ---------- DOM refs ----------
@@ -370,10 +502,12 @@
     toStep2Btn: $('toStep2Btn'), hint1: $('hint1'),
     panel1: $('panel1'), panel2: $('panel2'), panel3: $('panel3'), panel4: $('panel4'),
     vehicleList: $('vehicleList'), backTo1Btn: $('backTo1Btn'), toStep3Btn: $('toStep3Btn'), hint2: $('hint2'),
+    signedInBar: $('signedInBar'), signedInEmail: $('signedInEmail'), signOutBtn: $('signOutBtn'),
     authTabs: $('authTabs'), signinPanel: $('signinPanel'), createPanel: $('createPanel'),
     authEmail1: $('authEmail1'), authPass1: $('authPass1'), signInBtn: $('signInBtn'), authStatus1: $('authStatus1'),
-    authEmail2: $('authEmail2'), authPass2: $('authPass2'), authConfirm2: $('authConfirm2'),
+    authEmail2: $('authEmail2'), authPass2: $('authPass2'), authConfirm2: $('authConfirm2'), createAccountBtn: $('createAccountBtn'),
     saveProfileToggle: $('saveProfileToggle'), saveProfileBox: $('saveProfileBox'), authStatus2: $('authStatus2'),
+    pickupSavedChips: $('pickupSavedChips'), dropSavedChips: $('dropSavedChips'),
     fFirst: $('fFirst'), fLast: $('fLast'), fEmail: $('fEmail'), fPhone: $('fPhone'), fNotes: $('fNotes'),
     backTo2Btn: $('backTo2Btn'), submitBtn: $('submitBtn'), hint3: $('hint3'),
     referenceCode: $('referenceCode'), newReservationBtn: $('newReservationBtn'),
@@ -435,6 +569,8 @@
     if (el.fService.value !== state.service) el.fService.value = state.service;
     if (el.fPickup.value !== state.pickup) el.fPickup.value = state.pickup;
     if (el.fDropoff.value !== state.dropoff) el.fDropoff.value = state.dropoff;
+    renderSavedChips(el.pickupSavedChips, el.fPickup, 'pickup');
+    renderSavedChips(el.dropSavedChips, el.fDropoff, 'dropoff');
     if (el.fPickupAirport.value !== state.airport) el.fPickupAirport.value = state.airport;
     if (el.fDropAirport.value !== state.airport) el.fDropAirport.value = state.airport;
     if (el.fAirline.value !== state.airline) el.fAirline.value = state.airline;
@@ -561,14 +697,23 @@
     });
     el.hint2.textContent = state.step === 2 ? state.hint : '';
 
-    // step 3: auth tabs
+    // step 3: account
+    var signedIn = !!state.authUser;
+    el.signedInBar.hidden = !signedIn;
+    el.signedInEmail.textContent = signedIn ? state.authUser.email : '';
+    el.authTabs.hidden = signedIn;
     el.authTabs.querySelectorAll('.rsv-auth-tab').forEach(function (btn) {
       btn.classList.toggle('is-active', btn.dataset.mode === state.authMode);
     });
-    el.signinPanel.hidden = state.authMode !== 'signin';
-    el.createPanel.hidden = state.authMode !== 'create';
-    el.authStatus1.textContent = state.authStatus || 'Signing in fills your saved addresses and billing reference.';
+    el.signinPanel.hidden = signedIn || state.authMode !== 'signin';
+    el.createPanel.hidden = signedIn || state.authMode !== 'create';
+    el.authStatus1.textContent = (state.authMode === 'signin' && state.authStatus) || 'Sign in to fill your saved details automatically.';
+    el.authStatus1.classList.toggle('is-error', state.authMode === 'signin' && state.authStatusKind === 'error');
+    el.authStatus2.textContent = (state.authMode === 'create' && state.authStatus) || 'Optional — saves your details for next time. Your inquiry is submitted either way.';
+    el.authStatus2.classList.toggle('is-error', state.authMode === 'create' && state.authStatusKind === 'error');
     el.saveProfileBox.classList.toggle('is-checked', state.saveProfile);
+    el.signInBtn.disabled = state.authBusy;
+    el.createAccountBtn.disabled = state.authBusy;
 
     if (el.authEmail1.value !== state.authEmail) el.authEmail1.value = state.authEmail;
     if (el.authPass1.value !== state.authPass) el.authPass1.value = state.authPass;
@@ -670,20 +815,16 @@
   });
 
   el.authTabs.querySelectorAll('.rsv-auth-tab').forEach(function (btn) {
-    btn.addEventListener('click', function () { setState({ authMode: btn.dataset.mode, authStatus: '' }); });
+    btn.addEventListener('click', function () { setState({ authMode: btn.dataset.mode, authStatus: '', authStatusKind: '' }); });
   });
   el.authEmail1.addEventListener('input', function (e) { state.authEmail = e.target.value; });
   el.authPass1.addEventListener('input', function (e) { state.authPass = e.target.value; });
   el.authEmail2.addEventListener('input', function (e) { state.authEmail = e.target.value; });
   el.authPass2.addEventListener('input', function (e) { state.authPass = e.target.value; });
   el.authConfirm2.addEventListener('input', function (e) { state.authConfirm = e.target.value; });
-  el.signInBtn.addEventListener('click', function () {
-    var ok = state.authEmail.trim() && state.authPass;
-    setState({
-      authStatus: ok ? 'Signed in as ' + state.authEmail.trim() + '.' : 'Enter your email and password to sign in.',
-      email: ok ? state.authEmail.trim() : state.email,
-    });
-  });
+  el.signInBtn.addEventListener('click', handleSignIn);
+  el.createAccountBtn.addEventListener('click', handleSignUp);
+  el.signOutBtn.addEventListener('click', handleSignOut);
   el.saveProfileToggle.addEventListener('click', function () { setState({ saveProfile: !state.saveProfile }); });
 
   el.fFirst.addEventListener('input', function (e) { state.first = e.target.value; });
@@ -698,4 +839,5 @@
   wireAddressAutocomplete(el.fDropAirport, { includedPrimaryTypes: ['airport'] });
 
   render();
+  restoreSession();
 })();

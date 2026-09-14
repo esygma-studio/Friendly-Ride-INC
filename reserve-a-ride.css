@@ -425,6 +425,37 @@
 .rsv-forgot { font-size: 12.5px; font-weight: 300; color: var(--r-text-mut); text-decoration: none; border-bottom: 1px solid rgba(168,137,92,.3); padding-bottom: 2px; transition: color .2s; }
 .rsv-forgot:hover { color: var(--r-text); }
 .rsv-auth-status { font-size: 12.5px; font-weight: 300; color: var(--r-text-faint); margin-top: 16px; }
+.rsv-auth-status.is-error { color: #C0705A; }
+
+.rsv-signed-in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: 1px solid rgba(168,137,92,.26);
+  background: var(--r-bg-alt);
+  border-radius: 2px;
+  padding: 16px 20px;
+  margin-bottom: 28px;
+}
+.rsv-signed-in__text { font-size: 13px; font-weight: 300; color: var(--r-text-dim); }
+.rsv-signed-in__text span { color: var(--r-brass); font-weight: 400; }
+.rsv-signed-in .rsv-forgot { background: none; border: none; padding: 0; font: inherit; cursor: pointer; font-size: 12.5px; }
+
+.rsv-saved-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.rsv-saved-chip {
+  font-family: inherit;
+  font-size: 11.5px;
+  letter-spacing: .06em;
+  color: var(--r-text-mut);
+  background: transparent;
+  border: 1px solid rgba(168,137,92,.3);
+  border-radius: 2px;
+  padding: 7px 13px;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, background .2s;
+}
+.rsv-saved-chip:hover, .rsv-saved-chip:focus-visible { color: var(--r-brass); border-color: var(--r-brass); background: rgba(168,137,92,.1); }
 .rsv-checkbox-row {
   display: flex;
   align-items: center;

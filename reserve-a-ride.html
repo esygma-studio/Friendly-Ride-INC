@@ -114,11 +114,13 @@
           <div class="rsv-field rsv-field--full" id="pickupAddressWrap" hidden>
             <label class="rsv-label" for="fPickup">Pickup address</label>
             <input class="rsv-input" id="fPickup" placeholder="Street address, hotel or office">
+            <div class="rsv-saved-chips" id="pickupSavedChips" hidden></div>
           </div>
 
           <div class="rsv-field rsv-field--full" id="dropAddressWrap" hidden>
             <label class="rsv-label" for="fDropoff">Drop-off address</label>
             <input class="rsv-input" id="fDropoff" placeholder="Street address, hotel or office">
+            <div class="rsv-saved-chips" id="dropSavedChips" hidden></div>
           </div>
 
           <div class="rsv-field rsv-field--full" id="dropAirportWrap" hidden>
@@ -235,6 +237,11 @@
 
       <!-- ============ STEP 3: DETAILS ============ -->
       <section class="rsv-panel" id="panel3" hidden>
+        <div class="rsv-signed-in" id="signedInBar" hidden>
+          <div class="rsv-signed-in__text">Signed in as <span id="signedInEmail"></span></div>
+          <button type="button" class="rsv-forgot" id="signOutBtn">Sign out</button>
+        </div>
+
         <div class="rsv-auth-tabs" id="authTabs">
           <button type="button" class="rsv-auth-tab" data-mode="signin">Sign in</button>
           <button type="button" class="rsv-auth-tab" data-mode="create">Create account</button>
@@ -278,6 +285,9 @@
             <span class="rsv-checkbox" id="saveProfileBox"></span>
             <span>Save my addresses and preferences for future rides</span>
           </button>
+          <div class="rsv-auth-actions">
+            <button type="button" class="rsv-btn-outline rsv-btn-outline--sm" id="createAccountBtn">Create account</button>
+          </div>
           <div class="rsv-auth-status" id="authStatus2">Optional &mdash; your inquiry is submitted either way.</div>
         </div>
 
@@ -343,6 +353,8 @@
   <div>Inquiry only &middot; No payment collected</div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js" defer></script>
+<script src="supabase-client.js" defer></script>
 <script src="reserve-a-ride.js" defer></script>
 </body>
 </html>
