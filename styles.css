@@ -25,7 +25,11 @@ body {
   color: var(--text);
   font-family: var(--sans);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  /* overflow-x lives on <html> only (above) — setting it here too is
+     redundant and silently breaks position:sticky everywhere on the site
+     (a well-known browser quirk: overflow-x set with no overflow-y forces
+     overflow-y to a non-"visible" computed value, which stops body from
+     acting as the true viewport scroller that sticky elements need). */
   position: relative;
 }
 body.nav-open { overflow: hidden; }
