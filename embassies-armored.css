@@ -85,18 +85,31 @@
 }
 .emb-protocol__confidential-label { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: #D8B978; font-weight: 500; }
 .emb-protocol__confidential-text { font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--text-dim); margin: 12px 0 0; }
-.emb-protocol__list { display: flex; flex-direction: column; }
-.emb-protocol__item {
-  display: grid;
-  grid-template-columns: 90px 1fr;
-  gap: 24px;
-  padding: 28px 0;
-  border-top: 1px solid rgba(168,137,92,.18);
+.emb-protocol__list {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-left: 1px solid rgba(168,137,92,.25);
+  padding-left: 60px;
 }
-.emb-protocol__item--last { border-bottom: 1px solid rgba(168,137,92,.18); }
-.emb-protocol__stage { font-family: var(--serif); font-size: 13px; letter-spacing: .12em; color: #D8B978; text-transform: uppercase; padding-top: 4px; }
-.emb-protocol__item-title { font-family: var(--serif); font-size: 24px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
-.emb-protocol__item-text { font-size: 14.5px; font-weight: 300; line-height: 1.75; color: var(--text-dim); margin: 0; max-width: 560px; }
+.emb-protocol__item { position: relative; padding-bottom: 52px; }
+.emb-protocol__dot {
+  position: absolute;
+  left: -60px;
+  top: 2px;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  border: 1px solid #D8B978;
+  background: #0B0A08;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.emb-protocol__dot::after { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #D8B978; }
+.emb-protocol__stage { font-size: 10.5px; letter-spacing: .28em; color: var(--text-faint); text-transform: uppercase; font-weight: 500; margin-bottom: 8px; }
+.emb-protocol__item-title { font-family: var(--serif); font-size: 29px; font-weight: 500; color: var(--text); line-height: 1.2; margin-bottom: 10px; }
+.emb-protocol__item-text { font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--text-dim); margin: 0; max-width: 560px; }
 
 /* ============ CAPABILITY ============ */
 .emb-capability {
@@ -263,7 +276,10 @@
   .emb-who__grid { margin-top: 6px; }
 
   .emb-protocol { padding: 70px 22px; }
-  .emb-protocol__item { grid-template-columns: 1fr; gap: 8px; padding: 22px 0; }
+  .emb-protocol__list { padding-left: 34px; }
+  .emb-protocol__item { padding-bottom: 34px; }
+  .emb-protocol__dot { left: -34px; width: 14px; height: 14px; }
+  .emb-protocol__item-title { font-size: 22px; }
   .emb-protocol__confidential { padding: 22px; margin-top: 30px; }
 
   .emb-capability__content { padding: 60px 22px; order: 2; }
