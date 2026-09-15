@@ -1,8 +1,6 @@
-# Maintenance mode is ON — every path serves maintenance.html with a 503.
-# The real site is untouched underneath; to go back live, comment out
-# the rule below (or delete this file) and redeploy.
-#
-# The trailing "!" forces this rule to win even though matching files
-# (index.html, etc.) already exist in the deploy — Netlify normally lets
-# real files shadow redirect rules.
-/*    /maintenance.html   503!
+# Maintenance mode is OFF — the real site serves normally.
+# To go back into maintenance, uncomment the rule below (the trailing
+# "!" forces it to win even though matching files like index.html
+# already exist in the deploy — Netlify normally lets real files
+# shadow redirect rules).
+# /*    /maintenance.html   503!
