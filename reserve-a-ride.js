@@ -57,6 +57,7 @@
     extras: {},
     vehicle: '',
     authMode: 'guest', authEmail: '', authPass: '', authConfirm: '', authStatus: '', authStatusKind: '', authBusy: false, saveProfile: true,
+    authFirst: '', authLast: '', authPhone: '', authAddress: '',
     authUser: null, savedAddresses: [],
     first: '', last: '', email: '', phone: '', notes: '',
     hint: '', reference: '',
@@ -422,28 +423,52 @@
     if (!sb) return setState({ authStatus: 'Accounts are temporarily unavailable — continue as guest.', authStatusKind: 'error' });
     var email = state.authEmail.trim();
     var pass = state.authPass;
-    if (!email || !pass) return setState({ authStatus: 'Enter an email and password.', authStatusKind: 'error' });
+    var first = state.authFirst.trim();
+    var last = state.authLast.trim();
+    var phone = state.authPhone.trim();
+    var address = state.authAddress.trim();
+    if (!first || !last) return setState({ authStatus: 'Enter your first and last name.', authStatusKind: 'error' });
+    if (!email) return setState({ authStatus: 'Enter your email.', authStatusKind: 'error' });
+    if (!phone) return setState({ authStatus: 'Enter a mobile number.', authStatusKind: 'error' });
+    if (!pass) return setState({ authStatus: 'Choose a password.', authStatusKind: 'error' });
     if (pass.length < 8) return setState({ authStatus: 'Password must be at least 8 characters.', authStatusKind: 'error' });
     if (pass !== state.authConfirm) return setState({ authStatus: 'Passwords do not match.', authStatusKind: 'error' });
     setState({ authBusy: true, authStatus: 'Creating your account…', authStatusKind: '' });
     sb.auth.signUp({
       email: email,
       password: pass,
-      options: { emailRedirectTo: window.location.origin + '/reserve-a-ride.html' },
+      options: {
+        emailRedirectTo: window.location.origin + '/reserve-a-ride.html',
+        // Stored on the auth user immediately (auth.users.raw_user_meta_data),
+        // independent of email confirmation or an active session — a
+        // database trigger (see supabase-schema.sql) copies this into
+        // public.profiles / public.saved_addresses the moment the account
+        // row is created, so the details are there even if the user
+        // closes this tab before confirming their email.
+        data: { first_name: first, last_name: last, phone: phone, address: address || null },
+      },
     }).then(function (res) {
       if (res.error) return setState({ authBusy: false, authStatus: res.error.message, authStatusKind: 'error' });
       var user = res.data.user;
       var hasSession = !!res.data.session;
+      // Carry what was just typed into the shared trip-contact fields below
+      // either way, so this booking (guest or signed-in) is pre-filled too.
+      var patch = {
+        first: first, last: last, phone: phone, email: email,
+        authPass: '', authConfirm: '', authFirst: '', authLast: '', authPhone: '', authAddress: '',
+      };
       if (hasSession && user) {
-        setState({ authBusy: false, authUser: user, email: user.email, authStatus: '', authStatusKind: '', authPass: '', authConfirm: '' });
+        patch.authBusy = false; patch.authUser = user; patch.authStatus = ''; patch.authStatusKind = '';
+        setState(patch);
         saveProfileRow(user.id);
-      } else {
-        setState({
-          authBusy: false,
-          authStatus: 'Account created — check your email to confirm it. You can continue this booking as a guest meanwhile.',
-          authStatusKind: '',
-          authPass: '', authConfirm: '',
+        if (address) sb.from('saved_addresses').insert({ user_id: user.id, label: 'Home', address: address }).then(function (r) {
+          if (r.error) console.warn('Saving address failed:', r.error.message);
         });
+      } else {
+        patch.authBusy = false;
+        patch.authStatus = 'Account created — check your email to confirm it. Your details are filled in below; you can continue this booking as a guest meanwhile.';
+        patch.authStatusKind = '';
+        setState(patch);
       }
     });
   }
@@ -510,6 +535,7 @@
     authTabs: $('authTabs'), signinPanel: $('signinPanel'), createPanel: $('createPanel'),
     authEmail1: $('authEmail1'), authPass1: $('authPass1'), signInBtn: $('signInBtn'), authStatus1: $('authStatus1'),
     authEmail2: $('authEmail2'), authPass2: $('authPass2'), authConfirm2: $('authConfirm2'), createAccountBtn: $('createAccountBtn'),
+    authFirst: $('authFirst'), authLast: $('authLast'), authPhone: $('authPhone'), authAddress: $('authAddress'),
     saveProfileToggle: $('saveProfileToggle'), saveProfileBox: $('saveProfileBox'), authStatus2: $('authStatus2'),
     pickupSavedChips: $('pickupSavedChips'), dropSavedChips: $('dropSavedChips'),
     fFirst: $('fFirst'), fLast: $('fLast'), fEmail: $('fEmail'), fPhone: $('fPhone'), fNotes: $('fNotes'),
@@ -713,8 +739,9 @@
     el.createPanel.hidden = signedIn || state.authMode !== 'create';
     el.authStatus1.textContent = (state.authMode === 'signin' && state.authStatus) || 'Sign in to fill your saved details automatically.';
     el.authStatus1.classList.toggle('is-error', state.authMode === 'signin' && state.authStatusKind === 'error');
-    el.authStatus2.textContent = (state.authMode === 'create' && state.authStatus) || 'Optional — saves your details for next time. Your inquiry is submitted either way.';
+    el.authStatus2.textContent = (state.authMode === 'create' && state.authStatus) || 'Everything except the address is required.';
     el.authStatus2.classList.toggle('is-error', state.authMode === 'create' && state.authStatusKind === 'error');
+    el.saveProfileToggle.hidden = !signedIn;
     el.saveProfileBox.classList.toggle('is-checked', state.saveProfile);
     el.signInBtn.disabled = state.authBusy;
     el.createAccountBtn.disabled = state.authBusy;
@@ -724,6 +751,10 @@
     if (el.authEmail2.value !== state.authEmail) el.authEmail2.value = state.authEmail;
     if (el.authPass2.value !== state.authPass) el.authPass2.value = state.authPass;
     if (el.authConfirm2.value !== state.authConfirm) el.authConfirm2.value = state.authConfirm;
+    if (el.authFirst.value !== state.authFirst) el.authFirst.value = state.authFirst;
+    if (el.authLast.value !== state.authLast) el.authLast.value = state.authLast;
+    if (el.authPhone.value !== state.authPhone) el.authPhone.value = state.authPhone;
+    if (el.authAddress.value !== state.authAddress) el.authAddress.value = state.authAddress;
 
     if (el.fFirst.value !== state.first) el.fFirst.value = state.first;
     if (el.fLast.value !== state.last) el.fLast.value = state.last;
@@ -826,6 +857,11 @@
   el.authEmail2.addEventListener('input', function (e) { state.authEmail = e.target.value; });
   el.authPass2.addEventListener('input', function (e) { state.authPass = e.target.value; });
   el.authConfirm2.addEventListener('input', function (e) { state.authConfirm = e.target.value; });
+  el.authFirst.addEventListener('input', function (e) { state.authFirst = e.target.value; });
+  el.authLast.addEventListener('input', function (e) { state.authLast = e.target.value; });
+  el.authPhone.addEventListener('input', function (e) { state.authPhone = e.target.value; });
+  el.authAddress.addEventListener('input', function (e) { state.authAddress = e.target.value; });
+  wireAddressAutocomplete(el.authAddress);
   el.signInBtn.addEventListener('click', handleSignIn);
   el.createAccountBtn.addEventListener('click', handleSignUp);
   el.signOutBtn.addEventListener('click', handleSignOut);

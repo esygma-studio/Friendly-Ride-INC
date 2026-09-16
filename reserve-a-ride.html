@@ -246,6 +246,10 @@
           <div class="rsv-signed-in__text">Signed in as <span id="signedInEmail"></span></div>
           <button type="button" class="rsv-forgot" id="signOutBtn">Sign out</button>
         </div>
+        <button type="button" class="rsv-checkbox-row" id="saveProfileToggle" hidden>
+          <span class="rsv-checkbox" id="saveProfileBox"></span>
+          <span>Save this trip&rsquo;s addresses to my account for next time</span>
+        </button>
 
         <div class="rsv-auth-tabs" id="authTabs">
           <button type="button" class="rsv-auth-tab" data-mode="signin">Sign in</button>
@@ -272,28 +276,40 @@
         </div>
 
         <div class="rsv-auth-panel" id="createPanel" hidden>
-          <div class="rsv-row rsv-row--3">
+          <div class="rsv-row">
+            <div class="rsv-field">
+              <label class="rsv-label" for="authFirst">First name</label>
+              <input class="rsv-input rsv-input--tight" id="authFirst" placeholder="First name">
+            </div>
+            <div class="rsv-field">
+              <label class="rsv-label" for="authLast">Last name</label>
+              <input class="rsv-input rsv-input--tight" id="authLast" placeholder="Last name">
+            </div>
             <div class="rsv-field rsv-field--full">
               <label class="rsv-label" for="authEmail2">Email</label>
               <input class="rsv-input rsv-input--tight" id="authEmail2" placeholder="you@company.com">
             </div>
             <div class="rsv-field">
+              <label class="rsv-label" for="authPhone">Mobile</label>
+              <input class="rsv-input rsv-input--tight" id="authPhone" placeholder="+1 212 555 0142">
+            </div>
+            <div class="rsv-field">
               <label class="rsv-label" for="authPass2">Choose a password</label>
               <input class="rsv-input rsv-input--tight" type="password" id="authPass2" placeholder="At least 8 characters">
             </div>
-            <div class="rsv-field">
+            <div class="rsv-field rsv-field--full">
               <label class="rsv-label" for="authConfirm2">Confirm password</label>
               <input class="rsv-input rsv-input--tight" type="password" id="authConfirm2" placeholder="Repeat password">
             </div>
+            <div class="rsv-field rsv-field--full">
+              <label class="rsv-label" for="authAddress">Home address <span class="rsv-label-optional">&mdash; optional, add it later if you&rsquo;d rather not now</span></label>
+              <input class="rsv-input rsv-input--tight" id="authAddress" placeholder="Street address, so it&rsquo;s ready next time you book">
+            </div>
           </div>
-          <button type="button" class="rsv-checkbox-row" id="saveProfileToggle">
-            <span class="rsv-checkbox" id="saveProfileBox"></span>
-            <span>Save my addresses and preferences for future rides</span>
-          </button>
           <div class="rsv-auth-actions">
             <button type="button" class="rsv-btn-outline rsv-btn-outline--sm" id="createAccountBtn">Create account</button>
           </div>
-          <div class="rsv-auth-status" id="authStatus2">Optional &mdash; your inquiry is submitted either way.</div>
+          <div class="rsv-auth-status" id="authStatus2">Everything except the address is required.</div>
         </div>
 
         <div class="rsv-row">
