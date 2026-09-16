@@ -426,7 +426,11 @@
     if (pass.length < 8) return setState({ authStatus: 'Password must be at least 8 characters.', authStatusKind: 'error' });
     if (pass !== state.authConfirm) return setState({ authStatus: 'Passwords do not match.', authStatusKind: 'error' });
     setState({ authBusy: true, authStatus: 'Creating your account…', authStatusKind: '' });
-    sb.auth.signUp({ email: email, password: pass }).then(function (res) {
+    sb.auth.signUp({
+      email: email,
+      password: pass,
+      options: { emailRedirectTo: window.location.origin + '/reserve-a-ride.html' },
+    }).then(function (res) {
       if (res.error) return setState({ authBusy: false, authStatus: res.error.message, authStatusKind: 'error' });
       var user = res.data.user;
       var hasSession = !!res.data.session;
