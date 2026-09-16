@@ -1179,7 +1179,7 @@ a.testimonial__name:hover { color: var(--brass); }
      floating panel — there's no room to float anything in a narrow
      off-canvas column. */
   .nav__dropdown-trigger { justify-content: space-between; text-align: left; }
-  .nav__dropdown-menu {
+  .nav__dropdown-menu, .nav__dropdown.is-open .nav__dropdown-menu {
     position: static;
     opacity: 1;
     pointer-events: auto;
@@ -1194,8 +1194,10 @@ a.testimonial__name:hover { color: var(--brass); }
   }
   .nav__dropdown.is-open .nav__dropdown-menu { max-height: 320px; }
   .nav__dropdown-link {
-    padding: 13px 0 13px 18px;
+    padding: 13px 12px 13px 18px;
     font-size: 13px;
+    line-height: 1.4;
+    white-space: normal;
     border-bottom: 1px solid rgba(168,137,92,.1);
   }
 }
