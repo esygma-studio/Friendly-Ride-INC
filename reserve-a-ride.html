@@ -79,7 +79,7 @@
     </button>
     <button type="button" class="rsv-step" data-step="3">
       <span class="rsv-step__num">3</span>
-      <span class="rsv-step__label">Details</span>
+      <span class="rsv-step__label">Checkout</span>
     </button>
     <button type="button" class="rsv-step" data-step="4">
       <span class="rsv-step__num">&#10003;</span>
@@ -242,6 +242,16 @@
 
       <!-- ============ STEP 3: DETAILS ============ -->
       <section class="rsv-panel" id="panel3" hidden>
+        <!-- FLAGGED: Sign in / Create account are wired up (Supabase Auth,
+             see reserve-a-ride.js) but are hidden for now — Supabase's
+             built-in email sender has a very low rate limit ("email rate
+             limit exceeded"), so confirmation emails don't reliably reach
+             people. This needs a real transactional email provider (e.g.
+             Resend) wired into Supabase's SMTP settings before accounts
+             can go back live. Until then every reservation is guest
+             checkout — remove this `hidden` (and the one on #accountArea
+             below) once email sending is fixed. -->
+        <div id="accountArea" hidden>
         <div class="rsv-signed-in" id="signedInBar" hidden>
           <div class="rsv-signed-in__text">Signed in as <span id="signedInEmail"></span></div>
           <button type="button" class="rsv-forgot" id="signOutBtn">Sign out</button>
@@ -311,7 +321,9 @@
           </div>
           <div class="rsv-auth-status" id="authStatus2">Everything except the address is required.</div>
         </div>
+        </div>
 
+        <div class="rsv-checkout-label">Checkout</div>
         <div class="rsv-row">
           <div class="rsv-field">
             <label class="rsv-label" for="fFirst">First name</label>
