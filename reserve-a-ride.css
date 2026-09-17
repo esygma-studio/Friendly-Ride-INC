@@ -368,6 +368,16 @@
 .rsv-checkbox.is-checked::after { content: '✓'; }
 
 /* ============ VEHICLE LIST ============ */
+.rsv-vehicle-groups { display: flex; flex-direction: column; gap: 36px; }
+.rsv-vehicle-group__title {
+  font-size: 10px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--r-brass);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(168,137,92,.18);
+}
 .rsv-vehicle-list { display: flex; flex-direction: column; gap: 14px; }
 .rsv-vehicle-card {
   display: grid;
@@ -610,6 +620,8 @@
   .rsv-vehicle-card { grid-template-columns: 96px 1fr; gap: 16px; padding: 14px; }
   .rsv-vehicle-card__img { width: 96px; height: 64px; }
   .rsv-vehicle-card__name { font-size: 20px; white-space: normal; }
+  .rsv-vehicle-card__top { flex-wrap: wrap; row-gap: 6px; }
+  .rsv-vehicle-card__tag { white-space: normal; }
   .rsv-steps { flex-wrap: wrap; }
   .rsv-step__label { display: none; }
   .rsv-step { padding: 14px; }

@@ -7,12 +7,32 @@
     { id: 'directed', name: 'As Directed — Hourly', mode: 'hourly' },
   ];
 
+  // The full fleet, one to one with the vehicle classes shown on fleet.html
+  // — every reservable vehicle we actually own, grouped the same way.
+  var CATEGORIES = [
+    { slug: 'sedans', label: 'Luxury Sedans' },
+    { slug: 'suvs', label: 'Luxury SUVs' },
+    { slug: 'limousines', label: 'Limousines' },
+    { slug: 'sprinters', label: 'Executive Sprinters' },
+    { slug: 'coaches', label: 'Coaches & Passenger Buses' },
+  ];
+
   var VEHICLES = [
-    { id: 'sedan', name: 'Mercedes-Benz E-Class', klass: 'Executive Sedan', guests: 3, luggage: 3, tag: 'Most requested', img: 'assets/reserve-veh-sedan.webp' },
-    { id: 'suv', name: 'Full-size Luxury SUV', klass: 'First Class SUV', guests: 6, luggage: 6, tag: 'Groups of six', img: 'assets/reserve-veh-suv.webp' },
-    { id: 'sclass', name: 'Mercedes-Benz S-Class', klass: 'Luxury Sedan', guests: 3, luggage: 3, tag: 'Flagship', img: 'assets/reserve-veh-sclass.webp' },
-    { id: 'maybach', name: 'Mercedes-Maybach', klass: 'Ultra Luxury Sedan', guests: 3, luggage: 2, tag: "Chauffeur's best", img: 'assets/reserve-veh-maybach.webp' },
-    { id: 'sprinter', name: 'Executive Sprinter Van', klass: 'Luxury Van', guests: 14, luggage: 14, tag: 'Up to fourteen', img: 'assets/reserve-veh-sprinter.webp' },
+    { id: 'phantom', category: 'sedans', name: 'Rolls-Royce Phantom Extended', klass: 'Luxury Sedan', guests: 4, luggage: 3, tag: 'The Formal Arrival', img: 'assets/reserve-veh-phantom.webp' },
+    { id: 'flying-spur', category: 'sedans', name: 'Bentley Flying Spur', klass: 'Luxury Sedan', guests: 3, luggage: 3, tag: 'British Alternative', img: 'assets/reserve-veh-flying-spur.webp' },
+    { id: 'maybach-s680', category: 'sedans', name: 'Mercedes-Maybach S 680', klass: 'Luxury Sedan', guests: 3, luggage: 3, tag: "Chauffeur's Best", img: 'assets/reserve-veh-maybach.webp' },
+    { id: 's580', category: 'sedans', name: 'Mercedes-Benz S 580 4MATIC', klass: 'Luxury Sedan', guests: 3, luggage: 3, tag: 'Most Requested', img: 'assets/reserve-veh-sclass.webp' },
+    { id: 'eqs580', category: 'sedans', name: 'Mercedes-Benz EQS 580 4MATIC', klass: 'Luxury Sedan', guests: 3, luggage: 3, tag: 'All-Electric', img: 'assets/reserve-veh-eqs580.webp' },
+    { id: 'cullinan', category: 'suvs', name: 'Rolls-Royce Cullinan Presidential', klass: 'Luxury SUV', guests: 5, luggage: 4, tag: 'Presidential', img: 'assets/reserve-veh-cullinan.webp' },
+    { id: 'gls600', category: 'suvs', name: 'Mercedes-Maybach GLS 600', klass: 'Luxury SUV', guests: 4, luggage: 4, tag: 'SUV Flagship', img: 'assets/reserve-veh-gls600.webp' },
+    { id: 'escalade', category: 'suvs', name: 'Cadillac Escalade ESV', klass: 'Luxury SUV', guests: 6, luggage: 6, tag: 'Groups of Six', img: 'assets/reserve-veh-escalade.webp' },
+    { id: 'range-rover', category: 'suvs', name: 'Range Rover Autobiography', klass: 'Luxury SUV', guests: 5, luggage: 4, tag: 'Most Discreet', img: 'assets/reserve-veh-range-rover.webp' },
+    { id: 'chrysler300-limo', category: 'limousines', name: 'Chrysler 300 Stretch Limousine', klass: 'Limousine', guests: 10, luggage: 4, tag: 'The Celebration Car', img: 'assets/reserve-veh-chrysler300-limo.webp' },
+    { id: 'sprinter-limo', category: 'sprinters', name: 'Mercedes-Benz Sprinter Executive Limo', klass: 'Executive Sprinter', guests: 10, luggage: 8, tag: 'Full Privacy', img: 'assets/reserve-veh-sprinter-limo.webp' },
+    { id: 'sprinter-executive', category: 'sprinters', name: 'Mercedes-Benz Sprinter Executive', klass: 'Executive Sprinter', guests: 14, luggage: 14, tag: 'Up to Fourteen', img: 'assets/reserve-veh-sprinter.webp' },
+    { id: 'sprinter-shuttle', category: 'sprinters', name: 'Mercedes-Benz Sprinter Shuttle', klass: 'Executive Sprinter', guests: 14, luggage: 20, tag: 'Airport Workhorse', img: 'assets/reserve-veh-sprinter-shuttle.webp' },
+    { id: 'minicoach', category: 'coaches', name: 'Executive Mini-Coach', klass: 'Coach', guests: 28, luggage: 28, tag: 'Up to 28', img: 'assets/reserve-veh-minicoach.webp' },
+    { id: 'motorcoach', category: 'coaches', name: 'Motorcoach', klass: 'Coach', guests: 54, luggage: 54, tag: 'Up to 54', img: 'assets/reserve-veh-motorcoach.webp' },
   ];
 
   // Quick-pick suggestions shown as chips under the airport field — the
@@ -42,6 +62,13 @@
     return d.getFullYear() + '-' + mm + '-' + dd;
   }
 
+  // Lets fleet.html's "Reserve this vehicle" cards link straight in with
+  // that vehicle already selected — e.g. reserve-a-ride.html?vehicle=phantom.
+  // Trip details (step 1) still come first, so this only pre-selects the
+  // card the visitor reaches on step 2 rather than skipping steps.
+  var preselectVehicle = new URLSearchParams(window.location.search).get('vehicle');
+  if (preselectVehicle && !VEHICLES.some(function (v) { return v.id === preselectVehicle; })) preselectVehicle = '';
+
   var state = {
     step: 1,
     service: 'airport',
@@ -55,7 +82,7 @@
     seatsOpen: false, extrasOpen: false,
     seats: { infant: 0, toddler: 0, booster: 0 },
     extras: {},
-    vehicle: '',
+    vehicle: preselectVehicle || '',
     authMode: 'guest', authEmail: '', authPass: '', authConfirm: '', authStatus: '', authStatusKind: '', authBusy: false, saveProfile: true,
     authFirst: '', authLast: '', authPhone: '', authAddress: '',
     authUser: null, savedAddresses: [],
@@ -704,26 +731,42 @@
 
     el.hint1.textContent = state.step === 1 ? state.hint : '';
 
-    // step 2: vehicles
+    // step 2: vehicles, grouped into the same classes as fleet.html
     el.vehicleList.innerHTML = '';
-    VEHICLES.forEach(function (v) {
-      var on = v.id === state.vehicle;
-      var small = v.guests < state.pax;
-      var tag = small ? 'Too small' : v.tag;
-      var card = document.createElement('div');
-      card.className = 'rsv-vehicle-card' + (on ? ' is-selected' : '');
-      card.innerHTML =
-        '<img class="rsv-vehicle-card__img" src="' + v.img + '" alt="' + v.name + '" style="filter:' + (small ? 'grayscale(.8) brightness(.8)' : 'none') + '">' +
-        '<div style="min-width:0">' +
-          '<div class="rsv-vehicle-card__top">' +
-            '<div class="rsv-vehicle-card__klass">' + v.klass + '</div>' +
-            '<div class="rsv-vehicle-card__tag"' + (small ? ' style="color:#B4705A;border-color:rgba(180,112,90,.5)"' : '') + '>' + tag + '</div>' +
-          '</div>' +
-          '<div class="rsv-vehicle-card__name">' + v.name + '</div>' +
-          '<div class="rsv-vehicle-card__capacity">Up to ' + v.guests + ' guests &middot; ' + v.luggage + ' bags</div>' +
-        '</div>';
-      card.addEventListener('click', function () { setState({ vehicle: v.id, hint: '' }); });
-      el.vehicleList.appendChild(card);
+    CATEGORIES.forEach(function (cat) {
+      var inCat = VEHICLES.filter(function (v) { return v.category === cat.slug; });
+      if (!inCat.length) return;
+
+      var group = document.createElement('div');
+      group.className = 'rsv-vehicle-group';
+      var title = document.createElement('div');
+      title.className = 'rsv-vehicle-group__title';
+      title.textContent = cat.label;
+      group.appendChild(title);
+
+      var list = document.createElement('div');
+      list.className = 'rsv-vehicle-list';
+      inCat.forEach(function (v) {
+        var on = v.id === state.vehicle;
+        var small = v.guests < state.pax;
+        var tag = small ? 'Too small' : v.tag;
+        var card = document.createElement('div');
+        card.className = 'rsv-vehicle-card' + (on ? ' is-selected' : '');
+        card.innerHTML =
+          '<img class="rsv-vehicle-card__img" src="' + v.img + '" alt="' + v.name + '" loading="lazy" style="filter:' + (small ? 'grayscale(.8) brightness(.8)' : 'none') + '">' +
+          '<div style="min-width:0">' +
+            '<div class="rsv-vehicle-card__top">' +
+              '<div class="rsv-vehicle-card__klass">' + v.klass + '</div>' +
+              '<div class="rsv-vehicle-card__tag"' + (small ? ' style="color:#B4705A;border-color:rgba(180,112,90,.5)"' : '') + '>' + tag + '</div>' +
+            '</div>' +
+            '<div class="rsv-vehicle-card__name">' + v.name + '</div>' +
+            '<div class="rsv-vehicle-card__capacity">Up to ' + v.guests + ' guests &middot; ' + v.luggage + ' bags</div>' +
+          '</div>';
+        card.addEventListener('click', function () { setState({ vehicle: v.id, hint: '' }); });
+        list.appendChild(card);
+      });
+      group.appendChild(list);
+      el.vehicleList.appendChild(group);
     });
     el.hint2.textContent = state.step === 2 ? state.hint : '';
 
@@ -812,7 +855,12 @@
   }
 
   // ---------- events ----------
-  el.fService.addEventListener('change', function (e) { setState({ service: e.target.value, vehicle: '', hint: '' }); });
+  // Vehicle choice isn't tied to service type (the same 15 vehicles are
+  // offered regardless), so changing the service doesn't clear it —
+  // otherwise a vehicle preselected via fleet.html's "Reserve this
+  // vehicle" links (?vehicle=...) would be wiped the moment someone
+  // touched the service dropdown, before ever reaching step 2.
+  el.fService.addEventListener('change', function (e) { setState({ service: e.target.value, hint: '' }); });
   el.dirArrival.addEventListener('click', function () { setState({ direction: 'arrival', hint: '' }); });
   el.dirDeparture.addEventListener('click', function () { setState({ direction: 'departure', hint: '' }); });
 
