@@ -368,6 +368,23 @@
 .rsv-checkbox.is-checked::after { content: '✓'; }
 
 /* ============ VEHICLE LIST ============ */
+.rsv-vehicle-filter { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+.rsv-vehicle-chip {
+  cursor: pointer;
+  font-family: var(--sans);
+  background: transparent;
+  border: 1px solid rgba(168,137,92,.32);
+  color: var(--r-text-dim);
+  font-size: 10.5px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 12px 20px;
+  border-radius: 2px;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.rsv-vehicle-chip:hover { border-color: var(--r-brass); color: var(--r-text); }
+.rsv-vehicle-chip.is-active, .rsv-vehicle-chip.is-active:hover { background: var(--r-brass); border-color: var(--r-brass); color: #14100B; }
 .rsv-vehicle-groups { display: flex; flex-direction: column; gap: 36px; }
 .rsv-vehicle-group__title {
   font-size: 10px;

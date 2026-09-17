@@ -69,6 +69,13 @@
   var preselectVehicle = new URLSearchParams(window.location.search).get('vehicle');
   if (preselectVehicle && !VEHICLES.some(function (v) { return v.id === preselectVehicle; })) preselectVehicle = '';
 
+  // Default the category tab to wherever the preselected vehicle lives,
+  // so a fleet.html deep link lands with that vehicle already in view —
+  // otherwise start on the first category rather than "All", so step 2
+  // opens short instead of a 15-card scroll.
+  var preselectVehicleObj = VEHICLES.filter(function (v) { return v.id === preselectVehicle; })[0];
+  var defaultVehicleCat = preselectVehicleObj ? preselectVehicleObj.category : CATEGORIES[0].slug;
+
   var state = {
     step: 1,
     service: 'airport',
@@ -83,6 +90,7 @@
     seats: { infant: 0, toddler: 0, booster: 0 },
     extras: {},
     vehicle: preselectVehicle || '',
+    vehicleCat: defaultVehicleCat,
     authMode: 'guest', authEmail: '', authPass: '', authConfirm: '', authStatus: '', authStatusKind: '', authBusy: false, saveProfile: true,
     authFirst: '', authLast: '', authPhone: '', authAddress: '',
     authUser: null, savedAddresses: [],
@@ -557,7 +565,7 @@
     showExtrasBtn: $('showExtrasBtn'), hideExtrasBtn: $('hideExtrasBtn'), extrasPanel: $('extrasPanel'), extraGrid: $('extraGrid'),
     toStep2Btn: $('toStep2Btn'), hint1: $('hint1'),
     panel1: $('panel1'), panel2: $('panel2'), panel3: $('panel3'), panel4: $('panel4'),
-    vehicleList: $('vehicleList'), backTo1Btn: $('backTo1Btn'), toStep3Btn: $('toStep3Btn'), hint2: $('hint2'),
+    vehicleFilter: $('vehicleFilter'), vehicleList: $('vehicleList'), backTo1Btn: $('backTo1Btn'), toStep3Btn: $('toStep3Btn'), hint2: $('hint2'),
     signedInBar: $('signedInBar'), signedInEmail: $('signedInEmail'), signOutBtn: $('signOutBtn'),
     authTabs: $('authTabs'), signinPanel: $('signinPanel'), createPanel: $('createPanel'),
     authEmail1: $('authEmail1'), authPass1: $('authPass1'), signInBtn: $('signInBtn'), authStatus1: $('authStatus1'),
@@ -731,9 +739,29 @@
 
     el.hint1.textContent = state.step === 1 ? state.hint : '';
 
+    // step 2: category tabs — same classes and labels as fleet.html, but
+    // filtered to one category at a time (plus an "All" tab) so this step
+    // opens short instead of a 15-card scroll.
+    el.vehicleFilter.innerHTML = '';
+    var allChip = document.createElement('button');
+    allChip.type = 'button';
+    allChip.className = 'rsv-vehicle-chip' + (state.vehicleCat === 'all' ? ' is-active' : '');
+    allChip.textContent = 'All Vehicles';
+    allChip.addEventListener('click', function () { setState({ vehicleCat: 'all' }); });
+    el.vehicleFilter.appendChild(allChip);
+    CATEGORIES.forEach(function (cat) {
+      var chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'rsv-vehicle-chip' + (state.vehicleCat === cat.slug ? ' is-active' : '');
+      chip.textContent = cat.label;
+      chip.addEventListener('click', function () { setState({ vehicleCat: cat.slug }); });
+      el.vehicleFilter.appendChild(chip);
+    });
+
     // step 2: vehicles, grouped into the same classes as fleet.html
     el.vehicleList.innerHTML = '';
     CATEGORIES.forEach(function (cat) {
+      if (state.vehicleCat !== 'all' && state.vehicleCat !== cat.slug) return;
       var inCat = VEHICLES.filter(function (v) { return v.category === cat.slug; });
       if (!inCat.length) return;
 
