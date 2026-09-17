@@ -28,11 +28,11 @@
     { id: 'escalade', category: 'suvs', name: 'Cadillac Escalade ESV', klass: 'Luxury SUV', guests: 6, luggage: 6, tag: 'Groups of Six', img: 'assets/reserve-veh-escalade.webp' },
     { id: 'range-rover', category: 'suvs', name: 'Range Rover Autobiography', klass: 'Luxury SUV', guests: 5, luggage: 4, tag: 'Most Discreet', img: 'assets/reserve-veh-range-rover.webp' },
     { id: 'chrysler300-limo', category: 'limousines', name: 'Chrysler 300 Stretch Limousine', klass: 'Limousine', guests: 10, luggage: 4, tag: 'The Celebration Car', img: 'assets/reserve-veh-chrysler300-limo.webp' },
-    { id: 'sprinter-limo', category: 'sprinters', name: 'Mercedes-Benz Sprinter Executive Limo', klass: 'Executive Sprinter', guests: 10, luggage: 8, tag: 'Full Privacy', img: 'assets/reserve-veh-sprinter-limo.webp' },
+    { id: 'sprinter-limo', category: 'sprinters', name: 'Mercedes-Benz Sprinter Executive Limo', klass: 'Executive Sprinter', guests: 10, luggage: 8, tag: 'Full Privacy', img: 'assets/reserve-veh-sprinter-limo-v2.webp' },
     { id: 'sprinter-executive', category: 'sprinters', name: 'Mercedes-Benz Sprinter Executive', klass: 'Executive Sprinter', guests: 14, luggage: 14, tag: 'Up to Fourteen', img: 'assets/reserve-veh-sprinter.webp' },
     { id: 'sprinter-shuttle', category: 'sprinters', name: 'Mercedes-Benz Sprinter Shuttle', klass: 'Executive Sprinter', guests: 14, luggage: 20, tag: 'Airport Workhorse', img: 'assets/reserve-veh-sprinter-shuttle.webp' },
-    { id: 'minicoach', category: 'coaches', name: 'Executive Mini-Coach', klass: 'Coach', guests: 28, luggage: 28, tag: 'Up to 28', img: 'assets/reserve-veh-minicoach.webp' },
-    { id: 'motorcoach', category: 'coaches', name: 'Motorcoach', klass: 'Coach', guests: 54, luggage: 54, tag: 'Up to 54', img: 'assets/reserve-veh-motorcoach.webp' },
+    { id: 'minicoach', category: 'coaches', name: 'Executive Mini-Coach', klass: 'Coach', guests: 28, luggage: 28, tag: 'Up to 28', img: 'assets/reserve-veh-minicoach-v2.webp' },
+    { id: 'motorcoach', category: 'coaches', name: 'Motorcoach', klass: 'Coach', guests: 54, luggage: 54, tag: 'Up to 54', img: 'assets/reserve-veh-motorcoach-v2.webp' },
   ];
 
   // Quick-pick suggestions shown as chips under the airport field — the
