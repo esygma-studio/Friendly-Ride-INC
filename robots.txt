@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /maintenance.html
+
+Sitemap: https://friendlyrideinc.com/sitemap.xml
