@@ -31,6 +31,7 @@ const LAND = [
 ];
 
 const BRASS_RGB = '168,137,92';
+const GOLD_LIGHT_RGB = '216,185,120';
 
 // Renders at the canvas's actual CSS size (times devicePixelRatio), instead
 // of one fixed bitmap that then gets scaled by the browser to fit whatever
@@ -55,13 +56,19 @@ function drawMap() {
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.clearRect(0, 0, cssWidth, cssHeight);
   const dotRadius = Math.max(1.6, S * 0.16);
+  // A dark shadow behind each dot keeps it visible against every part of the
+  // photo behind it — pale sky, bright glass towers, dark water — rather than
+  // relying on the dot's own color to contrast against a background that
+  // varies a lot across the image.
+  ctx.shadowColor = 'rgba(6,5,4,0.8)';
+  ctx.shadowBlur = dotRadius * 2.4;
   for (let r = 0; r < ROWS; r++) {
     for (const [a, b] of LAND[r]) {
       for (let c = a; c <= b; c++) {
         const cx = c * S + S / 2, cy = r * S + S / 2;
         ctx.beginPath();
         ctx.arc(cx, cy, dotRadius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(' + BRASS_RGB + ',0.55)';
+        ctx.fillStyle = 'rgba(' + GOLD_LIGHT_RGB + ',0.95)';
         ctx.fill();
       }
     }
