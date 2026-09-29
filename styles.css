@@ -711,7 +711,7 @@ img { display: block; }
 .partners__title { margin: 18px 0 20px; }
 .partners__desc { font-size: 16px; font-weight: 300; line-height: 1.75; color: #DAD1C2; margin: 0; }
 
-.partners__grid { position: relative; height: 780px; margin-top: 20px; }
+.partners__grid { position: relative; height: 1060px; margin-top: 20px; }
 .partners__grid-pattern {
   position: absolute; inset: 0; pointer-events: none;
   background-image:
