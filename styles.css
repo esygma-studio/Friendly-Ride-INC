@@ -370,8 +370,9 @@ img { display: block; }
 .hero__stats {
   margin-top: 34px;
   font-size: 11.5px;
+  font-weight: 500;
   letter-spacing: .28em;
-  color: var(--text-faint);
+  color: var(--brass);
 }
 
 /* ============ GLOBAL REACH ============ */
